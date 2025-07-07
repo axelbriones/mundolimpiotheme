@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>mlthemebuilder</name>
+    <displayName><![CDATA[Mundo Limpio Theme Builder]]></displayName>
+    <version><![CDATA[1.0.0]]></version>
+    <description><![CDATA[Módulo para personalizar completamente el tema de tu tienda Mundo Limpio.]]></description>
+    <author><![CDATA[Byron Briones]]></author>
+    <author_uri><![CDATA[https://bbrion.es]]></author_uri>
+    <tab><![CDATA[front_office_features]]></tab>
+    <confirmUninstall><![CDATA[¿Estás seguro de que quieres desinstalar este módulo? Todos los datos de configuración se perderán.]]></confirmUninstall>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+    <ps_versions_compliancy>
+        <min><![CDATA[1.7.6]]></min>
+        <max><![CDATA[_PS_VERSION_]]></max>
+    </ps_versions_compliancy>
+    <limited_countries></limited_countries>
+    <module_key>a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4</module_key>
+</module>

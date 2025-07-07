@@ -1,0 +1,224 @@
+/* CSS Adicional para MlThemeBuilder - Animaciones y Efectos (animations.css) */
+
+/* Variables CSS (pueden ser usadas por el módulo, pero se definen aquí para animaciones específicas) */
+:root {
+    --ml-anim-primary-color: #667eea; /* Heredar de front.css o definir si es diferente */
+    --ml-anim-secondary-color: #ff6b6b;
+    --ml-anim-transition-duration: 0.6s; /* Duración base para animaciones de entrada */
+    --ml-anim-transition-timing: ease; /* Timing base */
+}
+
+/* --- Animaciones de Entrada Generales --- */
+@keyframes ml-fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ml-fadeInDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ml-fadeInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes ml-fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes ml-scaleIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes ml-zoomIn { /* Más sutil que scaleIn */
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Clases de utilidad para aplicar animaciones (usadas por JS con IntersectionObserver) */
+.ml-animate-on-scroll {
+    opacity: 0; /* Oculto hasta que JS lo active */
+    transition: opacity var(--ml-anim-transition-duration) var(--ml-anim-transition-timing),
+                transform var(--ml-anim-transition-duration) var(--ml-anim-transition-timing);
+}
+.ml-animate-on-scroll.is-visible {
+    opacity: 1;
+}
+
+/* Aplicar la animación específica cuando el elemento es visible */
+.ml-animate-on-scroll.is-visible.anim-fadeInUp { animation: ml-fadeInUp var(--ml-anim-transition-duration) var(--ml-anim-transition-timing) forwards; }
+.ml-animate-on-scroll.is-visible.anim-fadeInDown { animation: ml-fadeInDown var(--ml-anim-transition-duration) var(--ml-anim-transition-timing) forwards; }
+.ml-animate-on-scroll.is-visible.anim-fadeInLeft { animation: ml-fadeInLeft var(--ml-anim-transition-duration) var(--ml-anim-transition-timing) forwards; }
+.ml-animate-on-scroll.is-visible.anim-fadeInRight { animation: ml-fadeInRight var(--ml-anim-transition-duration) var(--ml-anim-transition-timing) forwards; }
+.ml-animate-on-scroll.is-visible.anim-scaleIn { animation: ml-scaleIn var(--ml-anim-transition-duration) var(--ml-anim-transition-timing) forwards; }
+.ml-animate-on-scroll.is-visible.anim-zoomIn { animation: ml-zoomIn var(--ml-anim-transition-duration) var(--ml-anim-transition-timing) forwards; }
+
+/* Para animaciones con delay escalonado (manejado por JS) */
+.ml-stagger-delay-1.is-visible { transition-delay: 0.1s; animation-delay: 0.1s; }
+.ml-stagger-delay-2.is-visible { transition-delay: 0.2s; animation-delay: 0.2s; }
+.ml-stagger-delay-3.is-visible { transition-delay: 0.3s; animation-delay: 0.3s; }
+.ml-stagger-delay-4.is-visible { transition-delay: 0.4s; animation-delay: 0.4s; }
+
+
+/* --- Animaciones Continuas --- */
+@keyframes ml-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+.anim-pulse { animation: ml-pulse 2s infinite ease-in-out; }
+
+@keyframes ml-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+}
+.anim-float { animation: ml-float 3.5s infinite ease-in-out; }
+
+@keyframes ml-shake { /* Sutil temblor */
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+}
+.anim-shake-hover:hover { animation: ml-shake 0.4s ease-in-out; }
+
+
+/* --- Efectos de Hover --- */
+.ml-hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ml-hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.ml-hover-scale {
+    transition: transform 0.3s ease;
+}
+.ml-hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.ml-hover-glow { /* Sutil brillo al hacer hover */
+    transition: box-shadow 0.3s ease;
+}
+.ml-hover-glow:hover {
+    box-shadow: 0 0 20px rgba(var(--ml-primary-color-rgb, 102,126,234), 0.5); /* Asume que --ml-primary-color-rgb está definido */
+}
+
+
+/* --- Efecto Ripple para Botones (si se usa CSS puro) --- */
+.btn.ml-ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+.btn.ml-ripple-effect .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3); /* Color del ripple */
+    transform: scale(0);
+    animation: ml-ripple-animation 0.6s linear;
+    pointer-events: none; /* Importante */
+}
+@keyframes ml-ripple-animation {
+    to {
+        transform: scale(4); /* Ajustar según tamaño del botón */
+        opacity: 0;
+    }
+}
+
+/* --- Animación de Scroll para Slider de Marcas (si es CSS puro) --- */
+/* Esto es un ejemplo, el JS puede manejarlo de forma más robusta */
+/* .brands-section .brands-track.css-animated {
+    animation: ml-scroll-brands var(--scroll-duration, 30s) linear infinite;
+}
+@keyframes ml-scroll-brands {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Asume que el track se duplicó para el efecto infinito */
+/* } */
+/* .brands-section .brands-track.css-animated:hover {
+    animation-play-state: paused;
+} */
+
+
+/* --- Estados de Carga y Esqueletos (Skeletons) --- */
+.ml-loading-shimmer::after { /* Para efecto shimmer en elementos de carga */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%; /* Inicia fuera de la vista */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: ml-loading-shimmer-anim 1.8s infinite;
+}
+@keyframes ml-loading-shimmer-anim {
+    100% { left: 150%; /* Termina fuera de la vista en el otro lado */ }
+}
+
+.ml-skeleton { /* Clase base para un elemento esqueleto */
+    background-color: #e0e0e0; /* Color base del esqueleto */
+    border-radius: 4px;
+    position: relative; /* Para el shimmer */
+    overflow: hidden; /* Para el shimmer */
+}
+.ml-skeleton-text { height: 1em; margin-bottom: 0.5em; }
+.ml-skeleton-text:last-child { width: 70%; }
+.ml-skeleton-title { height: 1.5em; width: 50%; margin-bottom: 0.75em; }
+.ml-skeleton-avatar { width: 50px; height: 50px; border-radius: 50%; }
+.ml-skeleton-image { width: 100%; padding-bottom: 75%; /* Aspect ratio 4:3 */ background-color: #e0e0e0; }
+
+
+/* --- Parallax Suave (si se usa CSS para un efecto simple) --- */
+/* Un parallax más complejo usualmente requiere JS */
+.ml-parallax-bg {
+    background-attachment: fixed; /* Efecto parallax clásico, pero limitado */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.ml-parallax-element { /* Para elementos individuales con parallax */
+    transition: transform 0.2s ease-out; /* Para suavizar el movimiento JS */
+    will-change: transform; /* Optimización */
+}
+
+/* --- Soporte para Movimiento Reducido --- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        animation-play-state: paused !important; /* Detener animaciones continuas */
+    }
+    .ml-animate-on-scroll { /* Mostrar directamente sin animar */
+        opacity: 1;
+        transform: none;
+    }
+    .anim-pulse, .anim-float { animation: none; }
+}
+
+/* --- Efectos de Transición de Página (si se implementan) --- */
+.page-transition-fade-out {
+    animation: ml-fadeOut 0.5s ease forwards;
+}
+.page-transition-fade-in {
+    animation: ml-fadeIn 0.5s ease forwards;
+}
+@keyframes ml-fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+@keyframes ml-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Utilidades de GPU Acceleration (pueden ayudar con el rendimiento de animaciones) */
+.gpu-accelerate {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased; /* Para texto más nítido en Webkit */
+}
+
+/* Definir --ml-primary-color-rgb si no lo hace front.css, para el hover glow */
+/* Se puede hacer en JS o en el <style> del header.tpl si los colores son dinámicos */
+/* body {
+    --ml-primary-color-rgb: 102,126,234; /* Ejemplo para #667eea */
+/* } */
