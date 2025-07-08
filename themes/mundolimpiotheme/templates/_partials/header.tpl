@@ -71,71 +71,18 @@
   </div>
 
   {* Mantener el displayNavFullWidth por si algún módulo lo usa extensivamente, aunque el menú principal ya está en displayTop *}
-  {block name='header_nav_full_width'}
-    <div class="nav-full-width-container">
-        {hook h='displayNavFullWidth'}
-    </div>
-  {/block}
-
+  {* El hook displayNavFullWidth se suele usar para menús que ocupan todo el ancho debajo del header principal,
+     como a veces se ve en el tema Classic. Lo mantenemos aquí por compatibilidad,
+     aunque nuestro menú principal ahora está en displayTop dentro del header. *}
+    {block name='header_nav_full_width_hook'}
+      <div class="nav-full-width-container">
+          {hook h='displayNavFullWidth'}
+      </div>
+    {/block}
 </header>
 
-{* Los bloques header_nav y header_top originales de Classic se han reestructurado arriba.
-   Si algún módulo depende estrictamente de la estructura exacta de `header-nav` o `header-top` de Classic,
-   se podrían necesitar ajustes o mantener esos bloques con su contenido original (y ocultarlos si no se quieren visualmente)
-   mientras se construye el nuevo header. Por ahora, asumimos que los hooks importantes (`displayTop`, `displayNavFullWidth`, `displayBanner`)
-   han sido conservados o reubicados de forma compatible.
-*}
-
-{** Para referencia, el bloque header_nav original de Classic (ya no se usa directamente en esta nueva estructura):
-  {block name='header_nav_classic_removed'}
-    <nav class="header-nav">
-      <div class="container">
-        <div class="row">
-          <div class="hidden-sm-down">
-            <div class="col-md-5 col-xs-12">
-              {hook h='displayNav1'}
-            </div>
-            <div class="col-md-7 right-nav">
-                {hook h='displayNav2'}
-            </div>
-          </div>
-          <div class="hidden-md-up text-sm-center mobile">
-            {* Mobile menu toggle and icons were here, moved to new structure *}
-          </div>
-        </div>
-      </div>
-    </nav>
-  {/block}
-*}
-
-{** Para referencia, el bloque header_top original de Classic (ya no se usa directamente en esta nueva estructura):
-  {block name='header_top_classic_removed'}
-    <div class="header-top">
-      <div class="container">
-         <div class="row">
-          <div class="col-md-2 hidden-sm-down" id="_desktop_logo">
-            {if $shop.logo_details}
-              {if $page.page_name == 'index'}
-                <h1>{renderLogo}</h1>
-              {else}
-                {renderLogo}
-              {/if}
-            {/if}
-          </div>
-          <div class="header-top-right col-md-10 col-sm-12 position-static">
-            {hook h='displayTop'}
-          </div>
-        </div>
-        <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
-          <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
-          <div class="js-top-menu-bottom">
-            <div id="_mobile_currency_selector"></div>
-            <div id="_mobile_language_selector"></div>
-            <div id="_mobile_contact_link"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {hook h='displayNavFullWidth'}
-  {/block}
+{* Los bloques header_nav y header_top originales de Classic se han omitido intencionalmente
+   en esta nueva estructura para lograr el diseño deseado.
+   Los hooks importantes como displayBanner, displayTop y displayNavFullWidth se han conservado.
+   Si se necesita displayNav1 o displayNav2, se pueden añadir en una nueva ubicación o dentro de displayNavMobile.
 *}
