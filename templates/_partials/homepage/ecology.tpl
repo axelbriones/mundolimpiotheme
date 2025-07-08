@@ -15,14 +15,16 @@
                         ['icon' => 'local_florist', 'text' => {l s='Libre de Crueldad Animal (Cruelty-Free)' d='Shop.Theme.Mundolimpio'}],
                         ['icon' => 'handshake', 'text' => {l s='Apoyo a Comunidades y Comercio Justo' d='Shop.Theme.Mundolimpio'}]
                     ]}
-                    {foreach from=$ecology_points item=point}
-                        <div class="ecology-item ml-animate-on-scroll anim-fadeInLeft" data-delay="{$smarty.foreach.point.iteration * 100}">
+                    {foreach from=$ecology_points item=point name=ecologyLoop}
+                        {* Assign the calculated delay to a variable first to ensure it's treated as a number before being outputted *}
+                        {assign var="animation_delay" value=$smarty.foreach.ecologyLoop.iteration * 100}
+                        <div class="ecology-item ml-animate-on-scroll anim-fadeInLeft" data-delay="{$animation_delay|escape:'htmlall':'UTF-8'}">
                             <i class="material-icons">{$point.icon|escape:'htmlall':'UTF-8'}</i>
                             <span>{$point.text|escape:'htmlall':'UTF-8'}</span>
                         </div>
                     {/foreach}
                 </div>
-                 <div class="ecology-button" style="margin-top: 25px;">
+                <div class="ecology-button" style="margin-top: 25px;">
                     <a href="#" class="btn btn-primary ml-ripple-effect">{* TODO: Link to a page about sustainability efforts *}
                         {l s='Conoce Más Sobre Nuestro Impacto' d='Shop.Theme.Actions'}
                     </a>
