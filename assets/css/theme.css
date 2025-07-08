@@ -303,6 +303,9 @@ body.mobile-menu-open {
      .ml-mobile-nav { display: block; /* Asegurar que JS lo pueda manipular */}
 }
 
+:is(dir, menu, ol, ul) ul{
+    list-style-type: none;
+}
 
 /* --------------------------------------------------------------
    Estilos para Secciones de la Página de Inicio (Continuación)
