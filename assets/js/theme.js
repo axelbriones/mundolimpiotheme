@@ -3,9 +3,7 @@
  */
 'use strict';
 
-(function($) { // Ensure jQuery is passed if PrestaShop's core.js provides it, or use vanilla JS.
-             // For PrestaShop 1.7+, jQuery is usually available via `prestashop.jquery` or globally.
-
+(function($) {
     const MundoLimpioTheme = {
         config: {
             selectors: {
@@ -18,19 +16,18 @@
                 rippleEffectButtons: '.btn.ml-ripple-effect',
                 brandsSlider: '.brands-section .brands-slider',
                 brandsSliderTrack: '.brands-section .brands-track',
-                contactForms: 'form.js-contact-form' // Used in contact.tpl for the homepage contact form
+                contactForms: 'form.js-contact-form'
             },
-            stickyHeaderOffset: 100, // Pixels from top to make header sticky
-            scrollToTopOffset: 400,  // Pixels from top to show scroll-to-top button
-            animationOffset: '100px', // How early to trigger animation (pixels from bottom of viewport)
-            lazyLoadRootMargin: '0px 0px 200px 0px', // For IntersectionObserver
-            throttleDelay: 150,      // ms
-            debounceDelay: 300,      // ms
+            stickyHeaderOffset: 50, // Changed from 100 to 50 as per React example
+            scrollToTopOffset: 400,
+            animationOffset: '100px',
+            lazyLoadRootMargin: '0px 0px 200px 0px',
+            throttleDelay: 100,
+            debounceDelay: 250,
             brandsSlider: {
                 pauseOnHover: true
             },
             contactForm: {
-                // ajaxUrl is now expected to be set via prestashop.modules.mlthemebuilder.ajaxUrl (from header.tpl)
                 clearFormAfterSuccess: true
             }
         },
@@ -47,7 +44,6 @@
             this.initBrandsSlider();
             this.initContactForms();
 
-            // Use jQuery for window events if $ is jQuery
             $(window).on('scroll', this.utils.throttle(this.onScroll.bind(this), this.config.throttleDelay));
             $(window).on('resize', this.utils.debounce(this.onResize.bind(this), this.config.debounceDelay));
 
@@ -57,7 +53,6 @@
         },
 
         initPrestashopDependencies: function() {
-            // Ensure translations and AJAX URL are loaded (should be done via Media::addJsDef in header.tpl)
             window.prestashop = window.prestashop || {};
             prestashop.modules = prestashop.modules || {};
             prestashop.modules.mlthemebuilder = prestashop.modules.mlthemebuilder || {};
@@ -70,19 +65,15 @@
             if (typeof prestashop.modules.mlthemebuilder.ajaxUrl !== 'undefined') {
                 this.config.contactForm.ajaxUrl = prestashop.modules.mlthemebuilder.ajaxUrl;
             } else {
-                 // Fallback if not set by header.tpl - this path is a guess.
-                 // The module ajax handler is at modules/mlthemebuilder/ajax/ajax-mlthemebuilder.php
-                 // The theme context is themes/mundolimpiotheme/
-                 // So, the path from webroot would be modules/mlthemebuilder/ajax-mlthemebuilder.php
-                 let baseUrl = (prestashop.urls && prestashop.urls.base_url) ? prestashop.urls.base_url : '/';
+                 let baseUrl = (prestashop.urls && prestashop.urls.base_url) ? prestashop.urls.base_url : window.location.origin + '/';
                  if (!baseUrl.endsWith('/')) baseUrl += '/';
-                 this.config.contactForm.ajaxUrl = baseUrl + 'modules/mlthemebuilder/ajax-mlthemebuilder.php';
-                 // console.warn('MundoLimpioTheme: AJAX URL for contact form not found, using fallback: ' + this.config.contactForm.ajaxUrl);
+                 this.config.contactForm.ajaxUrl = baseUrl + 'index.php?fc=module&module=mlthemebuilder&controller=ajax';
+                 // console.warn('MundoLimpioTheme: AJAX URL for contact form not found or misconfigured. Using fallback: ' + this.config.contactForm.ajaxUrl);
             }
         },
 
         onScroll: function() {
-            this.handleStickyHeader();
+            this.handleStickyHeader(); // This will handle adding/removing 'is-scrolled'
             this.handleScrollToTopButton();
             this.triggerAnimationsOnScroll();
             if (!('IntersectionObserver' in window)) {
@@ -94,9 +85,9 @@
             if (window.innerWidth > 991) {
                 const $toggle = $(this.config.selectors.mobileMenuToggle);
                 const $nav = $(this.config.selectors.mobileNav);
-                if ($nav.hasClass('active') || $nav.hasClass('open')) { // Check for 'open' too
-                    $toggle.removeClass('active open');
-                    $nav.removeClass('active open');
+                if ($nav.hasClass('open')) {
+                    $toggle.removeClass('open');
+                    $nav.removeClass('open');
                     $('body').removeClass('mobile-menu-open');
                 }
             }
@@ -111,15 +102,19 @@
                         e.preventDefault();
                         let offsetTop = $target.offset().top;
                         const $stickyHeader = $(MundoLimpioTheme.config.selectors.stickyHeader);
-                        if ($stickyHeader.length && $stickyHeader.hasClass('is-sticky')) {
-                            offsetTop -= $stickyHeader.outerHeight();
+                        // Use the SCROLLED height if header is sticky, otherwise 0 or initial height if always visible
+                        if ($stickyHeader.length && $stickyHeader.hasClass('is-scrolled')) {
+                             offsetTop -= MundoLimpioTheme.config.stickyHeaderOffsetScrolled || 70; // Use defined scrolled height
+                        } else if ($stickyHeader.length && !$stickyHeader.hasClass('is-scrolled') && $stickyHeader.css('position') === 'fixed' && $stickyHeader.css('background-color') === 'transparent') {
+                            // If header is fixed but transparent (initial state), still account for its height
+                             offsetTop -= MundoLimpioTheme.config.stickyHeaderOffsetInitial || 80; // Use defined initial height
                         }
+
                         offsetTop -= 20;
 
                         $('html, body').animate({ scrollTop: offsetTop }, 800, 'swing');
                     }
                 } catch (error) {
-                    // If targetSelector is not a valid jQuery selector (e.g. contains invalid characters after #)
                     // console.warn('SmoothScroll: Invalid target selector:', targetSelector);
                 }
             });
@@ -203,46 +198,52 @@
         },
 
         initMobileMenu: function() {
-            // This needs to match the HTML structure of your mobile menu toggle and navigation
-            // Assuming standard PrestaShop `classic` theme structure or similar overrides
-            // The `js-ml-menu-toggle` and `js-ml-mobile-nav` are placeholders.
-            // You might need to target PrestaShop's default classes if you haven't overridden the header tpl significantly.
-            // e.g., '#menu-icon' and '#mobile_top_menu_wrapper' or similar.
-            const $toggle = $(this.config.selectors.mobileMenuToggle); // Or PrestaShop's default: $('#menu-icon')
-            const $menu = $(this.config.selectors.mobileNav);     // Or PrestaShop's default: prestashop.responsive.mobile_menu_selector
+            const $toggle = $(this.config.selectors.mobileMenuToggle);
+            const $menu = $(this.config.selectors.mobileNav);
 
             if ($toggle.length && $menu.length) {
-                $toggle.on('click', function() {
-                    $menu.toggleClass('open'); // Add/remove 'open' class to the menu
-                    $(this).toggleClass('open'); // Add/remove 'open' class to the toggle icon
-                    $('body').toggleClass('mobile-menu-open'); // For overflow:hidden etc.
+                $toggle.on('click', function(e) {
+                    e.preventDefault();
+                    $menu.toggleClass('open');
+                    $(this).toggleClass('open');
+                    $('body').toggleClass('mobile-menu-open');
                 });
-            } else {
-                // console.warn('Mobile menu toggle or nav not found with selectors:', this.config.selectors.mobileMenuToggle, this.config.selectors.mobileNav);
+
+                // Close menu if clicking on a link inside it (useful for one-page sites or anchor links)
+                $menu.find('a').on('click', function() {
+                    if ($menu.hasClass('open')) {
+                        $toggle.removeClass('open');
+                        $menu.removeClass('open');
+                        $('body').removeClass('mobile-menu-open');
+                    }
+                });
             }
         },
 
         initStickyHeader: function() {
             this.$stickyHeader = $(this.config.selectors.stickyHeader);
             if (!this.$stickyHeader.length) return;
-            this.stickyOffset = this.$stickyHeader.data('sticky-offset') || this.config.stickyHeaderOffset;
-            this.handleStickyHeader();
+            // Use the specific offset from config, not data-attribute from header element itself
+            this.stickyOffset = this.config.stickyHeaderOffset;
+            this.config.stickyHeaderOffsetScrolled = parseInt(this.$stickyHeader.css('--ml-header-height-scrolled')) || 70; // Get from CSS var
+            this.config.stickyHeaderOffsetInitial = parseInt(this.$stickyHeader.css('--ml-header-height')) || 80; // Get from CSS var
+
+            this.handleStickyHeader(); // Initial check
         },
-        handleStickyHeader: function() {
+        handleStickyHeader: function() { // This is called on scroll
             if (!this.$stickyHeader || !this.$stickyHeader.length) return;
             if ($(window).scrollTop() > this.stickyOffset) {
-                this.$stickyHeader.addClass('is-sticky');
+                this.$stickyHeader.addClass('is-scrolled');
             } else {
-                this.$stickyHeader.removeClass('is-sticky');
+                this.$stickyHeader.removeClass('is-scrolled');
             }
         },
 
         initScrollToTop: function() {
             this.$scrollToTopButton = $(this.config.selectors.scrollToTopButton);
             if (!this.$scrollToTopButton.length) {
-                // Create it if it doesn't exist and a placeholder div is there
                 if ($('#ml-scroll-to-top-placeholder').length && !this.$scrollToTopButton.length) {
-                    $('body').append('<a href="#" class="ml-scroll-to-top"><i class="material-icons">keyboard_arrow_up</i></a>');
+                    $('body').append('<a href="#" class="ml-scroll-to-top" aria-label="Scroll to top"><i class="material-icons">keyboard_arrow_up</i></a>');
                     this.$scrollToTopButton = $(this.config.selectors.scrollToTopButton);
                 } else {
                     return;
@@ -285,12 +286,12 @@
 
             $sliderContainers.each(function() {
                 const $thisSlider = $(this);
-                const $track = $thisSlider.find('.brands-track'); // Changed selector
+                const $track = $thisSlider.find(MundoLimpioTheme.config.selectors.brandsSliderTrack);
                 if (!$track.length) return;
 
                 const $items = $track.children('.brand-item');
-                if ($items.length <= 3) { // Don't animate if few items that likely fit
-                    $track.css('justify-content', 'center'); // Center items if they fit
+                if ($items.length <= 3) {
+                    $track.css('justify-content', 'center');
                     return;
                 }
 
@@ -299,15 +300,15 @@
                 $items.each(function() { trackWidth += $(this).outerWidth(true); });
 
                 if (trackWidth > sliderWidth) {
-                    $items.clone().appendTo($track); // Clone for infinite loop
+                    $items.clone().appendTo($track);
                     $track.css('width', trackWidth * 2);
 
-                    const duration = $thisSlider.data('duration') || "30s"; // Get from data-attribute or default
+                    const duration = $thisSlider.data('duration') || "30s";
                     $track.css({
                         'animation-duration': duration,
-                        'animation-name': 'ml-scroll-brands' // Make sure this keyframe is in CSS
+                        'animation-name': 'ml-scroll-brands'
                     });
-                    $track.addClass('css-animated');
+                    // $track.addClass('css-animated'); // This class might not be needed if animation-name is set directly
 
                     if (MundoLimpioTheme.config.brandsSlider.pauseOnHover) {
                         $thisSlider.on('mouseenter', () => $track.css('animation-play-state', 'paused'));
@@ -343,26 +344,19 @@
                     }
 
                     const formData = new FormData(this);
-                    // If this form is the main PrestaShop contact form, its action should already point to ContactController.
-                    // If it's a custom form handled by our module's AJAX:
-                    // formData.append('action', 'submitContactForm'); // Ensure this matches a case in ajax-mlthemebuilder.php
-                    // formData.append('ajax', '1');
-                    // if (prestashop && prestashop.static_token) { formData.append('token', prestashop.static_token); }
-
 
                     const originalButtonText = $submitButton.html();
                     $submitButton.html(prestashop.modules.mlthemebuilder.translations.sending).prop('disabled', true);
                     $responseDiv.hide().removeClass('success-message error-message').empty();
 
                     let ajaxUrl = $form.attr('action');
-                    let isNativeContactForm = ajaxUrl.includes('controller=contact');
+                    let isNativeContactForm = ajaxUrl.includes('controller=contact'); // Check if it's PS native contact form
 
                     if (!isNativeContactForm && (!ajaxUrl || ajaxUrl === '#')) {
                         ajaxUrl = self.config.contactForm.ajaxUrl;
-                        if (!formData.has('action')) formData.append('action', 'submitContactForm');
+                        if (!formData.has('action')) formData.append('action', 'submitContactForm'); // For our custom AJAX handler
                         if (!formData.has('ajax')) formData.append('ajax', '1');
                     }
-
 
                     $.ajax({
                         url: ajaxUrl,
@@ -370,37 +364,32 @@
                         data: formData,
                         processData: false,
                         contentType: false,
-                        dataType: 'json', // Expect JSON from our custom AJAX
+                        dataType: isNativeContactForm ? 'html' : 'json', // Expect HTML from PS ContactController, JSON from ours
                         success: function(response) {
-                            // This success/error handling is for OUR custom AJAX handler.
-                            // If submitting to PrestaShop's ContactController, the response might be different (e.g. HTML with messages).
-                            if (response.success || (response.sent && !response.error) || (response.message && response.message.includes('successfully'))) {
-                                $responseDiv.html(`<p class="success-message">${response.message || prestashop.modules.mlthemebuilder.translations.messageSent}</p>`).addClass('success-message').show();
-                                if (self.config.contactForm.clearFormAfterSuccess) $form[0].reset();
-                            } else {
-                                let errors = response.errors || (response.message ? [response.message] : [prestashop.modules.mlthemebuilder.translations.errorSendingMessage]);
-                                $responseDiv.html(`<p class="error-message">${errors.join('<br>')}</p>`).addClass('error-message').show();
-                            }
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            // Handle PrestaShop's ContactController HTML response if that's the case
-                            if (isNativeContactForm && jqXHR.responseText) {
-                                // Try to parse for success/error messages in HTML response
-                                if (jqXHR.responseText.includes('alert-success') || jqXHR.responseText.includes('alert alert-success')) {
-                                     $responseDiv.html(`<p class="success-message">${prestashop.modules.mlthemebuilder.translations.messageSent}</p>`).addClass('success-message').show();
-                                     if (self.config.contactForm.clearFormAfterSuccess) $form[0].reset();
-                                } else if (jqXHR.responseText.includes('alert-danger') || jqXHR.responseText.includes('alert alert-danger')) {
-                                     // Extract error message if possible, or show generic
-                                     let $errorHtml = $(jqXHR.responseText);
-                                     let errorMsg = $errorHtml.find('.alert.alert-danger ul li').first().text() || prestashop.modules.mlthemebuilder.translations.errorSendingMessage;
-                                     $responseDiv.html(`<p class="error-message">${errorMsg}</p>`).addClass('error-message').show();
+                            if (isNativeContactForm) {
+                                // Handle HTML response from PrestaShop's ContactController
+                                // Look for success/error messages within the HTML
+                                let $responseHtml = $('<div>').html(response);
+                                if ($responseHtml.find('.alert-success, .alert.alert-success').length > 0) {
+                                    $responseDiv.html(`<p class="success-message">${prestashop.modules.mlthemebuilder.translations.messageSent}</p>`).addClass('success-message').show();
+                                    if (self.config.contactForm.clearFormAfterSuccess) $form[0].reset();
                                 } else {
-                                     $responseDiv.html(`<p class="error-message">${prestashop.modules.mlthemebuilder.translations.errorSendingMessage} (Unknown response)</p>`).addClass('error-message').show();
+                                     let errorMsg = $responseHtml.find('.alert-danger ul li, .alert.alert-danger ul li').first().text() || prestashop.modules.mlthemebuilder.translations.errorSendingMessage;
+                                     $responseDiv.html(`<p class="error-message">${errorMsg}</p>`).addClass('error-message').show();
                                 }
                             } else {
-                                // console.error("Contact form AJAX error:", textStatus, errorThrown, jqXHR.responseText);
-                                $responseDiv.html(`<p class="error-message">${prestashop.modules.mlthemebuilder.translations.errorSendingMessage}</p>`).addClass('error-message').show();
+                                // Handle JSON response from our custom AJAX handler
+                                if (response.success || (response.sent && !response.error)) {
+                                    $responseDiv.html(`<p class="success-message">${response.message || prestashop.modules.mlthemebuilder.translations.messageSent}</p>`).addClass('success-message').show();
+                                    if (self.config.contactForm.clearFormAfterSuccess) $form[0].reset();
+                                } else {
+                                    let errors = response.errors || (response.message ? [response.message] : [prestashop.modules.mlthemebuilder.translations.errorSendingMessage]);
+                                    $responseDiv.html(`<p class="error-message">${errors.join('<br>')}</p>`).addClass('error-message').show();
+                                }
                             }
+                        },
+                        error: function() {
+                            $responseDiv.html(`<p class="error-message">${prestashop.modules.mlthemebuilder.translations.errorSendingMessage}</p>`).addClass('error-message').show();
                         },
                         complete: function() {
                             $submitButton.html(originalButtonText).prop('disabled', false);
@@ -454,4 +443,3 @@
     });
 
 })(jQuery);
->>>>>>> REPLACE

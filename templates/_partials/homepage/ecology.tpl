@@ -24,7 +24,7 @@
                         </div>
                     {/foreach}
                 </div>
-                <div class="ecology-button" style="margin-top: 25px;">
+                 <div class="ecology-button" style="margin-top: 25px;">
                     <a href="#" class="btn btn-primary ml-ripple-effect">{* TODO: Link to a page about sustainability efforts *}
                         {l s='Conoce Más Sobre Nuestro Impacto' d='Shop.Theme.Actions'}
                     </a>
