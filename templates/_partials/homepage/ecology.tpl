@@ -2,9 +2,9 @@
  * Ecology Section for Mundo Limpio Theme Homepage
  * Content is semi-static for now.
  *}
-<section class="homepage-section ecology-section" id="ecology">
-    <div class="container">
-        <div class="ecology-content"> {* Default: text-left, image-right. Add class 'image-left' for reverse *}
+<section class="homepage-section ecology-section" id="ecology"> {* Esta sección se incluye dentro de un .container en index.tpl *}
+    {* Ya no necesitamos un <div class="container"> aquí si la sección entera está contenida desde index.tpl *}
+    <div class="ecology-content"> {* Default: text-left, image-right. Add class 'image-left' for reverse *}
             <div class="ecology-text">
                 <h2 class="ecology-title">{l s='Nuestro Pacto con el Planeta' d='Shop.Theme.Mundolimpio'}</h2>
                 <p class="ecology-description">{l s='En Mundo Limpio, cada producto es un paso hacia un futuro más verde. Creemos en la transparencia, la responsabilidad y el poder de las elecciones conscientes.' d='Shop.Theme.Mundolimpio'}</p>

@@ -37,13 +37,19 @@
           *}
           {* {$HOOK_HOME nofilter} *}
 
+          {* Hero Section - Rendered directly to be full-width by default *}
           {include file="./_partials/homepage/hero.tpl"}
-          {include file="./_partials/homepage/services.tpl"}
-          {include file="./_partials/homepage/products.tpl"}
-          {include file="./_partials/homepage/banner.tpl"}
-          {include file="./_partials/homepage/brands.tpl"}
-          {include file="./_partials/homepage/ecology.tpl"}
-          {include file="./_partials/homepage/contact.tpl"}
+
+          {* Other sections will be wrapped in a container if they are not meant to be full-width backgrounds *}
+          {* For sections that should respect the --ml-container-max-width (1400px) and have side padding: *}
+          <div class="container">
+            {include file="./_partials/homepage/services.tpl"}
+            {include file="./_partials/homepage/products.tpl"}
+            {include file="./_partials/homepage/banner.tpl"}
+            {include file="./_partials/homepage/brands.tpl"}
+            {include file="./_partials/homepage/ecology.tpl"}
+            {include file="./_partials/homepage/contact.tpl"}
+          </div>
 
         {/block}
       </section>

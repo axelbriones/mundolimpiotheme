@@ -2,10 +2,10 @@
  * Contact Section for Mundo Limpio Theme Homepage
  * Content is semi-static for now.
  *}
-<section class="homepage-section contact-section" id="contact">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">{l s='¿Hablamos? Estamos Aquí para Ayudarte' d='Shop.Theme.Mundolimpio'}</h2>
+<section class="homepage-section contact-section" id="contact"> {* Esta sección se incluye dentro de un .container en index.tpl *}
+    {* Ya no necesitamos un <div class="container"> aquí si la sección entera está contenida desde index.tpl *}
+    <div class="section-header">
+        <h2 class="section-title">{l s='¿Hablamos? Estamos Aquí para Ayudarte' d='Shop.Theme.Mundolimpio'}</h2>
             <p class="section-subtitle">{l s='Si tienes preguntas, sugerencias o simplemente quieres saludar, no dudes en contactarnos.' d='Shop.Theme.Mundolimpio'}</p>
         </div>
         <div class="contact-content">

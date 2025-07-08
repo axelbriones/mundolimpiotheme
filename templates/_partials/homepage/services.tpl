@@ -2,10 +2,10 @@
  * Services Section for Mundo Limpio Theme Homepage
  * Content is semi-static for now.
  *}
-<section class="homepage-section services-section" id="services">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">{l s='Nuestros Compromisos y Servicios' d='Shop.Theme.Mundolimpio'}</h2>
+<section class="homepage-section services-section" id="services"> {* Esta sección se incluye dentro de un .container en index.tpl *}
+    {* Ya no necesitamos un <div class="container"> aquí si la sección entera está contenida desde index.tpl *}
+    <div class="section-header">
+        <h2 class="section-title">{l s='Nuestros Compromisos y Servicios' d='Shop.Theme.Mundolimpio'}</h2>
             <p class="section-subtitle">{l s='Calidad, sostenibilidad y atención personalizada para ti y el medio ambiente.' d='Shop.Theme.Mundolimpio'}</p>
         </div>
         <div class="services-grid">

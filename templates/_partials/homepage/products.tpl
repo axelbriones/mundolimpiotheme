@@ -2,10 +2,10 @@
  * Products Section for Mundo Limpio Theme Homepage
  * Content is semi-static for now. Could display featured products or categories.
  *}
-<section class="homepage-section products-section" id="products">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">{l s='Productos Estrella para un Mundo Limpio' d='Shop.Theme.Mundolimpio'}</h2>
+<section class="homepage-section products-section" id="products"> {* Esta sección se incluye dentro de un .container en index.tpl *}
+    {* Ya no necesitamos un <div class="container"> aquí si la sección entera está contenida desde index.tpl *}
+    <div class="section-header">
+        <h2 class="section-title">{l s='Productos Estrella para un Mundo Limpio' d='Shop.Theme.Mundolimpio'}</h2>
             <p class="section-subtitle">{l s='Descubre nuestras soluciones más populares y efectivas para un hogar sostenible.' d='Shop.Theme.Mundolimpio'}</p>
         </div>
 

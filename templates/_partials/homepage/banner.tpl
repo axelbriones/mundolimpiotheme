@@ -2,9 +2,10 @@
  * Banner CTA Section for Mundo Limpio Theme Homepage
  * Content is semi-static for now.
  *}
-<section class="homepage-section banner-cta-section" id="cta-banner">
-    <div class="container banner-container">
-        <div class="banner-content"> {* Default: text-left, image-right. Add class 'image-left' for reverse *}
+<section class="homepage-section banner-cta-section" id="cta-banner"> {* Esta sección se incluye dentro de un .container en index.tpl *}
+    {* Ya no necesitamos un <div class="container banner-container"> aquí, el .container exterior lo maneja.
+       Si se necesita un banner-container para estilos específicos, se puede mantener sin la clase 'container'. *}
+    <div class="banner-content"> {* Default: text-left, image-right. Add class 'image-left' for reverse *}
             <div class="banner-text">
                 <h2 class="banner-title">{l s='Únete a la Revolución Limpia' d='Shop.Theme.Mundolimpio'}</h2>
                 <p class="banner-description">{l s='Suscríbete a nuestro boletín y obtén un 10% de descuento en tu primera compra, además de consejos para un estilo de vida más sostenible.' d='Shop.Theme.Mundolimpio'}</p>

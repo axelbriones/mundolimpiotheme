@@ -2,10 +2,10 @@
  * Brands Slider Section for Mundo Limpio Theme Homepage
  * Content is semi-static for now.
  *}
-<section class="homepage-section brands-section" id="brands">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">{l s='Marcas que Inspiran Confianza' d='Shop.Theme.Mundolimpio'}</h2>
+<section class="homepage-section brands-section" id="brands"> {* Esta sección se incluye dentro de un .container en index.tpl *}
+    {* Ya no necesitamos un <div class="container"> aquí si la sección entera está contenida desde index.tpl *}
+    <div class="section-header">
+        <h2 class="section-title">{l s='Marcas que Inspiran Confianza' d='Shop.Theme.Mundolimpio'}</h2>
             {* <p class="section-subtitle">{l s='Colaboramos con marcas comprometidas con la sostenibilidad y la calidad.' d='Shop.Theme.Mundolimpio'}</p> *}
         </div>
         <div class="brands-slider" data-duration="30s"> {* data-duration para control JS si es necesario *}
