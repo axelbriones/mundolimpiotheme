@@ -4,22 +4,22 @@
    Variables Globales (Defaults - pueden ser sobreescritas por CSS en línea desde header.tpl si es necesario)
 -------------------------------------------------------------- */
 :root {
-    --ml-font-primary: var(--mundolimpio-font-primary, 'Arial', sans-serif);
-    --ml-font-secondary: var(--mundolimpio-font-secondary, 'Arial', sans-serif); /* Para títulos */
+    --ml-font-primary: var(--mundolimpio-font-primary, 'Montserrat', sans-serif); /* Cambiado a Montserrat como prioritario */
+    --ml-font-secondary: var(--mundolimpio-font-secondary, 'Montserrat', sans-serif); /* Para títulos */
     --ml-color-primary: var(--mundolimpio-color-primary, #667eea);
     --ml-color-secondary: var(--mundolimpio-color-secondary, #ff6b6b);
     --ml-color-text: var(--mundolimpio-color-text, #333333);
     --ml-color-link: var(--mundolimpio-color-link, var(--ml-color-primary));
     --ml-color-background-light: var(--mundolimpio-color-background-light, #f8f9fa);
-    --ml-color-background-dark: var(--mundolimpio-color-background-dark, #282c34); /* Un gris oscuro más suave */
-    --ml-container-max-width: var(--mundolimpio-container-max-width, 1200px);
+    --ml-color-background-dark: var(--mundolimpio-color-background-dark, #282c34);
+    --ml-container-max-width: var(--mundolimpio-container-max-width, 1400px); /* Cambiado a 1400px */
     --ml-base-font-size: var(--mundolimpio-base-font-size, 16px);
     --ml-heading-font-scale: var(--mundolimpio-heading-font-scale, 1.2);
     --ml-section-padding-y: var(--mundolimpio-section-padding-y, 60px);
     --ml-button-border-radius: var(--mundolimpio-button-border-radius, 8px);
-    --ml-card-border-radius: var(--mundolimpio-card-border-radius, 12px); /* Un poco más redondeado */
+    --ml-card-border-radius: var(--mundolimpio-card-border-radius, 12px);
 
-    --ml-shadow: 0 8px 25px rgba(0,0,0,0.07); /* Sombra más suave */
+    --ml-shadow: 0 8px 25px rgba(0,0,0,0.07);
     --ml-shadow-hover: 0 12px 30px rgba(0,0,0,0.1);
     --ml-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
@@ -34,6 +34,8 @@
     --ml-header-link-hover-scrolled: var(--ml-corporate-blue, #3182CE); /* Usar el azul corporativo */
     --ml-corporate-green: #38A169;
     --ml-corporate-blue: #3182CE;
+    --ml-corporate-green-rgb: 56,161,105; /* Para rgba() */
+    --ml-corporate-blue-rgb: 49,130,206; /* Para rgba() */
 }
 
 /* --------------------------------------------------------------
@@ -78,41 +80,37 @@ a:hover {
     transition: background-color 0.35s ease-in-out, box-shadow 0.35s ease-in-out, height 0.35s ease-in-out, padding 0.35s ease-in-out;
     background-color: var(--ml-header-bg-initial);
     height: var(--ml-header-height);
-    display: flex; /* Para centrar .header-inner-wrapper verticalmente */
-    align-items: center; /* Para centrar .header-inner-wrapper verticalmente */
+    display: flex;
+    align-items: center;
 }
-.ml-main-header .header-inner-wrapper { /* Contenedor interno para el contenido del header */
+.ml-main-header .header-inner-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%; /* Ocupa todo el ancho del .container padre */
-    height: 100%; /* Ocupa toda la altura del .ml-main-header */
+    width: 100%;
+    height: 100%;
 }
 
-/* Estado "scrolled" del header */
 .ml-main-header.is-scrolled {
     background-color: var(--ml-header-bg-scrolled);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Sombra más sutil */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     height: var(--ml-header-height-scrolled);
-    /* border-bottom: 1px solid #e9ecef; */ /* Borde opcional */
 }
 
-/* Logo */
 .ml-main-header .header-logo-container {
     display: flex;
     align-items: center;
-    flex-shrink: 0; /* Evita que el logo se encoja */
+    flex-shrink: 0;
 }
 .ml-main-header .logo {
-    max-height: calc(var(--ml-header-height) - 28px); /* Ajustar padding (14px arriba y abajo) */
+    max-height: calc(var(--ml-header-height) - 28px);
     width: auto;
     transition: max-height 0.35s ease-in-out;
 }
 .ml-main-header.is-scrolled .logo {
-    max-height: calc(var(--ml-header-height-scrolled) - 20px); /* Logo más pequeño */
+    max-height: calc(var(--ml-header-height-scrolled) - 20px);
 }
 
-/* Navegación Principal (Desktop) */
 .ml-main-header .header-main-nav {
     margin-left: auto;
 }
@@ -149,7 +147,6 @@ a:hover {
 .ml-main-header.is-scrolled .header-main-nav ul#top-menu > li > a:hover {
     color: var(--ml-header-link-hover-scrolled);
 }
-/* Efecto subrayado opcional en hover/active */
 .ml-main-header .header-main-nav ul#top-menu > li > a::after {
     content: '';
     position: absolute;
@@ -164,14 +161,105 @@ a:hover {
     background-color: var(--ml-header-link-hover-scrolled);
 }
 .ml-main-header .header-main-nav ul#top-menu > li > a:hover::after,
-.ml-main-header .header-main-nav ul#top-menu > li.current > a::after { /* 'current' o la clase que ponga PS */
+.ml-main-header .header-main-nav ul#top-menu > li.current > a::after {
     width: 100%;
 }
 
+.ml-main-header .header-right-column {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.ml-main-header .header-top-right-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+.ml-main-header .header-top-right-icons .ps_searchbar > form, /* Para el contenedor del form de ps_searchbar */
+.ml-main-header .header-top-right-icons #_desktop_user_info,
+.ml-main-header .header-top-right-icons #_desktop_cart {
+    display: flex; /* Alinear elementos internos si los hay */
+    align-items: center;
+}
+.ml-main-header .header-top-right-icons a,
+.ml-main-header .header-top-right-icons .ps-searchbar button {
+    color: var(--ml-header-text-initial);
+    padding: 5px;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.25s ease;
+    display: flex; /* Para centrar iconos si están dentro de 'a' */
+    align-items: center;
+}
+.ml-main-header.is-scrolled .header-top-right-icons a,
+.ml-main-header.is-scrolled .header-top-right-icons .ps-searchbar button {
+    color: var(--ml-header-text-scrolled);
+}
+.ml-main-header .header-top-right-icons a:hover,
+.ml-main-header.is-scrolled .header-top-right-icons a:hover,
+.ml-main-header .header-top-right-icons .ps-searchbar button:hover,
+.ml-main-header.is-scrolled .header-top-right-icons .ps-searchbar button:hover {
+    color: var(--ml-header-link-hover-initial);
+    opacity: 0.8;
+}
+.ml-main-header.is-scrolled .header-top-right-icons a:hover {
+    color: var(--ml-header-link-hover-scrolled);
+}
+/* Estilos específicos para los iconos de cuenta y carrito */
+.ml-main-header #_desktop_user_info .material-icons,
+.ml-main-header #_desktop_cart .material-icons {
+    font-size: 1.6rem; /* Un poco más grande */
+}
+.ml-main-header #_desktop_cart .cart-products-count { /* Estilo para el contador del carrito */
+    background-color: var(--ml-color-secondary);
+    color: white;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    padding: 0.1em 0.4em;
+    border-radius: 50%;
+    position: relative;
+    top: -8px;
+    right: -3px;
+    font-weight: bold;
+}
 
-/* Botón CTA en Header */
+
+.ml-main-header #search_widget form input[type="text"] {
+    border: 1px solid rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.1);
+    color: var(--ml-header-text-initial);
+    border-radius: var(--ml-button-border-radius);
+    padding: 0.5em 0.8em;
+    transition: all 0.3s ease;
+    max-width: 180px;
+    font-size: 0.9rem;
+}
+.ml-main-header.is-scrolled #search_widget form input[type="text"] {
+    border-color: #ccc;
+    background-color: #f0f0f0;
+    color: var(--ml-header-text-scrolled);
+}
+.ml-main-header #search_widget form input[type="text"]::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+.ml-main-header.is-scrolled #search_widget form input[type="text"]::placeholder {
+    color: #888;
+}
+.ml-main-header #search_widget form button[type="submit"] {
+    background: none;
+    border: none;
+    color: var(--ml-header-text-initial);
+    font-size: 1.3rem;
+    padding: 0.5em;
+}
+.ml-main-header.is-scrolled #search_widget form button[type="submit"] {
+    color: var(--ml-header-text-scrolled);
+}
+
+
 .ml-main-header .header-cta-button {
-    margin-left: clamp(20px, 3vw, 40px); /* Espacio desde la navegación */
+    margin-left: clamp(15px, 2.5vw, 30px);
 }
 .ml-main-header .header-cta-button .btn.ml-contact-btn {
     background-color: var(--ml-corporate-green);
@@ -185,29 +273,45 @@ a:hover {
     background-color: color-mix(in srgb, var(--ml-corporate-green) 85%, black);
     border-color: color-mix(in srgb, var(--ml-corporate-green) 85%, black);
 }
-.ml-main-header.is-scrolled .header-cta-button .btn.ml-contact-btn {
-    /* Podría cambiar de color si es necesario con el scroll */
-    /* background-color: var(--ml-corporate-blue); */
-    /* border-color: var(--ml-corporate-blue); */
-}
 
 
 /* --- Menú Móvil --- */
 .mobile-menu-container {
     display: none;
     align-items: center;
+    margin-left: auto; /* Empuja el toggle y los iconos a la derecha */
 }
-/* Estilos para los iconos de _mobile_cart, _mobile_user_info si se usan directamente */
+.ml-main-header .mobile-header-right-icons { /* Contenedor para carrito/usuario en móvil, junto al toggle */
+    display: flex;
+    align-items: center;
+    /* margin-left: auto; No es necesario si mobile-menu-container es flex y este es el último hijo */
+}
 .ml-main-header #_mobile_cart a,
-.ml-main-header #_mobile_user_info a {
+.ml-main-header #_mobile_user_info a { /* Estilos de Classic para estos iconos */
     color: var(--ml-header-text-initial);
     padding: 0 8px;
-    font-size: 1.5rem; /* Ajustar tamaño de iconos de carrito/usuario */
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
 }
 .ml-main-header.is-scrolled #_mobile_cart a,
 .ml-main-header.is-scrolled #_mobile_user_info a {
     color: var(--ml-header-text-scrolled);
 }
+.ml-main-header #_mobile_cart .cart-products-count {
+    background-color: var(--ml-color-secondary);
+    color: white;
+    font-size: 0.7rem;
+    line-height: 1.4; /* Ajustar para centrar mejor */
+    padding: 0.1em 0.45em;
+    border-radius: 50%;
+    position: relative;
+    top: -10px; /* Ajustar para superponer sobre el icono */
+    left: -8px;
+    font-weight: bold;
+}
+
+
 .js-ml-menu-toggle {
     background: transparent;
     border: none;
@@ -215,9 +319,10 @@ a:hover {
     font-size: 2rem;
     cursor: pointer;
     padding: 8px;
-    margin-left: 10px;
+    /* margin-left: 10px; Quitado, ya que mobile-menu-container es flex */
     z-index: 1045;
     transition: color 0.3s ease, transform 0.3s ease;
+    line-height: 1; /* Para alinear bien el icono */
 }
 .ml-main-header.is-scrolled .js-ml-menu-toggle {
     color: var(--ml-header-text-scrolled);
@@ -226,8 +331,28 @@ a:hover {
     display: block;
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.js-ml-menu-toggle.open .material-icons {
-    transform: rotate(90deg);
+/* Animación del icono de hamburguesa a cruz */
+.js-ml-menu-toggle#ml-menu-icon-toggle.open .material-icons {
+    content: "close"; /* No funciona para material icons. Se debe cambiar el texto del icono en JS */
+    transform: rotate(180deg); /* O una animación CSS más compleja si es un solo elemento */
+}
+.ml-mobile-nav .ml-mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px; /* Aumentar padding */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: var(--ml-color-background-dark); /* Fondo para el header del panel */
+}
+.ml-mobile-nav .ml-mobile-nav-header .ml-mobile-nav-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f0f0f0;
+}
+.ml-mobile-nav .ml-mobile-nav-header .js-ml-menu-toggle { /* Botón de cierre dentro del panel */
+    color: white;
+    font-size: 1.8rem;
+    padding: 5px; /* Ajustar padding */
 }
 
 
@@ -235,154 +360,119 @@ a:hover {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 85%;
-    max-width: 300px; /* Máximo ancho del panel */
+    width: clamp(280px, 85vw, 320px);
     height: 100vh;
     background-color: var(--ml-color-background-dark);
-    color: white;
-    padding: var(--ml-header-height-scrolled) 20px 20px; /* Padding superior igual a altura del header scrolleado */
-    box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+    color: #f0f0f0;
+    box-shadow: 3px 0 15px rgba(0,0,0,0.25);
     transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 1040;
     overflow-y: auto;
-    display: none; /* Oculto por defecto, se muestra con media query y JS */
+    display: flex; /* Para organizar header y content */
+    flex-direction: column;
 }
 .ml-mobile-nav.open {
     left: 0;
 }
-.ml-mobile-nav ul#top-menu { /* Estilos para ps_mainmenu en móvil */
-    flex-direction: column;
-    align-items: flex-start; /* Alinear texto a la izquierda */
-    gap: 0; /* Sin gap, se maneja con padding de <li> */
+.ml-mobile-nav .ml-mobile-nav-content { /* Contenedor para el contenido scrolleable */
+    padding: 0 0 20px 0;
+    flex-grow: 1; /* Ocupar espacio restante */
+    overflow-y: auto; /* Scroll solo para el contenido */
 }
-.ml-mobile-nav ul#top-menu > li {
+.ml-mobile-nav .ml-mobile-nav-content .container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.ml-mobile-nav .ml-mobile-main-nav ul#top-menu {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+.ml-mobile-nav .ml-mobile-main-nav ul#top-menu > li {
     width: 100%;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
 }
-.ml-mobile-nav ul#top-menu > li:last-child {
+.ml-mobile-nav .ml-mobile-main-nav ul#top-menu > li:last-child {
     border-bottom: none;
 }
-.ml-mobile-nav ul#top-menu > li > a {
+.ml-mobile-nav .ml-mobile-main-nav ul#top-menu > li > a {
     display: block;
-    padding: 15px 10px;
-    color: #f0f0f0; /* Texto un poco menos brillante que blanco puro */
-    text-decoration: none;
-    font-size: 1.1rem;
+    padding: 15px 20px;
+    color: #e0e0e0;
+    text-decoration: none !important;
+    font-size: 1.05rem;
     font-family: 'Montserrat', var(--ml-font-primary);
     transition: background-color 0.2s ease, color 0.2s ease;
     font-weight: 500;
 }
-.ml-mobile-nav ul#top-menu > li > a:hover,
-.ml-mobile-nav ul#top-menu > li.current > a { /* Asumiendo que 'current' es la clase para el ítem activo */
-    background-color: rgba(255,255,255,0.08);
-    color: var(--ml-corporate-green); /* O un color de acento */
+.ml-mobile-nav .ml-mobile-main-nav ul#top-menu > li > a:hover,
+.ml-mobile-nav .ml-mobile-main-nav ul#top-menu > li.current > a {
+    background-color: rgba(var(--ml-corporate-green-rgb, 56,161,105), 0.2);
+    color: var(--ml-corporate-green);
 }
+.ml-mobile-nav .mobile-nav-search {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.ml-mobile-nav .mobile-nav-search #search_widget form input[type="text"] {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+    color: white;
+    width: 100%;
+}
+.ml-mobile-nav .mobile-nav-search #search_widget form input[type="text"]::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+.ml-mobile-nav .mobile-nav-search #search_widget form button[type="submit"] {
+    color: rgba(255,255,255,0.8);
+}
+
+
 .ml-mobile-nav .mobile-nav-cta {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 25px 20px;
 }
 .ml-mobile-nav .mobile-nav-cta .btn {
     width: 100%;
     text-align: center;
+    padding: 12px 15px;
 }
+.ml-mobile-nav .mobile-nav-bottom-links {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+}
+.ml-mobile-nav .mobile-nav-bottom-links > div {
+    margin-bottom: 10px;
+}
+.ml-mobile-nav .mobile-nav-bottom-links a {
+    color: #ccc;
+    display: block;
+    padding: 5px 0;
+}
+.ml-mobile-nav .mobile-nav-bottom-links a:hover {
+    color: var(--ml-corporate-green);
+}
+
 
 body.mobile-menu-open {
-    overflow: hidden; /* Prevenir scroll del body cuando el menú móvil está abierto */
+    overflow: hidden;
 }
 
-/* Media query para mostrar/ocultar elementos de escritorio/móvil */
-@media (max-width: 991px) { /* Breakpoint de Bootstrap para md/lg */
+@media (max-width: 991px) {
     .ml-main-header .header-main-nav,
-    .ml-main-header .header-cta-button {
-        display: none; /* Ocultar navegación de escritorio y CTA */
+    .ml-main-header .header-right-column {
+        display: none;
     }
-    .mobile-menu-container, .ml-mobile-nav { /* Mostrar elementos móviles */
-        display: flex; /* O block para .ml-mobile-nav, ajustado por JS */
+    .mobile-menu-container {
+        display: flex;
     }
-     .ml-mobile-nav { display: block; /* Asegurar que JS lo pueda manipular */}
 }
-
-:is(dir, menu, ol, ul) ul{
-    list-style-type: none;
-}
-
-/* --------------------------------------------------------------
-   Estilos para Secciones de la Página de Inicio (Continuación)
--------------------------------------------------------------- */
-/* (El CSS de las secciones de la página de inicio ya está definido arriba) */
 
 
 /* --------------------------------------------------------------
-   Utilidades y Componentes Adicionales
--------------------------------------------------------------- */
-
-/* Sticky header (ya incluido en .ml-main-header.is-scrolled) */
-
-/* Scroll to top button styling */
-.ml-scroll-to-top {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: var(--ml-color-primary);
-    color: white;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 48px;
-    font-size: 1.6rem;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px) scale(0.9);
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
-    z-index: 999;
-}
-.ml-scroll-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-.ml-scroll-to-top:hover {
-    background-color: color-mix(in srgb, var(--ml-color-primary) 80%, black);
-    transform: scale(1.05); /* Slight pop on hover */
-}
-.ml-scroll-to-top .material-icons {
-    vertical-align: middle;
-    line-height: inherit; /* Ensure icon is centered */
-}
-
-/* Fallback para color-mix si el navegador no lo soporta */
-@supports not (color: color-mix(in srgb, white 50%, black)) {
-  .btn-primary:hover, .btn-primary:focus {
-    background-color: #5265b8; /* Pre-calculado más oscuro para #667eea */
-    border-color: #5265b8;
-  }
-  .btn-secondary:hover, .btn-secondary:focus {
-    background-color: #cc5656; /* Pre-calculado más oscuro para #ff6b6b */
-    border-color: #cc5656;
-  }
-   .ml-main-header .header-cta-button .btn.ml-contact-btn:hover {
-     background-color: #2c7a4b; /* Pre-calculado más oscuro para #38A169 */
-     border-color: #2c7a4b;
-   }
-   .ml-scroll-to-top:hover {
-    background-color: #5265b8;
-  }
-  .homepage-section .section-subtitle {
-    color: #555;
-  }
-   .products-section .subcategory-link {
-     color: #444;
-   }
-   .brands-section .brand-name {
-     color: #555;
-   }
-   .ecology-section .ecology-description {
-     color: #3a5031;
-   }
-}
-
-/* Fin de theme.css */

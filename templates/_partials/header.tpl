@@ -49,42 +49,54 @@
         </a>
       </div>
 
-      <nav class="header-main-nav hidden-md-down"> {* hidden-md-down para ocultar en móvil *}
-        {hook h='displayTop'} {* Aquí se enganchará ps_mainmenu u otro módulo de menú *}
+      <nav class="header-main-nav hidden-md-down">
+        {hook h='displayTop'} {* ps_mainmenu hook *}
       </nav>
 
-      <div class="header-cta-button hidden-md-down">
-        <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary ml-contact-btn"> {* Clase específica para estilizar si es necesario *}
-          {l s='Contactar Ahora' d='Shop.Theme.Actions'}
-        </a>
+      <div class="header-right-column hidden-md-down">
+        <div class="header-top-right-icons">
+          {hook h='displaySearch'}                   {* ps_searchbar hook *}
+          {hook h='displayCustomerAccountLink'}    {* ps_customersignin hook *}
+          {hook h='displayShoppingCartButton'}      {* ps_shoppingcart hook *}
+        </div>
+        <div class="header-cta-button">
+          <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary ml-contact-btn">
+            {l s='Contactar Ahora' d='Shop.Theme.Actions'}
+          </a>
+        </div>
       </div>
 
-      {* --- Menú Móvil --- *}
+      {* --- Mobile Menu Structure --- *}
       <div class="mobile-menu-container hidden-lg-up">
-        {* El id="menu-icon" es usado por el JS de Classic para el menú, podríamos mantenerlo o usar solo nuestra clase js-ml-menu-toggle *}
         <button class="btn-icon js-ml-menu-toggle" id="ml-menu-icon-toggle" aria-label="{l s='Toggle navigation' d='Shop.Theme.Actions'}">
           <i class="material-icons">menu</i>
         </button>
 
         <div class="mobile-header-right-icons">
-            {hook h='displayMobileTopSiteMap'}
+            {* It's common for cart and user info to be visible directly on mobile header too, not just in panel *}
+            {hook h='displayMobileTopSiteMap'} {* This hook from Classic often includes cart & user login *}
         </div>
       </div>
 
     </div>
   </div>
 
-  {* Panel del menú móvil que se mostrará/ocultará con JS. Se mueve fuera del <header> principal para un mejor control de z-index y posicionamiento si es un off-canvas. *}
+  {* Mobile Navigation Panel - Off-canvas *}
   <div class="ml-mobile-nav hidden-lg-up js-ml-mobile-nav" id="js-ml-mobile-nav-panel">
-    <div class="ml-mobile-nav-close-container">
+    <div class="ml-mobile-nav-header">
+        <span class="ml-mobile-nav-title">{l s='Menu' d='Shop.Theme.Global'}</span>
         <button class="btn-icon js-ml-menu-toggle" aria-label="{l s='Close menu' d='Shop.Theme.Actions'}">
             <i class="material-icons">close</i>
         </button>
     </div>
-    <div class="container">
+    <div class="ml-mobile-nav-content container">
         <nav class="ml-mobile-main-nav">
-            {hook h='displayTop'} {* Reutilizamos el mismo menú de escritorio *}
+            {hook h='displayTop'} {* Main menu items *}
         </nav>
+
+        <div class="mobile-nav-search">
+            {hook h='displaySearch'} {* Search bar for mobile panel *}
+        </div>
 
         <div class="mobile-nav-cta">
              <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary btn-block">
@@ -93,18 +105,26 @@
         </div>
 
         <div class="mobile-nav-bottom-links">
-            {hook h='displayNavMobile'}
-            {* Considerar añadir aquí enlaces de cuenta, idioma, moneda si no están en displayMobileTopSiteMap *}
-            {* Por ejemplo, el contenido de .js-top-menu-bottom del header.tpl de Classic *}
-            <div id="_mobile_currency_selector_ml"></div>
-            <div id="_mobile_language_selector_ml"></div>
-            <div id="_mobile_contact_link_ml"></div>
-            <div id="_mobile_user_info_ml"></div>
+            {hook h='displayNavMobile'} {* For other links like currency, language, if not handled by displayMobileTopSiteMap or other specific hooks *}
+            {* Example of how Classic theme includes these, if you want to replicate and ps_themecusto is not used *}
+            {* <div id="_mobile_language_selector"></div> *}
+            {* <div id="_mobile_currency_selector"></div> *}
+            {* {if Context::getContext()->customer->isLogged()}
+              <a class="account-link" href="{$urls.pages.my_account|escape:'htmlall':'UTF-8'}" title="{l s='My account' d='Shop.Theme.Customeraccount'}" rel="nofollow">
+                <i class="material-icons">person</i>
+                <span>{$customer.firstname|escape:'htmlall':'UTF-8'} {$customer.lastname|escape:'htmlall':'UTF-8'}</span>
+              </a>
+            {else}
+              <a class="user-info-login" href="{$urls.pages.authentication|escape:'htmlall':'UTF-8'}" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}" rel="nofollow">
+                <i class="material-icons">person_outline</i>
+                <span>{l s='Sign in' d='Shop.Theme.Actions'}</span>
+              </a>
+            {/if} *}
         </div>
     </div>
   </div>
 
-  {* Mantener el displayNavFullWidth por si algún módulo lo usa extensivamente, aunque el menú principal ya está en displayTop *}
+  {* displayNavFullWidth is often used for full-width menu bars below the main header *}
   {* El hook displayNavFullWidth se suele usar para menús que ocupan todo el ancho debajo del header principal,
      como a veces se ve en el tema Classic. Lo mantenemos aquí por compatibilidad,
      aunque nuestro menú principal ahora está en displayTop dentro del header. *}
