@@ -60,26 +60,31 @@
       </div>
 
       {* --- Menú Móvil --- *}
-      <div class="mobile-menu-container hidden-lg-up"> {* hidden-lg-up para mostrar solo en móvil/tablet *}
-        <button class="btn-icon js-ml-menu-toggle" id="menu-icon" aria-label="{l s='Toggle navigation' d='Shop.Theme.Actions'}">
-          <i class="material-icons">menu</i> {* Icono de hamburguesa *}
+      <div class="mobile-menu-container hidden-lg-up">
+        {* El id="menu-icon" es usado por el JS de Classic para el menú, podríamos mantenerlo o usar solo nuestra clase js-ml-menu-toggle *}
+        <button class="btn-icon js-ml-menu-toggle" id="ml-menu-icon-toggle" aria-label="{l s='Toggle navigation' d='Shop.Theme.Actions'}">
+          <i class="material-icons">menu</i>
         </button>
 
-        {* Carrito e info de usuario para móvil (podemos usar los hooks de Classic aquí si es necesario) *}
         <div class="mobile-header-right-icons">
-            {hook h='displayMobileTopSiteMap'} {* Para el carrito e info de usuario en móvil como en Classic *}
+            {hook h='displayMobileTopSiteMap'}
         </div>
       </div>
 
     </div>
   </div>
 
-  {* Panel del menú móvil que se mostrará/ocultará con JS *}
-  <div class="ml-mobile-nav hidden-lg-up" id="js-ml-mobile-nav">
+  {* Panel del menú móvil que se mostrará/ocultará con JS. Se mueve fuera del <header> principal para un mejor control de z-index y posicionamiento si es un off-canvas. *}
+  <div class="ml-mobile-nav hidden-lg-up js-ml-mobile-nav" id="js-ml-mobile-nav-panel">
+    <div class="ml-mobile-nav-close-container">
+        <button class="btn-icon js-ml-menu-toggle" aria-label="{l s='Close menu' d='Shop.Theme.Actions'}">
+            <i class="material-icons">close</i>
+        </button>
+    </div>
     <div class="container">
-        {* El contenido del menú móvil. Podría ser el mismo hook 'displayTop' o uno específico si el módulo de menú lo soporta.
-           También se puede construir un menú simple aquí si se prefiere. *}
-        {hook h='displayTop'}
+        <nav class="ml-mobile-main-nav">
+            {hook h='displayTop'} {* Reutilizamos el mismo menú de escritorio *}
+        </nav>
 
         <div class="mobile-nav-cta">
              <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary btn-block">
@@ -87,12 +92,14 @@
             </a>
         </div>
 
-        {* Opcional: Enlaces adicionales para móvil como los de header_nav de Classic *}
         <div class="mobile-nav-bottom-links">
-            {hook h='displayNavMobile'} {* Un nuevo hook si queremos contenido diferente al displayNav1/2 *}
-            {* O replicar displayNav1 y displayNav2 si es necesario *}
-            {* {hook h='displayNav1'} *}
-            {* {hook h='displayNav2'} *}
+            {hook h='displayNavMobile'}
+            {* Considerar añadir aquí enlaces de cuenta, idioma, moneda si no están en displayMobileTopSiteMap *}
+            {* Por ejemplo, el contenido de .js-top-menu-bottom del header.tpl de Classic *}
+            <div id="_mobile_currency_selector_ml"></div>
+            <div id="_mobile_language_selector_ml"></div>
+            <div id="_mobile_contact_link_ml"></div>
+            <div id="_mobile_user_info_ml"></div>
         </div>
     </div>
   </div>

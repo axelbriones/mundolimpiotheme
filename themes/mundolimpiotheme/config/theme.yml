@@ -42,12 +42,12 @@ assets: # Define assets - CSS and JS files
         path: assets/js/theme.js
         priority: 200
         position: bottom # Load at the end of the body
-      # Posible inclusión de la fuente Montserrat desde Google Fonts
-      # - id: montserrat-font
-      #   path: https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap
-      #   server: remote
-      #   media: all
-      #   priority: 10 # Cargar antes que nuestro theme.css
+      # Inclusión de la fuente Montserrat desde Google Fonts
+      - id: montserrat-font
+        path: https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap
+        server: remote
+        media: all
+        priority: 10 # Cargar antes que nuestro theme.css
 
 parent: classic # Specifies that this is a child theme of 'classic'
 

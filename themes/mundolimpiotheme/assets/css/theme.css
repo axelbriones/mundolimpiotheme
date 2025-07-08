@@ -4,22 +4,22 @@
    Variables Globales (Defaults - pueden ser sobreescritas por CSS en línea desde header.tpl si es necesario)
 -------------------------------------------------------------- */
 :root {
-    --ml-font-primary: var(--mundolimpio-font-primary, 'Arial', sans-serif);
-    --ml-font-secondary: var(--mundolimpio-font-secondary, 'Arial', sans-serif); /* Para títulos */
+    --ml-font-primary: var(--mundolimpio-font-primary, 'Montserrat', sans-serif); /* Cambiado a Montserrat como prioritario */
+    --ml-font-secondary: var(--mundolimpio-font-secondary, 'Montserrat', sans-serif); /* Para títulos */
     --ml-color-primary: var(--mundolimpio-color-primary, #667eea);
     --ml-color-secondary: var(--mundolimpio-color-secondary, #ff6b6b);
     --ml-color-text: var(--mundolimpio-color-text, #333333);
     --ml-color-link: var(--mundolimpio-color-link, var(--ml-color-primary));
     --ml-color-background-light: var(--mundolimpio-color-background-light, #f8f9fa);
-    --ml-color-background-dark: var(--mundolimpio-color-background-dark, #282c34); /* Un gris oscuro más suave */
-    --ml-container-max-width: var(--mundolimpio-container-max-width, 1200px);
+    --ml-color-background-dark: var(--mundolimpio-color-background-dark, #282c34);
+    --ml-container-max-width: var(--mundolimpio-container-max-width, 1400px); /* Cambiado a 1400px */
     --ml-base-font-size: var(--mundolimpio-base-font-size, 16px);
     --ml-heading-font-scale: var(--mundolimpio-heading-font-scale, 1.2);
     --ml-section-padding-y: var(--mundolimpio-section-padding-y, 60px);
     --ml-button-border-radius: var(--mundolimpio-button-border-radius, 8px);
-    --ml-card-border-radius: var(--mundolimpio-card-border-radius, 12px); /* Un poco más redondeado */
+    --ml-card-border-radius: var(--mundolimpio-card-border-radius, 12px);
 
-    --ml-shadow: 0 8px 25px rgba(0,0,0,0.07); /* Sombra más suave */
+    --ml-shadow: 0 8px 25px rgba(0,0,0,0.07);
     --ml-shadow-hover: 0 12px 30px rgba(0,0,0,0.1);
     --ml-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
@@ -30,10 +30,10 @@
     --ml-header-bg-scrolled: white;
     --ml-header-text-initial: white;
     --ml-header-text-scrolled: var(--ml-color-text);
-    --ml-header-link-hover-initial: var(--ml-corporate-green, #68D391); /* Verde más brillante */
-    --ml-header-link-hover-scrolled: var(--ml-color-primary);
-    --ml-corporate-green: #38A169; /* Un verde corporativo más definido */
-    --ml-corporate-blue: #3182CE; /* Un azul corporativo */
+    --ml-header-link-hover-initial: var(--ml-corporate-green, #38A169); /* Usar el verde corporativo */
+    --ml-header-link-hover-scrolled: var(--ml-corporate-blue, #3182CE); /* Usar el azul corporativo */
+    --ml-corporate-green: #38A169;
+    --ml-corporate-blue: #3182CE;
 }
 
 /* --------------------------------------------------------------
@@ -114,24 +114,29 @@ a:hover {
 
 /* Navegación Principal (Desktop) */
 .ml-main-header .header-main-nav {
-    margin-left: auto; /* Empuja el menú hacia la derecha si el CTA está después */
+    margin-left: auto;
 }
-.ml-main-header .header-main-nav ul#top-menu { /* ps_mainmenu suele usar id #top-menu */
-    list-style: none;
+.ml-main-header .header-main-nav ul#top-menu {
+    list-style: none !important; /* Forzar eliminación de bullets */
+    padding-left: 0 !important; /* Forzar eliminación de padding */
     margin: 0;
-    padding: 0;
     display: flex;
     align-items: center;
-    gap: clamp(15px, 2.5vw, 30px); /* Espacio entre ítems del menú */
+    gap: clamp(15px, 2.5vw, 30px);
+}
+.ml-main-header .header-main-nav ul#top-menu > li {
+    list-style-type: none !important; /* Asegurar que no haya bullets en li */
+    padding-left: 0 !important; /* Resetear padding que pueda heredar */
+    margin-left: 0 !important; /* Resetear margen */
 }
 .ml-main-header .header-main-nav ul#top-menu > li > a {
-    font-family: 'Montserrat', var(--ml-font-primary); /* Especificar Montserrat */
-    text-decoration: none;
+    font-family: 'Montserrat', var(--ml-font-primary);
+    text-decoration: none !important; /* Forzar sin subrayado */
     transition: color 0.25s ease-in-out, opacity 0.25s ease-in-out;
     color: var(--ml-header-text-initial);
     font-weight: 500;
-    padding: 5px 0; /* Más sutil para no afectar altura del header */
-    position: relative; /* Para pseudo-elementos de hover/active */
+    padding: 5px 0;
+    position: relative;
     font-size: clamp(0.9rem, 1.8vw, 1rem);
 }
 .ml-main-header.is-scrolled .header-main-nav ul#top-menu > li > a {
@@ -144,11 +149,10 @@ a:hover {
 .ml-main-header.is-scrolled .header-main-nav ul#top-menu > li > a:hover {
     color: var(--ml-header-link-hover-scrolled);
 }
-/* Efecto subrayado opcional en hover/active */
 .ml-main-header .header-main-nav ul#top-menu > li > a::after {
     content: '';
     position: absolute;
-    bottom: -2px; /* Posición del subrayado */
+    bottom: -2px;
     left: 0;
     width: 0;
     height: 2px;
@@ -159,7 +163,7 @@ a:hover {
     background-color: var(--ml-header-link-hover-scrolled);
 }
 .ml-main-header .header-main-nav ul#top-menu > li > a:hover::after,
-.ml-main-header .header-main-nav ul#top-menu > li.current > a::after { /* 'current' o la clase que ponga PS */
+.ml-main-header .header-main-nav ul#top-menu > li.current > a::after {
     width: 100%;
 }
 
@@ -188,19 +192,38 @@ a:hover {
 
 
 /* --- Menú Móvil --- */
-.mobile-menu-container { /* Contenedor del icono de hamburguesa y otros iconos móviles si los hay */
-    display: none; /* Oculto por defecto, se muestra con media query */
+.mobile-menu-container {
+    display: none; /* Oculto en desktop, se muestra con media query */
     align-items: center;
+    /* Contenedor para el icono de hamburguesa y otros iconos (carrito, usuario) si se mueven aquí */
 }
+.ml-main-header .mobile-header-right-icons {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Empuja los iconos a la derecha del botón de menú si están en el mismo contenedor */
+}
+/* Estilos para los iconos de _mobile_cart, _mobile_user_info si se usan directamente */
+.ml-main-header #_mobile_cart a,
+.ml-main-header #_mobile_user_info a {
+    color: var(--ml-header-text-initial);
+    padding: 0 8px;
+    font-size: 1.5rem; /* Ajustar tamaño de iconos de carrito/usuario */
+}
+.ml-main-header.is-scrolled #_mobile_cart a,
+.ml-main-header.is-scrolled #_mobile_user_info a {
+    color: var(--ml-header-text-scrolled);
+}
+
+
 .js-ml-menu-toggle {
     background: transparent;
     border: none;
     color: var(--ml-header-text-initial);
     font-size: 2rem;
     cursor: pointer;
-    padding: 8px; /* Aumentar área de clic */
+    padding: 8px;
     margin-left: 10px;
-    z-index: 1045; /* Por encima del panel de menú */
+    z-index: 1045;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 .ml-main-header.is-scrolled .js-ml-menu-toggle {
