@@ -1,0 +1,15 @@
+/* Mundo Limpio Theme - Custom CSS (custom.css) */
+/* ==========================================================================
+   Este archivo es para que el USUARIO FINAL del tema (administrador de la tienda)
+   pueda añadir sus propios estilos CSS sin modificar directamente theme.css.
+   Esto facilita las actualizaciones del tema, ya que theme.css podría ser
+   sobrescrito, pero custom.css no lo será.
+
+   Añade tus reglas CSS personalizadas aquí.
+   Ejemplo:
+   .my-custom-class {
+       color: red !important;
+   }
+   ========================================================================== */
+
+/* No añadas aquí los estilos principales del tema. Usa theme.css para eso. */
