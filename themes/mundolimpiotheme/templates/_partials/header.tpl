@@ -14,25 +14,38 @@
 
       <div class="header-logo-container">
         <a href="{$urls.base_url}">
-          {if !empty($shop.logo_details.desktop.url)} {* PS 1.7.8+ usa logo_details *}
-            <img class="logo img-responsive"
-                 src="{$shop.logo_details.desktop.url}"
-                 alt="{$shop.name|escape:'htmlall':'UTF-8'}"
-                 {if !empty($shop.logo_details.desktop.width)}width="{$shop.logo_details.desktop.width|escape:'htmlall':'UTF-8'}"{/if}
-                 {if !empty($shop.logo_details.desktop.height)}height="{$shop.logo_details.desktop.height|escape:'htmlall':'UTF-8'}"{/if}>
-          {elseif !empty($shop.logo.url)} {* Fallback para PS < 1.7.8 o si logo_details no está completo *}
-            <img class="logo img-responsive"
-                 src="{$shop.logo.url}"
-                 alt="{$shop.name|escape:'htmlall':'UTF-8'}"
-                 {if !empty($shop.logo.width)}width="{$shop.logo.width|escape:'htmlall':'UTF-8'}"{/if}
-                 {if !empty($shop.logo.height)}height="{$shop.logo.height|escape:'htmlall':'UTF-8'}"{/if}>
-          {elseif !empty($shop.logo)} {* Fallback si $shop.logo es solo la URL directa *}
-             <img class="logo img-responsive"
-                 src="{$shop.logo|escape:'htmlall':'UTF-8'}"
-                 alt="{$shop.name|escape:'htmlall':'UTF-8'}">
-          {else}
-            <span class="text-logo">{$shop.name|escape:'htmlall':'UTF-8'}</span> {* Fallback a texto si no hay logo *}
-          {/if}
+            {assign var=logo_url value=''}
+            {assign var=logo_width value=''}
+            {assign var=logo_height value=''}
+
+            {if isset($shop.logo_details.desktop.url) && $shop.logo_details.desktop.url != ''}
+                {assign var=logo_url value=$shop.logo_details.desktop.url}
+                {if isset($shop.logo_details.desktop.width)}{assign var=logo_width value=$shop.logo_details.desktop.width}{/if}
+                {if isset($shop.logo_details.desktop.height)}{assign var=logo_height value=$shop.logo_details.desktop.height}{/if}
+            {elseif isset($shop.logo.url) && $shop.logo.url != ''} {* PS < 1.7.8 o fallback *}
+                {assign var=logo_url value=$shop.logo.url}
+                {if isset($shop.logo.width)}{assign var=logo_width value=$shop.logo.width}{/if}
+                {if isset($shop.logo.height)}{assign var=logo_height value=$shop.logo.height}{/if}
+            {elseif is_string($shop.logo) && $shop.logo != ''} {* Si $shop.logo es solo una URL string *}
+                {assign var=logo_url value=$shop.logo}
+            {/if}
+
+            {if $logo_url != ''}
+                <img class="logo img-responsive"
+                     src="{$logo_url|escape:'htmlall':'UTF-8'}"
+                     alt="{$shop.name|escape:'htmlall':'UTF-8'}"
+                     {if $logo_width != ''}width="{$logo_width|escape:'htmlall':'UTF-8'}"{/if}
+                     {if $logo_height != ''}height="{$logo_height|escape:'htmlall':'UTF-8'}"{/if}>
+            {else}
+                {* Fallback si no hay logo configurado en la tienda *}
+                {if isset($shop.logo_details) && isset($shop.logo_details.default_logo_url) && $shop.logo_details.default_logo_url != ''}
+                     <img class="logo img-responsive"
+                         src="{$shop.logo_details.default_logo_url|escape:'htmlall':'UTF-8'}"
+                         alt="{$shop.name|escape:'htmlall':'UTF-8'}">
+                {else}
+                    <span class="text-logo">{$shop.name|escape:'htmlall':'UTF-8'}</span>
+                {/if}
+            {/if}
         </a>
       </div>
 
