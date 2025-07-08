@@ -12,17 +12,31 @@
   <div class="container">
     <div class="header-inner-wrapper"> {* Equivalente al flex items-center justify-between *}
 
-      <div class="header-logo-container"> {* Equivalente al flex items-center del React *}
+      <div class="header-logo-container">
         <a href="{$urls.base_url}">
-          <img class="logo img-responsive"
-               src="{$shop.logo.desktop.url}" {* Usamos el logo de escritorio por defecto *}
-              alt="{$shop.name|escape:'htmlall':'UTF-8'}"
-              {if $shop.logo.desktop.width}width="{$shop.logo.desktop.width|escape:'htmlall':'UTF-8'}"{/if}
-              {if $shop.logo.desktop.height}height="{$shop.logo.desktop.height|escape:'htmlall':'UTF-8'}"{/if}>
+          {if !empty($shop.logo_details.desktop.url)} {* PS 1.7.8+ usa logo_details *}
+            <img class="logo img-responsive"
+                 src="{$shop.logo_details.desktop.url}"
+                 alt="{$shop.name|escape:'htmlall':'UTF-8'}"
+                 {if !empty($shop.logo_details.desktop.width)}width="{$shop.logo_details.desktop.width|escape:'htmlall':'UTF-8'}"{/if}
+                 {if !empty($shop.logo_details.desktop.height)}height="{$shop.logo_details.desktop.height|escape:'htmlall':'UTF-8'}"{/if}>
+          {elseif !empty($shop.logo.url)} {* Fallback para PS < 1.7.8 o si logo_details no está completo *}
+            <img class="logo img-responsive"
+                 src="{$shop.logo.url}"
+                 alt="{$shop.name|escape:'htmlall':'UTF-8'}"
+                 {if !empty($shop.logo.width)}width="{$shop.logo.width|escape:'htmlall':'UTF-8'}"{/if}
+                 {if !empty($shop.logo.height)}height="{$shop.logo.height|escape:'htmlall':'UTF-8'}"{/if}>
+          {elseif !empty($shop.logo)} {* Fallback si $shop.logo es solo la URL directa *}
+             <img class="logo img-responsive"
+                 src="{$shop.logo|escape:'htmlall':'UTF-8'}"
+                 alt="{$shop.name|escape:'htmlall':'UTF-8'}">
+          {else}
+            <span class="text-logo">{$shop.name|escape:'htmlall':'UTF-8'}</span> {* Fallback a texto si no hay logo *}
+          {/if}
         </a>
       </div>
 
-      <nav class="header-main-nav hidden-md-down"> {* hidden-md-down para ocultar en móvil, como en React *}
+      <nav class="header-main-nav hidden-md-down"> {* hidden-md-down para ocultar en móvil *}
         {hook h='displayTop'} {* Aquí se enganchará ps_mainmenu u otro módulo de menú *}
       </nav>
 
@@ -55,7 +69,7 @@
         {hook h='displayTop'}
 
         <div class="mobile-nav-cta">
-            <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary btn-block">
+             <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary btn-block">
                 {l s='Contactar Ahora' d='Shop.Theme.Actions'}
             </a>
         </div>
@@ -72,7 +86,7 @@
 
   {* Mantener el displayNavFullWidth por si algún módulo lo usa extensivamente, aunque el menú principal ya está en displayTop *}
   {* El hook displayNavFullWidth se suele usar para menús que ocupan todo el ancho debajo del header principal,
-    como a veces se ve en el tema Classic. Lo mantenemos aquí por compatibilidad,
+     como a veces se ve en el tema Classic. Lo mantenemos aquí por compatibilidad,
      aunque nuestro menú principal ahora está en displayTop dentro del header. *}
     {block name='header_nav_full_width_hook'}
       <div class="nav-full-width-container">
@@ -82,8 +96,7 @@
 </header>
 
 {* Los bloques header_nav y header_top originales de Classic se han omitido intencionalmente
-  en esta nueva estructura para lograr el diseño deseado.
-  Los hooks importantes como displayBanner, displayTop y displayNavFullWidth se han conservado.
-  Si se necesita displayNav1 o displayNav2, se pueden añadir en una nueva ubicación o dentro de displayNavMobile.
+   en esta nueva estructura para lograr el diseño deseado.
+   Los hooks importantes como displayBanner, displayTop y displayNavFullWidth se han conservado.
+   Si se necesita displayNav1 o displayNav2, se pueden añadir en una nueva ubicación o dentro de displayNavMobile.
 *}
-
