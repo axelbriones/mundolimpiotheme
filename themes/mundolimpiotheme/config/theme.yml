@@ -48,6 +48,11 @@ assets: # Define assets - CSS and JS files
         server: remote
         media: all
         priority: 10 # Cargar antes que nuestro theme.css
+      - id: opensans-font # Añadir Open Sans
+        path: https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap # Regular 400, Semibold 600, Bold 700
+        server: remote
+        media: all
+        priority: 11 # Después de Montserrat
 
 parent: classic # Specifies that this is a child theme of 'classic'
 
