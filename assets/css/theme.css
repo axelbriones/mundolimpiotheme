@@ -54,6 +54,7 @@ body {
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0px;
 }
 
 a {
@@ -70,8 +71,8 @@ a:hover {
     max-width: var(--ml-container-max-width); /* Ya es 1400px por defecto en las variables */
     margin-left: auto;
     margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
     width: 100%; /* Asegura que el container use el espacio disponible hasta su max-width */
     box-sizing: border-box; /* Importante para que el padding no aumente el ancho total */
 }
