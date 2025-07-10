@@ -40,14 +40,34 @@
           {* Hero Section - Rendered directly to be full-width by default *}
           {include file="./_partials/homepage/hero.tpl"}
 
-          {* Other sections will be wrapped in a container if they are not meant to be full-width backgrounds *}
-          {* For sections that should respect the --ml-container-max-width (1400px) and have side padding: *}
+          {* Services Section - Assuming this section's background is NOT full-width, so its content is wrapped in a container. *}
           <div class="container">
             {include file="./_partials/homepage/services.tpl"}
+          </div>
+
+          {* Products Section - Assuming this section's background is NOT full-width. *}
+          <div class="container">
             {include file="./_partials/homepage/products.tpl"}
-            {include file="./_partials/homepage/banner.tpl"}
+          </div>
+
+          {* Brands Section - Assuming this section's background is NOT full-width. *}
+          <div class="container">
             {include file="./_partials/homepage/brands.tpl"}
+          </div>
+
+          {* Banner Section - Assuming this section's background is NOT full-width for now. *}
+          {* If banner needs full-width BG, move include out of this container and handle container internally in banner.tpl *}
+          <div class="container">
+            {include file="./_partials/homepage/banner.tpl"}
+          </div>
+
+          {* Ecology Section - Assuming this section's background is NOT full-width. *}
+          <div class="container">
             {include file="./_partials/homepage/ecology.tpl"}
+          </div>
+
+          {* Contact Section - Assuming this section's background is NOT full-width. *}
+          <div class="container">
             {include file="./_partials/homepage/contact.tpl"}
           </div>
 

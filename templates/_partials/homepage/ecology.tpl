@@ -1,39 +1,38 @@
 {**
  * Ecology Section for Mundo Limpio Theme Homepage
- * Content is semi-static for now.
+ * Design based on React component.
  *}
-<section class="homepage-section ecology-section" id="ecology"> {* Esta sección se incluye dentro de un .container en index.tpl *}
-    {* Ya no necesitamos un <div class="container"> aquí si la sección entera está contenida desde index.tpl *}
-    <div class="ecology-content"> {* Default: text-left, image-right. Add class 'image-left' for reverse *}
-            <div class="ecology-text">
-                <h2 class="ecology-title">{l s='Nuestro Pacto con el Planeta' d='Shop.Theme.Mundolimpio'}</h2>
-                <p class="ecology-description">{l s='En Mundo Limpio, cada producto es un paso hacia un futuro más verde. Creemos en la transparencia, la responsabilidad y el poder de las elecciones conscientes.' d='Shop.Theme.Mundolimpio'}</p>
-                <div class="ecology-items">
-                    {assign var=ecology_points value=[
-                        ['icon' => 'forest', 'text' => {l s='Ingredientes de Origen Sostenible' d='Shop.Theme.Mundolimpio'}],
-                        ['icon' => 'recycling', 'text' => {l s='Empaques Eco-Amigables y Minimizados' d='Shop.Theme.Mundolimpio'}],
-                        ['icon' => 'local_florist', 'text' => {l s='Libre de Crueldad Animal (Cruelty-Free)' d='Shop.Theme.Mundolimpio'}],
-                        ['icon' => 'handshake', 'text' => {l s='Apoyo a Comunidades y Comercio Justo' d='Shop.Theme.Mundolimpio'}]
-                    ]}
-                    {foreach from=$ecology_points item=point name=ecologyLoop}
-                        {* Assign the calculated delay to a variable first to ensure it's treated as a number before being outputted *}
-                        {assign var="animation_delay" value=$smarty.foreach.ecologyLoop.iteration * 100}
-                        <div class="ecology-item ml-animate-on-scroll anim-fadeInLeft" data-delay="{$animation_delay|escape:'htmlall':'UTF-8'}">
-                            <i class="material-icons">{$point.icon|escape:'htmlall':'UTF-8'}</i>
-                            <span>{$point.text|escape:'htmlall':'UTF-8'}</span>
-                        </div>
-                    {/foreach}
+<section class="homepage-section ecology-section-alt" id="sustentabilidad"> {* id="sustentabilidad" y nueva clase para evitar conflicto con la anterior .ecology-section si aún existe *}
+    <div class="container">
+        <div class="section-header text-center mb-12 md:mb-16">
+            <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-corporate-blue mb-4">
+                {l s='Responsabilidad Ecológica' d='Shop.Theme.Mundolimpio'}
+            </h2>
+            <p class="font-opensans text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                {l s='Desde 2008 distribuimos productos sustentables comprometidos con el cuidado del medio ambiente y las generaciones futuras.' d='Shop.Theme.Mundolimpio'}
+            </p>
+        </div>
+
+        {assign var=ecology_points_alt value=[
+            ['icon' => 'eco', 'title' => {l s="Sustentables" d="Shop.Theme.Mundolimpio"}],
+            ['icon' => 'recycling', 'title' => {l s="Biodegradables" d="Shop.Theme.Mundolimpio"}],
+            ['icon' => 'favorite_border', 'title' => {l s="Eco-Responsables" d="Shop.Theme.Mundolimpio"}]
+            {* Iconos Material Icons: eco (para Leaf), recycling (para Recycle), favorite_border o volunteer_activism (para Heart) *}
+        ]}
+
+        <div class="ecology-points-grid grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {foreach from=$ecology_points_alt item=point name=ecoPointLoop}
+                <div class="ecology-point-item flex items-center space-x-3 md:space-x-4 ml-animate-on-scroll anim-fadeInUp" data-delay="{$smarty.foreach.ecoPointLoop.iteration * 100}">
+                    <div class="ecology-point-icon-wrapper">
+                        <i class="material-icons">{$point.icon|escape:'htmlall':'UTF-8'}</i>
+                    </div>
+                    <div>
+                        <h3 class="ecology-point-title font-montserrat font-semibold text-lg text-corporate-blue">
+                            {$point.title|escape:'htmlall':'UTF-8'}
+                        </h3>
+                    </div>
                 </div>
-                 <div class="ecology-button" style="margin-top: 25px;">
-                    <a href="#" class="btn btn-primary ml-ripple-effect">{* TODO: Link to a page about sustainability efforts *}
-                        {l s='Conoce Más Sobre Nuestro Impacto' d='Shop.Theme.Actions'}
-                    </a>
-                </div>
-            </div>
-            <div class="ecology-image ml-animate-on-scroll anim-fadeInRight">
-                {* Placeholder - Reemplazar con una imagen real o configurable *}
-                <img src="{$urls.theme_assets}img/placeholders/ecology-image-600x500.png" alt="{l s='Compromiso ecológico de Mundo Limpio' d='Shop.Theme.Mundolimpio'}" class="ecology-img lazyload">
-            </div>
+            {/foreach}
         </div>
     </div>
 </section>

@@ -1,27 +1,61 @@
 {**
- * Banner CTA Section for Mundo Limpio Theme Homepage
- * Content is semi-static for now.
+ * Banner Section for Mundo Limpio Theme Homepage
+ * Design based on React component: "Clorotec vs. Cloro líquido"
  *}
-<section class="homepage-section banner-cta-section" id="cta-banner"> {* Esta sección se incluye dentro de un .container en index.tpl *}
-    {* Ya no necesitamos un <div class="container banner-container"> aquí, el .container exterior lo maneja.
-       Si se necesita un banner-container para estilos específicos, se puede mantener sin la clase 'container'. *}
-    <div class="banner-content"> {* Default: text-left, image-right. Add class 'image-left' for reverse *}
-            <div class="banner-text">
-                <h2 class="banner-title">{l s='Únete a la Revolución Limpia' d='Shop.Theme.Mundolimpio'}</h2>
-                <p class="banner-description">{l s='Suscríbete a nuestro boletín y obtén un 10% de descuento en tu primera compra, además de consejos para un estilo de vida más sostenible.' d='Shop.Theme.Mundolimpio'}</p>
-                {* Ejemplo de un formulario de suscripción simple o un botón a una página de registro *}
-                {* <form action="#" method="post" class="banner-form">
-                    <input type="email" name="email" placeholder="{l s='Tu correo electrónico' d='Shop.Forms.Labels'}" required>
-                    <button type="submit" class="btn btn-light banner-btn">{l s='Suscribirme' d='Shop.Theme.Actions'}</button>
-                </form> *}
-                 <a href="#" class="btn btn-light banner-btn ml-ripple-effect">{* TODO: Link to newsletter subscription or special offer page *}
-                    {l s='Descubre Más y Ahorra' d='Shop.Theme.Actions'}
-                </a>
+<section class="homepage-section banner-details-section" id="banner-clorotec"> {* ID específico si es necesario para anclas/estilos *}
+    <div class="section-header text-center mb-12 md:mb-16">
+        <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-corporate-blue mb-4">
+            {l s='Clorotec vs. Cloro líquido' d='Shop.Theme.Mundolimpio'}
+        </h2>
+        <p class="font-opensans text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            {l s='Te contamos los beneficios sobre el cloro sólido y por qué tenés que elegirlo a la hora de cuidar el agua de tu pileta.' d='Shop.Theme.Mundolimpio'}
+        </p>
+    </div>
+
+    {assign var=banner_features value=[
+        ['icon' => 'opacity', 'title' => {l s="NO MANCHA" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="Cuida tu pileta sin dañar las prendas" d="Shop.Theme.Mundolimpio"}, 'icon_bg_color_class' => 'bg-blue-100', 'icon_text_color_class' => 'text-corporate-blue'],
+        ['icon' => 'wb_sunny', 'title' => {l s="MÁS RESISTENTE" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="Al sol y a las altas temperaturas" d="Shop.Theme.Mundolimpio"}, 'icon_bg_color_class' => 'bg-yellow-100', 'icon_text_color_class' => 'text-yellow-600'],
+        ['icon' => 'shield', 'title' => {l s="MÁS SEGURO" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="De transportar y almacenar" d="Shop.Theme.Mundolimpio"}, 'icon_bg_color_class' => 'bg-green-100', 'icon_text_color_class' => 'text-corporate-green'],
+        ['icon' => 'add_circle_outline', 'title' => {l s="MÁS DURADERO" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="2 años de validez" d="Shop.Theme.Mundolimpio"}, 'icon_bg_color_class' => 'bg-purple-100', 'icon_text_color_class' => 'text-purple-600']
+    ]}
+
+    <div class="banner-features-grid grid md:grid-cols-4 gap-8 mb-12 md:mb-16">
+        {foreach from=$banner_features item=feature}
+            <div class="feature-item text-center ml-animate-on-scroll anim-fadeInUp">
+                <div class="feature-icon-wrapper {$feature.icon_bg_color_class|escape:'htmlall':'UTF-8'}">
+                    <i class="material-icons {$feature.icon_text_color_class|escape:'htmlall':'UTF-8'}">{$feature.icon|escape:'htmlall':'UTF-8'}</i>
+                </div>
+                <h3 class="feature-title font-montserrat font-semibold text-lg text-corporate-blue mb-2">
+                    {$feature.title|escape:'htmlall':'UTF-8'}
+                </h3>
+                <p class="feature-description font-opensans text-gray-600 text-sm">
+                    {$feature.description|escape:'htmlall':'UTF-8'}
+                </p>
             </div>
-            <div class="banner-image">
-                 {* Placeholder - Reemplazar con una imagen real o configurable *}
-                <img src="{$urls.theme_assets}img/placeholders/banner-cta-600x400.png" alt="{l s='Promoción Mundo Limpio' d='Shop.Theme.Mundolimpio'}" class="banner-img lazyload">
-            </div>
+        {/foreach}
+    </div>
+
+    <div class="banner-cta-highlight">
+        <h3 class="cta-highlight-title font-montserrat font-bold text-xl md:text-2xl mb-4">
+            {l s='Mantener el agua de tu pile siempre limpia y sana es:' d='Shop.Theme.Mundolimpio'}
+        </h3>
+        {assign var=highlight_points value=[
+            {l s="Más simple" d="Shop.Theme.Mundolimpio"},
+            {l s="Más económico" d="Shop.Theme.Mundolimpio"},
+            {l s="Más sustentable" d="Shop.Theme.Mundolimpio"}
+        ]}
+        <div class="highlight-points-grid grid md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+            {foreach from=$highlight_points item=point}
+                <div class="highlight-point flex items-center justify-center space-x-2">
+                    <div class="highlight-bullet">
+                        <span class="bullet-checkmark">✓</span>
+                    </div>
+                    <span class="font-montserrat font-medium">{$point|escape:'htmlall':'UTF-8'}</span>
+                </div>
+            {/foreach}
         </div>
+        <a href="#" class="btn btn-primary banner-cta-button ml-ripple-effect">  {* TODO: Actualizar enlace del botón *}
+            {l s='Ver Productos para Piscinas' d='Shop.Theme.Actions'}
+        </a>
     </div>
 </section>

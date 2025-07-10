@@ -1,90 +1,83 @@
 {**
  * Contact Section for Mundo Limpio Theme Homepage
- * Content is semi-static for now.
+ * Design based on React component, form adapted for PrestaShop ContactController.
  *}
-<section class="homepage-section contact-section" id="contact"> {* Esta sección se incluye dentro de un .container en index.tpl *}
-    {* Ya no necesitamos un <div class="container"> aquí si la sección entera está contenida desde index.tpl *}
-    <div class="section-header">
-        <h2 class="section-title">{l s='¿Hablamos? Estamos Aquí para Ayudarte' d='Shop.Theme.Mundolimpio'}</h2>
-            <p class="section-subtitle">{l s='Si tienes preguntas, sugerencias o simplemente quieres saludar, no dudes en contactarnos.' d='Shop.Theme.Mundolimpio'}</p>
-        </div>
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item ml-animate-on-scroll anim-fadeInLeft">
-                    <i class="material-icons">location_on</i>
-                    <div>
-                        <h4>{l s='Nuestra Tienda (Pick-up Point)' d='Shop.Theme.Mundolimpio'}</h4>
-                        <p>{* TODO: Replace with actual address or use {$shop.addresses.address1} etc. if configured *}
-                            Calle Falsa 123, Ciudad Verde<br>
-                            Provincia Ejemplo, Argentina
-                        </p>
-                    </div>
-                </div>
-                <div class="contact-item ml-animate-on-scroll anim-fadeInLeft" data-delay="100">
-                    <i class="material-icons">phone</i>
-                    <div>
-                        <h4>{l s='Llámanos' d='Shop.Theme.Mundolimpio'}</h4>
-                        <p><a href="tel:+540111234567">{* TODO: Replace with actual phone or {$shop.phone} *} (+54) 011-1234-5678</a></p>
-                    </div>
-                </div>
-                <div class="contact-item ml-animate-on-scroll anim-fadeInLeft" data-delay="200">
-                    <i class="material-icons">email</i>
-                    <div>
-                        <h4>{l s='Escríbenos' d='Shop.Theme.Mundolimpio'}</h4>
-                        <p><a href="mailto:{$shop.email|escape:'htmlall':'UTF-8'}">{$shop.email|escape:'htmlall':'UTF-8'}</a></p>
-                    </div>
-                </div>
-                <div class="contact-item ml-animate-on-scroll anim-fadeInLeft" data-delay="300">
-                    <i class="material-icons">schedule</i>
-                    <div>
-                        <h4>{l s='Horarios de Atención' d='Shop.Theme.Mundolimpio'}</h4>
-                        <p>{* TODO: Replace with actual hours *}
-                            Lunes a Viernes: 9:00 - 18:00 hs<br>
-                            Sábados: 10:00 - 14:00 hs
-                        </p>
-                    </div>
-                </div>
+<section class="homepage-section contact-section-alt" id="contacto"> {* id="contacto", nueva clase para evitar conflicto con anterior .contact-section *}
+    {* Background decorative elements - CSS to implement these *}
+    <div class="contact-bg-decor absolute inset-0">
+        <div class="decor-shape shape-1"></div>
+        <div class="decor-shape shape-2"></div>
+        <div class="decor-shape shape-3"></div>
+    </div>
+
+    <div class="container relative z-10">
+        <div class="section-header text-center mb-12 md:mb-20">
+            <div class="inline-block bg-white-20 text-white px-4 py-2 rounded-full text-sm font-montserrat font-medium mb-4 md:mb-6">
+                {l s='Contacto Directo' d='Shop.Theme.Mundolimpio'}
             </div>
-            <div class="contact-form-wrapper ml-animate-on-scroll anim-fadeInRight">
-                <h3 class="form-title">{l s='Envíanos un Mensaje Directo' d='Shop.Theme.Mundolimpio'}</h3>
-                <form id="homepageContactForm" class="contact-form-inner js-contact-form" action="{$urls.pages.contact nofilter}" method="post">
-                    {* Este es un formulario HTML básico. Para funcionalidad completa (envío de email, validación),
-                       se necesitaría un módulo de contacto o lógica AJAX que envíe a un controlador.
-                       Por ahora, es visual. El JS en theme.js intentará manejarlo vía AJAX si está configurado.
+            <h2 class="font-montserrat font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 md:mb-6 leading-tight">
+                {l s='Estamos Aquí' d='Shop.Theme.Mundolimpio'}
+                <span class="block text-corporate-green">{l s='para Ayudarle' d='Shop.Theme.Mundolimpio'}</span>
+            </h2>
+            <p class="font-opensans text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                {l s='Brindamos soluciones prácticas e innovadoras con el mejor costo-beneficio. Su satisfacción es nuestra prioridad.' d='Shop.Theme.Mundolimpio'}
+            </p>
+        </div>
+
+        {assign var=contact_info_items value=[
+            ['icon' => 'call', 'title' => {l s="Atención Inmediata" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="Contáctenos para asesoramiento experto y entregas rápidas" d="Shop.Theme.Mundolimpio"}, 'details' => {l s="+54 3757 XXX-XXX" d="Shop.Theme.Mundolimpio"}, 'action_text' => {l s="Llamar ahora" d="Shop.Theme.Actions"}, 'action_link' => "tel:+543757123456" ],
+            ['icon' => 'location_on', 'title' => {l s="Ubicación Estratégica" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="Servimos toda la zona de Iguazú con entregas inmediatas" d="Shop.Theme.Mundolimpio"}, 'details' => {l s="Puerto Iguazú, Misiones" d="Shop.Theme.Mundolimpio"}, 'action_text' => {l s="Ver ubicación" d="Shop.Theme.Actions"}, 'action_link' => "#" ],
+            ['icon' => 'schedule', 'title' => {l s="Horarios Flexibles" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="Atención personalizada para brindarle la mejor solución" d="Shop.Theme.Mundolimpio"}, 'details' => {l s="Lun-Vie: 8:00-18:00 | Sáb: 8:00-12:00" d="Shop.Theme.Mundolimpio"}, 'action_text' => {l s="Consultar disponibilidad" d="Shop.Theme.Actions"}, 'action_link' => $urls.pages.contact ]
+        ]}
+
+        <div class="contact-info-grid grid md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto mb-12 md:mb-16">
+            {foreach from=$contact_info_items item=info name=contactInfoLoop}
+                <div class="contact-info-card ml-animate-on-scroll anim-scaleIn" data-delay="{$smarty.foreach.contactInfoLoop.iteration * 100}">
+                    <div class="contact-info-card-content">
+                        <div class="contact-card-icon-wrapper">
+                            <i class="material-icons">{$info.icon|escape:'htmlall':'UTF-8'}</i>
+                        </div>
+                        <h3 class="contact-card-title font-montserrat font-bold text-xl mb-3">{$info.title|escape:'htmlall':'UTF-8'}</h3>
+                        <p class="contact-card-description font-opensans text-blue-100 mb-4 leading-relaxed">
+                            {$info.description|escape:'htmlall':'UTF-8'}
+                        </p>
+                        <p class="contact-card-details font-opensans font-semibold text-lg mb-6">{$info.details|escape:'htmlall':'UTF-8'}</p>
+                        <a href="{$info.action_link|escape:'htmlall':'UTF-8'}" class="contact-card-action text-corporate-green font-montserrat font-medium group-hover:text-white transition-colors duration-300">
+                            {$info.action_text|escape:'htmlall':'UTF-8'}
+                        </a>
+                    </div>
+                </div>
+            {/foreach}
+        </div>
+
+        {* Enhanced CTA / Form Section *}
+        <div class="contact-form-enhanced-cta max-w-4xl mx-auto">
+            <div class="contact-form-card">
+                <div class="contact-form-card-content p-8 md:p-12 text-center">
+                    <i class="material-icons contact-form-icon">chat_bubble_outline</i> {* MessageCircle -> chat_bubble_outline *}
+                    <h3 class="font-montserrat font-bold text-2xl md:text-3xl mb-4">
+                        {l s='¿Listo para comenzar?' d='Shop.Theme.Mundolimpio'}
+                    </h3>
+                    <p class="font-opensans text-lg md:text-xl text-blue-100 mb-6 md:mb-8 max-w-2xl mx-auto">
+                        {l s='Contáctenos hoy mismo y descubra cómo podemos ayudarle a mantener sus espacios impecables con productos de la más alta calidad.' d='Shop.Theme.Mundolimpio'}
+                    </p>
+
+                    {* Formulario de contacto de PrestaShop integrado aquí si se desea, o botones de acción *}
+                    {* Para un formulario integrado, se necesitaría más lógica o un widget.
+                       Por ahora, se usarán botones de acción como en el diseño React.
                     *}
-                    <input type="hidden" name="from_page" value="homepage_contact_section">
-                     <input type="hidden" name="id_contact" value="{$contact_form_id_contact|default:0}"> {* ID del contacto de la tienda para el controlador de contacto de PS *}
-                    <input type="hidden" name="token" value="{$static_token}">
-
-
-                    <div class="form-group">
-                        <label for="hp-contact-name" class="sr-only">{l s='Tu Nombre' d='Shop.Forms.Labels'}</label>
-                        <input type="text" id="hp-contact-name" name="from" class="form-control" placeholder="{l s='Tu Nombre' d='Shop.Forms.Labels'}" required>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="tel:{* Su número de teléfono *}" class="btn btn-contact-action bg-corporate-green">
+                            <i class="material-icons">call</i>
+                            {l s='Llamar Ahora' d='Shop.Theme.Actions'}
+                        </a>
+                        <a href="mailto:{$shop.email|escape:'htmlall':'UTF-8'}" class="btn btn-contact-action btn-outline-white">
+                             <i class="material-icons">email</i>
+                            {l s='Enviar Email' d='Shop.Theme.Actions'}
+                        </a>
                     </div>
-                    <div class="form-group">
-                         <label for="hp-contact-email" class="sr-only">{l s='Tu Correo Electrónico' d='Shop.Forms.Labels'}</label>
-                        <input type="email" id="hp-contact-email" name="email" class="form-control" placeholder="{l s='Tu Correo Electrónico' d='Shop.Forms.Labels'}" required>
-                    </div>
-                     <div class="form-group">
-                        <label for="hp-contact-subject" class="sr-only">{l s='Asunto' d='Shop.Forms.Labels'}</label>
-                        <input type="text" id="hp-contact-subject" name="subject" class="form-control" placeholder="{l s='Asunto' d='Shop.Forms.Labels'}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="hp-contact-message" class="sr-only">{l s='Tu Mensaje' d='Shop.Forms.Labels'}</label>
-                        <textarea id="hp-contact-message" name="message" class="form-control" placeholder="{l s='Tu Mensaje' d='Shop.Forms.Labels'}" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" name="submitMessage" class="btn btn-primary btn-block ml-ripple-effect">
-                        {l s='Enviar Mensaje' d='Shop.Theme.Actions'}
-                    </button>
-                    <div class="contact-form-response" style="display:none; margin-top:15px;"></div>
-                </form>
+                </div>
             </div>
         </div>
-
-        {* Placeholder para un mapa si se desea. Se podría usar un iframe de Google Maps.
-        <div class="contact-map" style="margin-top: 40px;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d....YOUR_MAP_EMBED_CODE" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        *}
     </div>
 </section>
