@@ -9,8 +9,8 @@
         <div class="decor-shape shape-2"></div>
     </div>
 
-    <div class="container relative z-10"> {* container class from theme.css, relative z-10 from React example *}
-        <div class="section-header text-center mb-12 md:mb-20"> {* mb-20 from React example, adjust with clamp if needed *}
+    <div class="container relative z-10">
+        <div class="section-header text-center mb-12 md:mb-20">
             <div class="inline-block bg-corporate-blue-light text-corporate-blue px-4 py-2 rounded-full text-sm font-montserrat font-medium mb-4 md:mb-6">
                 {l s='Nuestros Servicios' d='Shop.Theme.Mundolimpio'}
             </div>
@@ -23,9 +23,15 @@
             </p>
         </div>
 
+        {*
+            Iconos Material Icons a usar:
+            Users -> group
+            Clock -> schedule
+            CheckCircle -> check_circle
+        *}
         {assign var=services_data value=[
             [
-                'icon' => 'group', {* Material Icon for Users *}
+                'icon' => 'group',
                 'title' => {l s='Servicio Personalizado' d='Shop.Theme.Mundolimpio'},
                 'description' => {l s='Asesoramiento experto y atención dedicada para encontrar la solución perfecta según sus necesidades específicas.' d='Shop.Theme.Mundolimpio'},
                 'features' => [
@@ -35,7 +41,7 @@
                 ]
             ],
             [
-                'icon' => 'schedule', {* Material Icon for Clock *}
+                'icon' => 'schedule',
                 'title' => {l s='Soluciones Inmediatas' d='Shop.Theme.Mundolimpio'},
                 'description' => {l s='Entregas rápidas y stock permanente para resolver sus problemas de limpieza e higiene sin demoras.' d='Shop.Theme.Mundolimpio'},
                 'features' => [
@@ -45,7 +51,7 @@
                 ]
             ],
             [
-                'icon' => 'check_circle', {* Material Icon for CheckCircle *}
+                'icon' => 'check_circle',
                 'title' => {l s='Responsabilidad Ecológica' d='Shop.Theme.Mundolimpio'},
                 'description' => {l s='Priorizamos productos sustentables y amigables con el medio ambiente, cuidando la selva misionera.' d='Shop.Theme.Mundolimpio'},
                 'features' => [
