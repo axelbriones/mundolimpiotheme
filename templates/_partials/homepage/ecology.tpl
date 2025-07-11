@@ -19,10 +19,16 @@
             ['icon' => 'favorite_border', 'title' => {l s="Eco-Responsables" d="Shop.Theme.Mundolimpio"}]
             {* Iconos Material Icons: eco (para Leaf), recycling (para Recycle), favorite_border o volunteer_activism (para Heart) *}
         ]}
+        {* PS 1.7 Smarty compatible array assignment *}
+        {assign var='point1' value=array('icon' => 'eco', 'title' => {l s="Sustentables" d="Shop.Theme.Mundolimpio"})}
+        {assign var='point2' value=array('icon' => 'recycling', 'title' => {l s="Biodegradables" d="Shop.Theme.Mundolimpio"})}
+        {assign var='point3' value=array('icon' => 'favorite_border', 'title' => {l s="Eco-Responsables" d="Shop.Theme.Mundolimpio"})}
+        {assign var='ecology_points_alt_corrected' value=array($point1, $point2, $point3)}
 
         <div class="ecology-points-grid grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {foreach from=$ecology_points_alt item=point name=ecoPointLoop}
-                <div class="ecology-point-item flex items-center space-x-3 md:space-x-4 ml-animate-on-scroll anim-fadeInUp" data-delay="{$smarty.foreach.ecoPointLoop.iteration * 100}">
+            {foreach from=$ecology_points_alt_corrected item=point name=ecoPointLoop}
+                {assign var="animation_delay" value=$smarty.foreach.ecoPointLoop.iteration * 100}
+                <div class="ecology-point-item flex items-center space-x-3 md:space-x-4 ml-animate-on-scroll anim-fadeInUp" data-delay="{$animation_delay|escape:'htmlall':'UTF-8'}">
                     <div class="ecology-point-icon-wrapper">
                         <i class="material-icons">{$point.icon|escape:'htmlall':'UTF-8'}</i>
                     </div>

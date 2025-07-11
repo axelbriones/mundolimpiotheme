@@ -24,15 +24,37 @@
             </p>
         </div>
 
-        {assign var=contact_info_items value=[
-            ['icon' => 'call', 'title' => {l s="Atención Inmediata" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="Contáctenos para asesoramiento experto y entregas rápidas" d="Shop.Theme.Mundolimpio"}, 'details' => {l s="+54 3757 XXX-XXX" d="Shop.Theme.Mundolimpio"}, 'action_text' => {l s="Llamar ahora" d="Shop.Theme.Actions"}, 'action_link' => "tel:+543757123456" ],
-            ['icon' => 'location_on', 'title' => {l s="Ubicación Estratégica" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="Servimos toda la zona de Iguazú con entregas inmediatas" d="Shop.Theme.Mundolimpio"}, 'details' => {l s="Puerto Iguazú, Misiones" d="Shop.Theme.Mundolimpio"}, 'action_text' => {l s="Ver ubicación" d="Shop.Theme.Actions"}, 'action_link' => "#" ],
-            ['icon' => 'schedule', 'title' => {l s="Horarios Flexibles" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="Atención personalizada para brindarle la mejor solución" d="Shop.Theme.Mundolimpio"}, 'details' => {l s="Lun-Vie: 8:00-18:00 | Sáb: 8:00-12:00" d="Shop.Theme.Mundolimpio"}, 'action_text' => {l s="Consultar disponibilidad" d="Shop.Theme.Actions"}, 'action_link' => $urls.pages.contact ]
-        ]}
+        {* PS 1.7 Smarty compatible array assignment *}
+        {assign var='info_item1' value=array(
+            'icon' => 'call',
+            'title' => {l s="Atención Inmediata" d="Shop.Theme.Mundolimpio"},
+            'description' => {l s="Contáctenos para asesoramiento experto y entregas rápidas" d="Shop.Theme.Mundolimpio"},
+            'details' => {l s="+54 3757 XXX-XXX" d="Shop.Theme.Mundolimpio"}, {* Placeholder for actual phone number *}
+            'action_text' => {l s="Llamar ahora" d="Shop.Theme.Actions"},
+            'action_link' => "tel:+543757000000"  {* Placeholder for actual phone number *}
+        )}
+        {assign var='info_item2' value=array(
+            'icon' => 'location_on',
+            'title' => {l s="Ubicación Estratégica" d="Shop.Theme.Mundolimpio"},
+            'description' => {l s="Servimos toda la zona de Iguazú con entregas inmediatas" d="Shop.Theme.Mundolimpio"},
+            'details' => {l s="Puerto Iguazú, Misiones" d="Shop.Theme.Mundolimpio"},
+            'action_text' => {l s="Ver ubicación" d="Shop.Theme.Actions"},
+            'action_link' => "#" {* Placeholder for map link or address details page *}
+        )}
+        {assign var='info_item3' value=array(
+            'icon' => 'schedule',
+            'title' => {l s="Horarios Flexibles" d="Shop.Theme.Mundolimpio"},
+            'description' => {l s="Atención personalizada para brindarle la mejor solución" d="Shop.Theme.Mundolimpio"},
+            'details' => {l s="Lun-Vie: 8:00-18:00 | Sáb: 8:00-12:00" d="Shop.Theme.Mundolimpio"},
+            'action_text' => {l s="Consultar disponibilidad" d="Shop.Theme.Actions"},
+            'action_link' => $urls.pages.contact
+        )}
+        {assign var='contact_info_items_corrected' value=array($info_item1, $info_item2, $info_item3)}
 
         <div class="contact-info-grid grid md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto mb-12 md:mb-16">
-            {foreach from=$contact_info_items item=info name=contactInfoLoop}
-                <div class="contact-info-card ml-animate-on-scroll anim-scaleIn" data-delay="{$smarty.foreach.contactInfoLoop.iteration * 100}">
+            {foreach from=$contact_info_items_corrected item=info name=contactInfoLoop}
+                {assign var="animation_delay" value=$smarty.foreach.contactInfoLoop.iteration * 100}
+                <div class="contact-info-card ml-animate-on-scroll anim-scaleIn" data-delay="{$animation_delay|escape:'htmlall':'UTF-8'}">
                     <div class="contact-info-card-content">
                         <div class="contact-card-icon-wrapper">
                             <i class="material-icons">{$info.icon|escape:'htmlall':'UTF-8'}</i>

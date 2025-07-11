@@ -29,38 +29,44 @@
             Clock -> schedule
             CheckCircle -> check_circle
         *}
-        {assign var=services_data value=[
-            [
-                'icon' => 'group',
-                'title' => {l s='Servicio Personalizado' d='Shop.Theme.Mundolimpio'},
-                'description' => {l s='Asesoramiento experto y atención dedicada para encontrar la solución perfecta según sus necesidades específicas.' d='Shop.Theme.Mundolimpio'},
-                'features' => [
-                    {l s='Consultoría personalizada' d='Shop.Theme.Mundolimpio'},
-                    {l s='Análisis de necesidades' d='Shop.Theme.Mundolimpio'},
-                    {l s='Soporte continuo' d='Shop.Theme.Mundolimpio'}
-                ]
-            ],
-            [
-                'icon' => 'schedule',
-                'title' => {l s='Soluciones Inmediatas' d='Shop.Theme.Mundolimpio'},
-                'description' => {l s='Entregas rápidas y stock permanente para resolver sus problemas de limpieza e higiene sin demoras.' d='Shop.Theme.Mundolimpio'},
-                'features' => [
-                    {l s='Entrega el mismo día' d='Shop.Theme.Mundolimpio'},
-                    {l s='Stock permanente' d='Shop.Theme.Mundolimpio'},
-                    {l s='Logística eficiente' d='Shop.Theme.Mundolimpio'}
-                ]
-            ],
-            [
-                'icon' => 'check_circle',
-                'title' => {l s='Responsabilidad Ecológica' d='Shop.Theme.Mundolimpio'},
-                'description' => {l s='Priorizamos productos sustentables y amigables con el medio ambiente, cuidando la selva misionera.' d='Shop.Theme.Mundolimpio'},
-                'features' => [
-                    {l s='Productos eco-friendly' d='Shop.Theme.Mundolimpio'},
-                    {l s='Compromiso ambiental' d='Shop.Theme.Mundolimpio'},
-                    {l s='Sustentabilidad' d='Shop.Theme.Mundolimpio'}
-                ]
-            ]
-        ]}
+        {* Definición de features para cada servicio por separado para sintaxis Smarty más clara *}
+        {assign var='service1_features' value=array(
+            {l s='Consultoría personalizada' d='Shop.Theme.Mundolimpio'},
+            {l s='Análisis de necesidades' d='Shop.Theme.Mundolimpio'},
+            {l s='Soporte continuo' d='Shop.Theme.Mundolimpio'}
+        )}
+        {assign var='service1' value=array(
+            'icon' => 'group',
+            'title' => {l s='Servicio Personalizado' d='Shop.Theme.Mundolimpio'},
+            'description' => {l s='Asesoramiento experto y atención dedicada para encontrar la solución perfecta según sus necesidades específicas.' d='Shop.Theme.Mundolimpio'},
+            'features' => $service1_features
+        )}
+
+        {assign var='service2_features' value=array(
+            {l s='Entrega el mismo día' d='Shop.Theme.Mundolimpio'},
+            {l s='Stock permanente' d='Shop.Theme.Mundolimpio'},
+            {l s='Logística eficiente' d='Shop.Theme.Mundolimpio'}
+        )}
+        {assign var='service2' value=array(
+            'icon' => 'schedule',
+            'title' => {l s='Soluciones Inmediatas' d='Shop.Theme.Mundolimpio'},
+            'description' => {l s='Entregas rápidas y stock permanente para resolver sus problemas de limpieza e higiene sin demoras.' d='Shop.Theme.Mundolimpio'},
+            'features' => $service2_features
+        )}
+
+        {assign var='service3_features' value=array(
+            {l s='Productos eco-friendly' d='Shop.Theme.Mundolimpio'},
+            {l s='Compromiso ambiental' d='Shop.Theme.Mundolimpio'},
+            {l s='Sustentabilidad' d='Shop.Theme.Mundolimpio'}
+        )}
+        {assign var='service3' value=array(
+            'icon' => 'check_circle',
+            'title' => {l s='Responsabilidad Ecológica' d='Shop.Theme.Mundolimpio'},
+            'description' => {l s='Priorizamos productos sustentables y amigables con el medio ambiente, cuidando la selva misionera.' d='Shop.Theme.Mundolimpio'},
+            'features' => $service3_features
+        )}
+
+        {assign var=services_data value=array($service1, $service2, $service3)}
 
         <div class="services-grid grid md:grid-cols-3 gap-8 lg:gap-12">
             {foreach from=$services_data item=service name=serviceLoop}
