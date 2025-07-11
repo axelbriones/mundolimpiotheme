@@ -17,7 +17,6 @@
             ['icon' => 'eco', 'title' => {l s="Sustentables" d="Shop.Theme.Mundolimpio"}],
             ['icon' => 'recycling', 'title' => {l s="Biodegradables" d="Shop.Theme.Mundolimpio"}],
             ['icon' => 'favorite_border', 'title' => {l s="Eco-Responsables" d="Shop.Theme.Mundolimpio"}]
-            {* Iconos Material Icons: eco (para Leaf), recycling (para Recycle), favorite_border o volunteer_activism (para Heart) *}
         ]}
         {* PS 1.7 Smarty compatible array assignment *}
         {assign var='point1' value=array('icon' => 'eco', 'title' => {l s="Sustentables" d="Shop.Theme.Mundolimpio"})}
