@@ -2,7 +2,7 @@
  * Hero Section for Mundo Limpio Theme Homepage
  * Updated with new design and content.
  *}
-<section class="hero-section homepage-section" id="hero"> {* Ensure homepage-section class is kept if it provides common padding/margin, or remove if new CSS handles all spacing *}
+<section class="hero-section homepage-section" id="hero">
     <div class="hero-content container">
         <div class="hero-text">
             <h1>{l s='Soluciones Sustentables para Limpieza' d='Shop.Theme.Mundolimpio'}</h1>
