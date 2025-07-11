@@ -13,12 +13,14 @@
         </p>
     </div>
 
+    {* --- Categorías Principales --- *}
     <div class="product-categories-slider mb-12 md:mb-16">
         <h3 class="font-montserrat font-semibold text-xl md:text-2xl text-corporate-blue mb-6 md:mb-8 text-center">
             {l s='Categorías Principales' d='Shop.Theme.Mundolimpio'}
         </h3>
         <div class="horizontal-scroll-wrapper">
             <div class="categories-scroll-content">
+                {* Definición de datos para categorías (Smarty 2/PS 1.7 compatible) *}
                 {assign var='cat1_items' value=array(
                     {l s="Desinfectantes industriales" d="Shop.Theme.Mundolimpio"},
                     {l s="Detergentes de alto rendimiento" d="Shop.Theme.Mundolimpio"},
@@ -130,12 +132,14 @@
         </div>
     </div>
 
+    {* --- Productos Destacados --- *}
     <div class="featured-products-slider mb-12 md:mb-12">
          <h3 class="font-montserrat font-semibold text-xl md:text-2xl text-corporate-blue mb-6 md:mb-8 text-center">
             {l s='Productos Destacados' d='Shop.Theme.Mundolimpio'}
         </h3>
         <div class="horizontal-scroll-wrapper">
             <div class="products-scroll-content">
+                {* Definición de datos para productos destacados (Smarty 2/PS 1.7 compatible) *}
                 {assign var='prod1_features' value=array({l s="Uso profesional" d="Shop.Theme.Mundolimpio"}, {l s="Baja espuma" d="Shop.Theme.Mundolimpio"}, {l s="Limpieza profunda" d="Shop.Theme.Mundolimpio"})}
                 {assign var=product1 value=array('name' => {l s="Jabón Líquido Baja Espuma" d="Shop.Theme.Mundolimpio"}, 'category' => {l s="Limpieza Profesional" d="Shop.Theme.Mundolimpio"}, 'description' => {l s="FELIPRO - Aromas de Misiones" d="Shop.Theme.Mundolimpio"}, 'image' => "{$urls.theme_assets}img/placeholders/product-placeholder-300x300.png", 'features' => $prod1_features)}
 
@@ -179,9 +183,10 @@
         </div>
     </div>
 
+    {* Call to action final de la sección de productos *}
     <div class="container">
         <div class="products-section-cta">
-            <i class="material-icons cta-icon">auto_awesome</i>
+            <i class="material-icons cta-icon">auto_awesome</i> {* Sparkles icon *}
             <h3 class="cta-title">{l s='¿Necesita un producto específico?' d='Shop.Theme.Mundolimpio'}</h3>
             <p class="cta-description">
                 {l s='Nuestro equipo de expertos le ayudará a encontrar exactamente lo que necesita. Brindamos asesoramiento general en el rubro y el negocio.' d='Shop.Theme.Mundolimpio'}

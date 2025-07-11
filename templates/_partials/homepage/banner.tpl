@@ -2,7 +2,7 @@
  * Banner Section for Mundo Limpio Theme Homepage
  * Design based on React component: "Clorotec vs. Cloro líquido"
  *}
-<section class="homepage-section banner-details-section" id="banner-clorotec">
+<section class="homepage-section banner-details-section" id="banner-clorotec"> {* ID específico si es necesario para anclas/estilos *}
     <div class="section-header text-center mb-12 md:mb-16">
         <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-corporate-blue mb-4">
             {l s='Clorotec vs. Cloro líquido' d='Shop.Theme.Mundolimpio'}
@@ -54,7 +54,7 @@
                 </div>
             {/foreach}
         </div>
-        <a href="#" class="btn btn-primary banner-cta-button ml-ripple-effect">
+        <a href="#" class="btn btn-primary banner-cta-button ml-ripple-effect">  {* TODO: Actualizar enlace del botón *}
             {l s='Ver Productos para Piscinas' d='Shop.Theme.Actions'}
         </a>
     </div>
