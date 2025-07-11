@@ -20,7 +20,6 @@
         ]}
         {* El comentario anterior estaba causando problemas, se elimina de aquí. *}
         {* Iconos Material Icons: eco (para Leaf), recycling (para Recycle), favorite_border o volunteer_activism (para Heart) *}
-
         {* PS 1.7 Smarty compatible array assignment *}
         {assign var='point1' value=array('icon' => 'eco', 'title' => {l s="Sustentables" d="Shop.Theme.Mundolimpio"})}
         {assign var='point2' value=array('icon' => 'recycling', 'title' => {l s="Biodegradables" d="Shop.Theme.Mundolimpio"})}
