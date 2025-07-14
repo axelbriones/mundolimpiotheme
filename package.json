@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "PrestaShop theme for Mundo Limpio Iguazu with Tailwind CSS",
   "scripts": {
-    "build": "postcss assets/css/src/main.css -o assets/css/theme.css",
-    "watch": "postcss assets/css/src/main.css -o assets/css/theme.css --watch"
+    "build": "postcss \"assets/css/src/main.css\" -o \"assets/css/theme.css\"",
+    "watch": "postcss \"assets/css/src/main.css\" -o \"assets/css/theme.css\" --watch"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
