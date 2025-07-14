@@ -2,7 +2,7 @@
  * Ecology Section for Mundo Limpio Theme Homepage
  * Design based on React component.
  *}
-<section class="homepage-section ecology-section-alt" id="sustentabilidad"> {* id="sustentabilidad" y nueva clase para evitar conflicto con la anterior .ecology-section si aún existe *}
+<section class="homepage-section ecology-section-alt" id="sustentabilidad"> 
     <div class="container">
         <div class="section-header text-center mb-12 md:mb-16">
             <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-corporate-blue mb-4">
@@ -18,10 +18,7 @@
             ['icon' => 'recycling', 'title' => {l s="Biodegradables" d="Shop.Theme.Mundolimpio"}],
             ['icon' => 'favorite_border', 'title' => {l s="Eco-Responsables" d="Shop.Theme.Mundolimpio"}]
         ]}
-        {* El comentario anterior estaba causando problemas, se elimina de aquí. *}
-        {* Iconos Material Icons: eco (para Leaf), recycling (para Recycle), favorite_border o volunteer_activism (para Heart) *}
 
-        {* PS 1.7 Smarty compatible array assignment *}
         {assign var='point1' value=array('icon' => 'eco', 'title' => {l s="Sustentables" d="Shop.Theme.Mundolimpio"})}
         {assign var='point2' value=array('icon' => 'recycling', 'title' => {l s="Biodegradables" d="Shop.Theme.Mundolimpio"})}
         {assign var='point3' value=array('icon' => 'favorite_border', 'title' => {l s="Eco-Responsables" d="Shop.Theme.Mundolimpio"})}

@@ -2,8 +2,7 @@
  * Services Section for Mundo Limpio Theme Homepage
  * Updated with new design and content based on React example.
  *}
-<section class="homepage-section services-section" id="servicios"> {* id="servicios" for anchor linking, as per React example. Class "services" already exists. *}
-    {* Background decorative elements - to be implemented with CSS pseudo-elements or SVGs *}
+<section class="homepage-section services-section" id="servicios">
     <div class="services-bg-decor absolute inset-0">
         <div class="decor-shape shape-1"></div>
         <div class="decor-shape shape-2"></div>
@@ -23,13 +22,6 @@
             </p>
         </div>
 
-        {*
-            Iconos Material Icons a usar:
-            Users -> group
-            Clock -> schedule
-            CheckCircle -> check_circle
-        *}
-        {* Definición de features para cada servicio por separado para sintaxis Smarty más clara *}
         {assign var='service1_features' value=array(
             {l s='Consultoría personalizada' d='Shop.Theme.Mundolimpio'},
             {l s='Análisis de necesidades' d='Shop.Theme.Mundolimpio'},

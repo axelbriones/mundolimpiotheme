@@ -2,8 +2,7 @@
  * Contact Section for Mundo Limpio Theme Homepage
  * Design based on React component, form adapted for PrestaShop ContactController.
  *}
-<section class="homepage-section contact-section-alt" id="contacto"> {* id="contacto", nueva clase para evitar conflicto con anterior .contact-section *}
-    {* Background decorative elements - CSS to implement these *}
+<section class="homepage-section contact-section-alt" id="contacto">
     <div class="contact-bg-decor absolute inset-0">
         <div class="decor-shape shape-1"></div>
         <div class="decor-shape shape-2"></div>
@@ -24,14 +23,14 @@
             </p>
         </div>
 
-        {* PS 1.7 Smarty compatible array assignment *}
+
         {assign var='info_item1' value=array(
             'icon' => 'call',
             'title' => {l s="Atención Inmediata" d="Shop.Theme.Mundolimpio"},
             'description' => {l s="Contáctenos para asesoramiento experto y entregas rápidas" d="Shop.Theme.Mundolimpio"},
-            'details' => {l s="+54 3757 XXX-XXX" d="Shop.Theme.Mundolimpio"}, {* Placeholder for actual phone number *}
+            'details' => {l s="+54 3757 XXX-XXX" d="Shop.Theme.Mundolimpio"},
             'action_text' => {l s="Llamar ahora" d="Shop.Theme.Actions"},
-            'action_link' => "tel:+543757000000"  {* Placeholder for actual phone number *}
+            'action_link' => "tel:+543757000000"
         )}
         {assign var='info_item2' value=array(
             'icon' => 'location_on',
@@ -39,7 +38,7 @@
             'description' => {l s="Servimos toda la zona de Iguazú con entregas inmediatas" d="Shop.Theme.Mundolimpio"},
             'details' => {l s="Puerto Iguazú, Misiones" d="Shop.Theme.Mundolimpio"},
             'action_text' => {l s="Ver ubicación" d="Shop.Theme.Actions"},
-            'action_link' => "#" {* Placeholder for map link or address details page *}
+            'action_link' => "#"
         )}
         {assign var='info_item3' value=array(
             'icon' => 'schedule',
@@ -72,11 +71,10 @@
             {/foreach}
         </div>
 
-        {* Enhanced CTA / Form Section *}
         <div class="contact-form-enhanced-cta max-w-4xl mx-auto">
             <div class="contact-form-card">
                 <div class="contact-form-card-content p-8 md:p-12 text-center">
-                    <i class="material-icons contact-form-icon">chat_bubble_outline</i> {* MessageCircle -> chat_bubble_outline *}
+                    <i class="material-icons contact-form-icon">chat_bubble_outline</i>
                     <h3 class="font-montserrat font-bold text-2xl md:text-3xl mb-4">
                         {l s='¿Listo para comenzar?' d='Shop.Theme.Mundolimpio'}
                     </h3>
@@ -84,12 +82,8 @@
                         {l s='Contáctenos hoy mismo y descubra cómo podemos ayudarle a mantener sus espacios impecables con productos de la más alta calidad.' d='Shop.Theme.Mundolimpio'}
                     </p>
 
-                    {* Formulario de contacto de PrestaShop integrado aquí si se desea, o botones de acción *}
-                    {* Para un formulario integrado, se necesitaría más lógica o un widget.
-                       Por ahora, se usarán botones de acción como en el diseño React.
-                    *}
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="tel:{* Su número de teléfono *}" class="btn btn-contact-action bg-corporate-green">
+                        <a href="tel:" class="btn btn-contact-action bg-corporate-green">
                             <i class="material-icons">call</i>
                             {l s='Llamar Ahora' d='Shop.Theme.Actions'}
                         </a>
