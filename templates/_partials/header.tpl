@@ -55,9 +55,9 @@
 
       <div class="header-right-column hidden-md-down">
         <div class="header-top-right-icons">
-          {hook h='displaySearch'}
-          {hook h='displayCustomerAccountLink'}
-          {hook h='displayShoppingCartButton'}
+          {hook h='displaySearch'}                   {* ps_searchbar hook *}
+          {hook h='displayCustomerAccountLink'}    {* ps_customersignin hook *}
+          {hook h='displayShoppingCartButton'}      {* ps_shoppingcart hook *}
         </div>
         <div class="header-cta-button">
           <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary ml-contact-btn">
