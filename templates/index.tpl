@@ -30,12 +30,12 @@
         {block name='page_content_top'}{/block}
 
         {block name='page_content'}
-
           {include file="./_partials/homepage/hero.tpl"}
-
-          <div class="container">
-            {include file="./_partials/homepage/services.tpl"}
-          </div>
+        {/block}
+      </section>
+      <div class="container">
+        {block name='page_content_container_lower'}
+          {include file="./_partials/homepage/services.tpl"}
 
           <div class="container">
             {include file="./_partials/homepage/products.tpl"}
