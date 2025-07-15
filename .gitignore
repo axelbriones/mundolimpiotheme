@@ -1,15 +1,15 @@
 # Dependencies
 /node_modules
+/package-lock.json
+/package.json
+/postcss.config.js
+/tailwind.config.js
 
 # Build artifacts
 /dist
 /build
 /.vscode
-/package-lock.json
-/package.json
-/postcss.config.js
-/tailwind.config.js
-node_modules/
+
 package*.json
 *.config.js
 
