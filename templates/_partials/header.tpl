@@ -9,11 +9,11 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<header id="header" class="ml-main-header {if Configuration::get('MLTHEME_HEADER_STICKY', null, null, $shop.id)}js-sticky-header{/if}">
-  <div class="container">
-    <div class="header-inner-wrapper">
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 {if Configuration::get('MLTHEME_HEADER_STICKY', null, null, $shop.id)}js-sticky-header{/if}">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
 
-      <div class="header-logo-container">
+      <div class="flex items-center">
         <a href="{$urls.base_url}">
             {assign var=logo_url value=''}
             {assign var=logo_width value=''}
@@ -32,14 +32,14 @@
             {/if}
 
             {if $logo_url != ''}
-                <img class="logo img-responsive"
+                <img class="h-12 w-auto"
                     src="{$logo_url|escape:'htmlall':'UTF-8'}"
                     alt="{$shop.name|escape:'htmlall':'UTF-8'}"
                     {if $logo_width != ''}width="{$logo_width|escape:'htmlall':'UTF-8'}"{/if}
                     {if $logo_height != ''}height="{$logo_height|escape:'htmlall':'UTF-8'}"{/if}>
             {else}
                 {if isset($shop.logo_details) && isset($shop.logo_details.default_logo_url) && $shop.logo_details.default_logo_url != ''}
-                    <img class="logo img-responsive"
+                    <img class="h-12 w-auto"
                         src="{$shop.logo_details.default_logo_url|escape:'htmlall':'UTF-8'}"
                         alt="{$shop.name|escape:'htmlall':'UTF-8'}">
                 {else}
@@ -49,22 +49,16 @@
         </a>
       </div>
 
-      <nav class="header-main-nav hidden-md-down">
+      <nav class="hidden md:flex items-center space-x-6">
         {hook h='displayTop'}
       </nav>
 
-      <div class="header-right-column hidden-md-down">
-        <div class="header-top-right-icons">
-          {hook h='displaySearch'}
-          {hook h='displayCustomerAccountLink'}
-          {hook h='displayShoppingCartButton'}
-        </div>
-        <div class="header-cta-button">
-          <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary ml-contact-btn">
+      <div class="hidden md:flex items-center space-x-6">
+          <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="bg-corporate-green hover:bg-green-600 text-white font-montserrat btn btn-primary">
             {l s='Contactar Ahora' d='Shop.Theme.Actions'}
           </a>
-        </div>
       </div>
+
 
       <div class="mobile-menu-container hidden-lg-up">
         <button class="btn-icon js-ml-menu-toggle" id="ml-menu-icon-toggle" aria-label="{l s='Toggle navigation' d='Shop.Theme.Actions'}">
@@ -124,4 +118,3 @@
       </div>
     {/block}
 </header>
-
