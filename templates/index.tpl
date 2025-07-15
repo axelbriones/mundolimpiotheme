@@ -24,39 +24,19 @@
  *}
 {extends file='page.tpl'}
 
-    {block name='page_content_container'}
-      <!-- Tema Mundo Limpio Hijo Activo -->
-      <section id="content" class="page-home">
-        {block name='page_content_top'}{/block}
-
+{block name='page_content_container'}
+  {block name='page_content_top'}{/block}
+  {include file="./_partials/homepage/hero.tpl"}
+  <div class="container">
+    <section id="content" class="page-home">
         {block name='page_content'}
-          {include file="./_partials/homepage/hero.tpl"}
-        {/block}
-      </section>
-      <div class="container">
-        {block name='page_content_container_lower'}
-          {include file="./_partials/homepage/services.tpl"}
-
-          <div class="container">
+            {include file="./_partials/homepage/services.tpl"}
             {include file="./_partials/homepage/products.tpl"}
-          </div>
-
-          <div class="container">
             {include file="./_partials/homepage/brands.tpl"}
-          </div>
-
-          <div class="container">
             {include file="./_partials/homepage/banner.tpl"}
-          </div>
-
-          <div class="container">
             {include file="./_partials/homepage/ecology.tpl"}
-          </div>
-
-          <div class="container">
             {include file="./_partials/homepage/contact.tpl"}
-          </div>
-
         {/block}
-      </section>
-    {/block}
+    </section>
+  </div>
+{/block}
