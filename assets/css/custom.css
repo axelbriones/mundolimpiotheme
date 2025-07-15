@@ -24,8 +24,8 @@
 }
 
 #header .logo {
-    max-width: 100%;
-    height: auto
+    max-width: 250px;
+    height: auto;
 }
 
 #header a:hover {
