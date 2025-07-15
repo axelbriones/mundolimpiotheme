@@ -1,82 +1,87 @@
 {**
- * Mundo Limpio Theme - Custom Header
- * Based on React design and PrestaShop Classic structure.
+ * Copyright since 2007 PrestaShop SA and Contributors
+ * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/AFL-3.0
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+ * versions in the future. If you wish to customize PrestaShop for your
+ * needs please refer to https://devdocs.prestashop.com/ for more information.
+ *
+ * @author    PrestaShop SA and Contributors <contact@prestashop.com>
+ * @copyright Since 2007 PrestaShop SA and Contributors
+ * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
 {block name='header_banner'}
-  {hook h='displayBanner'}
+  <div class="header-banner">
+    {hook h='displayBanner'}
+  </div>
 {/block}
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="container mx-auto px-4 py-4">
-    <div class="flex items-center justify-between">
-
-      <div class="flex items-center">
-        <a href="{$urls.base_url}">
-            {assign var=logo_url value=''}
-            {assign var=logo_width value=''}
-            {assign var=logo_height value=''}
-
-            {if isset($shop.logo_details.desktop.url) && $shop.logo_details.desktop.url != ''}
-                {assign var=logo_url value=$shop.logo_details.desktop.url}
-                {if isset($shop.logo_details.desktop.width)}{assign var=logo_width value=$shop.logo_details.desktop.width}{/if}
-                {if isset($shop.logo_details.desktop.height)}{assign var=logo_height value=$shop.logo_details.desktop.height}{/if}
-            {elseif isset($shop.logo.url) && $shop.logo.url != ''}
-                {assign var=logo_url value=$shop.logo.url}
-                {if isset($shop.logo.width)}{assign var=logo_width value=$shop.logo.width}{/if}
-                {if isset($shop.logo.height)}{assign var=logo_height value=$shop.logo.height}{/if}
-            {elseif is_string($shop.logo) && $shop.logo != ''}
-                {assign var=logo_url value=$shop.logo}
-            {/if}
-
-            {if $logo_url != ''}
-                <img class="h-12 w-auto"
-                    src="{$logo_url|escape:'htmlall':'UTF-8'}"
-                    alt="{$shop.name|escape:'htmlall':'UTF-8'}"
-                    {if $logo_width != ''}width="{$logo_width|escape:'htmlall':'UTF-8'}"{/if}
-                    {if $logo_height != ''}height="{$logo_height|escape:'htmlall':'UTF-8'}"{/if}>
-            {else}
-                {if isset($shop.logo_details) && isset($shop.logo_details.default_logo_url) && $shop.logo_details.default_logo_url != ''}
-                    <img class="h-12 w-auto"
-                        src="{$shop.logo_details.default_logo_url|escape:'htmlall':'UTF-8'}"
-                        alt="{$shop.name|escape:'htmlall':'UTF-8'}">
-                {else}
-                    <span class="text-logo">{$shop.name|escape:'htmlall':'UTF-8'}</span>
-                {/if}
-            {/if}
-        </a>
-      </div>
-
-      <nav class="hidden md:flex items-center space-x-6">
-        {hook h='displayTop'}
-      </nav>
-
-      <div class="hidden md:flex items-center space-x-6">
-          <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="bg-corporate-green hover:bg-green-600 text-white font-montserrat btn btn-primary">
-            {l s='Contactar Ahora' d='Shop.Theme.Actions'}
-          </a>
-      </div>
-
-      <div class="md:hidden flex items-center">
-        <button class="btn-icon js-ml-menu-toggle" id="ml-menu-icon-toggle" aria-label="{l s='Toggle navigation' d='Shop.Theme.Actions'}">
-          <i class="material-icons text-white">menu</i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="md:hidden mobile-menu js-ml-mobile-nav" id="js-ml-mobile-nav-panel">
-    <div class="container mx-auto px-4 py-4">
-        <nav>
-            {hook h='displayTop'}
-        </nav>
-        <div class="mt-4">
-            <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="bg-corporate-green hover:bg-green-600 text-white font-montserrat btn btn-primary btn-block">
-                {l s='Contactar Ahora' d='Shop.Theme.Actions'}
-            </a>
+{block name='header_nav'}
+  <nav class="header-nav">
+    <div class="container">
+      <div class="row">
+        <div class="hidden-sm-down">
+          <div class="col-md-5 col-xs-12">
+            {hook h='displayNav1'}
+          </div>
+          <div class="col-md-7 right-nav">
+              {hook h='displayNav2'}
+          </div>
         </div>
+        <div class="hidden-md-up text-sm-center mobile">
+          <div class="float-xs-left" id="menu-icon">
+            <i class="material-icons d-inline">&#xE5D2;</i>
+          </div>
+          <div class="float-xs-right" id="_mobile_cart"></div>
+          <div class="float-xs-right" id="_mobile_user_info"></div>
+          <div class="top-logo" id="_mobile_logo"></div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+{/block}
+
+{block name='header_top'}
+  <div class="header-top">
+    <div class="container">
+       <div class="row">
+        <div class="col-md-2 hidden-sm-down" id="_desktop_logo">
+          {if $shop.logo_details}
+            {if $page.page_name == 'index'}
+              <h1>
+                {renderLogo}
+              </h1>
+            {else}
+              {renderLogo}
+            {/if}
+          {/if}
+        </div>
+        <div class="header-top-right col-md-10 col-sm-12 position-static">
+          {hook h='displayTop'}
+        </div>
+      </div>
+      <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
+        <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
+        <div class="js-top-menu-bottom">
+          <div id="_mobile_currency_selector"></div>
+          <div id="_mobile_language_selector"></div>
+          <div id="_mobile_contact_link"></div>
+        </div>
+      </div>
     </div>
   </div>
-</header>
+  {hook h='displayNavFullWidth'}
+{/block}
