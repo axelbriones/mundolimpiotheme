@@ -13,3 +13,160 @@
    ========================================================================== */
 
 /* No añadas aquí los estilos principales del tema. Usa theme.css para eso. */
+
+#header {
+    position: relative;
+    z-index: 999;
+    color: #7a7a7a;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.11);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.11)
+}
+
+#header .logo {
+    max-width: 100%;
+    height: auto
+}
+
+#header a:hover {
+    color: #24b9d7;
+    text-decoration: none
+}
+
+#header .menu,#header .menu>ul>li {
+    display: inline-block
+}
+
+#header .header-nav {
+    max-height: 50px;
+    border-bottom: #f6f6f6 2px solid
+}
+
+#header .header-nav #menu-icon {
+    margin: 0 1rem;
+    vertical-align: middle;
+    cursor: pointer
+}
+
+#header .header-nav #menu-icon .material-icons {
+    line-height: 50px
+}
+
+#header .header-nav .right-nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
+}
+
+#header .header-nav .currency-selector {
+    margin-top: .9375rem;
+    margin-left: .9375rem;
+    white-space: nowrap
+}
+
+#header .header-nav .user-info {
+    margin-left: 2.5rem;
+    text-align: right
+}
+
+#header .header-nav .user-info .account {
+    margin-left: .625rem
+}
+
+#header .header-nav .language-selector,#header .header-nav .user-info {
+    margin-top: .9375rem;
+    white-space: nowrap
+}
+
+#header .header-nav .cart-preview.active {
+    background: #24b9d7
+}
+
+#header .header-nav .blockcart.active a:hover,#header .header-nav .cart-preview.active a,#header .header-nav .cart-preview.active i {
+    color: #fff
+}
+
+#header .header-nav .cart-preview .shopping-cart {
+    color: #7a7a7a;
+    vertical-align: middle
+}
+
+#header .header-nav .cart-preview .body {
+    display: none
+}
+
+#header .header-nav .blockcart {
+    height: 3rem;
+    padding: .75rem;
+    margin-left: .9375rem;
+    text-align: center;
+    white-space: nowrap;
+    background: #f6f6f6
+}
+
+#header .header-nav .blockcart a:hover {
+    color: #24b9d7
+}
+
+#header .header-nav .blockcart .header {
+    margin-top: .125rem
+}
+
+#header .header-nav #_desktop_contact_link {
+    display: inline-block
+}
+
+#header .header-nav .search-widget {
+    margin-top: .2rem
+}
+
+#header .header-nav .material-icons {
+    line-height: inherit
+}
+
+#header .header-nav .material-icons.expand-more {
+    margin-left: -.375rem
+}
+
+#header .header-top {
+    padding: 1.25rem 0
+}
+
+#header .header-top>.container {
+    position: relative
+}
+
+#header .header-top>.container>.row:first-of-type {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+#header .header-top .menu {
+    padding-left: 15px
+}
+
+#header .header-top .position-static {
+    position: static
+}
+
+#header .header-top a[data-depth="0"] {
+    color: #7a7a7a;
+    text-transform: uppercase
+}
+
+#header .header-top .search-widget {
+    float: right
+}
+
+#header .top-menu-link {
+    margin-left: 1.25rem
+}
