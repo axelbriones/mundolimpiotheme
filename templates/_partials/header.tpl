@@ -22,6 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+<link rel="stylesheet" href="{$urls.css_url}header-classic.css" type="text/css" media="all">
 {block name='header_banner'}
   <div class="header-banner">
     {hook h='displayBanner'}
