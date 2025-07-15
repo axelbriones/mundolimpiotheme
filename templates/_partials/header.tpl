@@ -101,6 +101,7 @@
 
         <div class="mobile-nav-bottom-links">
             {hook h='displayNavMobile'}
+            {* {if $customer.is_logged}
               <a class="account-link" href="{$urls.pages.my_account|escape:'htmlall':'UTF-8'}" title="{l s='My account' d='Shop.Theme.Customeraccount'}" rel="nofollow">
                 <i class="material-icons">person</i>
                 <span>{$customer.firstname|escape:'htmlall':'UTF-8'} {$customer.lastname|escape:'htmlall':'UTF-8'}</span>
