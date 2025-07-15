@@ -7,6 +7,8 @@
   {hook h='displayBanner'}
 {/block}
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <header id="header" class="ml-main-header {if Configuration::get('MLTHEME_HEADER_STICKY', null, null, $shop.id)}js-sticky-header{/if}">
   <div class="container">
     <div class="header-inner-wrapper">
