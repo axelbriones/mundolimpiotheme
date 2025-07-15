@@ -6,3 +6,20 @@
 body {
     @apply font-sans; /* Sets the default font to Open Sans, defined in tailwind.config.js */
 }
+
+#header .js-ml-menu-toggle.open .material-icons {
+    @apply text-gray-700;
+}
+
+.mobile-menu {
+    @apply bg-white shadow-lg py-4;
+    display: none;
+}
+
+.mobile-menu.open {
+    display: block;
+}
+
+.mobile-menu nav a {
+    @apply block py-2 text-gray-700 hover:text-corporate-blue;
+}

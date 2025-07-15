@@ -9,7 +9,7 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 {if Configuration::get('MLTHEME_HEADER_STICKY', null, null, $shop.id)}js-sticky-header{/if}">
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
 
@@ -59,62 +59,24 @@
           </a>
       </div>
 
-
-      <div class="mobile-menu-container hidden-lg-up">
+      <div class="md:hidden flex items-center">
         <button class="btn-icon js-ml-menu-toggle" id="ml-menu-icon-toggle" aria-label="{l s='Toggle navigation' d='Shop.Theme.Actions'}">
-          <i class="material-icons">menu</i>
+          <i class="material-icons text-white">menu</i>
         </button>
-
-        <div class="mobile-header-right-icons">
-            {hook h='displayMobileTopSiteMap'}
-        </div>
       </div>
-
     </div>
   </div>
 
-  <div class="ml-mobile-nav hidden-lg-up js-ml-mobile-nav" id="js-ml-mobile-nav-panel">
-    <div class="ml-mobile-nav-header">
-        <span class="ml-mobile-nav-title">{l s='Menu' d='Shop.Theme.Global'}</span>
-        <button class="btn-icon js-ml-menu-toggle" aria-label="{l s='Close menu' d='Shop.Theme.Actions'}">
-            <i class="material-icons">close</i>
-        </button>
-    </div>
-    <div class="ml-mobile-nav-content container">
-        <nav class="ml-mobile-main-nav">
+  <div class="md:hidden mobile-menu js-ml-mobile-nav" id="js-ml-mobile-nav-panel">
+    <div class="container mx-auto px-4 py-4">
+        <nav>
             {hook h='displayTop'}
         </nav>
-
-        <div class="mobile-nav-search">
-            {hook h='displaySearch'}
-        </div>
-
-        <div class="mobile-nav-cta">
-            <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="btn btn-primary btn-block">
+        <div class="mt-4">
+            <a href="{$urls.pages.contact|escape:'htmlall':'UTF-8'}" class="bg-corporate-green hover:bg-green-600 text-white font-montserrat btn btn-primary btn-block">
                 {l s='Contactar Ahora' d='Shop.Theme.Actions'}
             </a>
         </div>
-
-        <div class="mobile-nav-bottom-links">
-            {hook h='displayNavMobile'}
-            {* {if $customer.is_logged}
-              <a class="account-link" href="{$urls.pages.my_account|escape:'htmlall':'UTF-8'}" title="{l s='My account' d='Shop.Theme.Customeraccount'}" rel="nofollow">
-                <i class="material-icons">person</i>
-                <span>{$customer.firstname|escape:'htmlall':'UTF-8'} {$customer.lastname|escape:'htmlall':'UTF-8'}</span>
-              </a>
-            {else}
-              <a class="user-info-login" href="{$urls.pages.authentication|escape:'htmlall':'UTF-8'}" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}" rel="nofollow">
-                <i class="material-icons">person_outline</i>
-                <span>{l s='Sign in' d='Shop.Theme.Actions'}</span>
-              </a>
-            {/if} *}
-        </div>
     </div>
   </div>
-
-    {block name='header_nav_full_width_hook'}
-      <div class="nav-full-width-container">
-          {hook h='displayNavFullWidth'}
-      </div>
-    {/block}
 </header>
