@@ -1,128 +1,274 @@
-name: mundolimpiotheme
-display_name: Mundo Limpio Theme
-version: 1.0.0
-author:
-  name: "Byron Briones"
-  email: "contacto@bbrion.es"
-  url: "https://bbrion.es"
+# Mundo Limpio Theme Configuration
+# Additional theme-specific configurations
 
-meta:
-  compatibility:
-    from: 1.7.6
-    to: ~ # Compatible with future versions as well
+# Theme Information
+theme:
+  name: "Mundo Limpio Theme"
+  version: "1.0.0"
+  description: "Tema child optimizado para tienda de productos de limpieza sustentables"
+  author: "Mundo Limpio"
+  license: "Proprietary"
 
-  available_layouts: # Inherited from classic, can be overridden if needed
-    layout-full-width:
-      name: Full Width
-      description: "No side columns, ideal for distraction-free pages such as product pages."
-    layout-both-columns:
-      name: Three Columns
-      description: "One large central column and 2 side columns."
-    layout-left-column:
-      name: Two Columns, small left column
-      description: "Two columns with a small left column"
-    layout-right-column:
-      name: Two Columns, small right column
-      description: "Two columns with a small right column"
+# Development Settings
+development:
+  debug_mode: false
+  show_template_names: false
+  cache_enabled: true
+  minify_assets: true
+  
+# Image Settings
+images:
+  webp_enabled: true
+  lazy_loading: true
+  placeholder_color: "#f3f4f6"
+  quality:
+    jpg: 85
+    webp: 80
+  sizes:
+    thumbnail: [150, 150]
+    small: [300, 300]
+    medium: [600, 600]
+    large: [1200, 1200]
+    hero: [1920, 1080]
 
-assets: # Define assets - CSS and JS files
-  css:
-    all: # For all pages
-      - id: mundolimpio-style # Unique ID for your main theme CSS
-        path: assets/css/theme.css
-        media: all
-        priority: 200 # Higher priority to override parent theme styles
-      - id: mundolimpio-custom # For user's custom CSS overrides
-        path: assets/css/custom.css
-        media: all
-        priority: 210
-  js:
-    all: # For all pages
-      - id: mundolimpio-scripts # Unique ID for your main theme JS
-        path: assets/js/theme.js
-        priority: 200
-        position: bottom # Load at the end of the body
-      # Inclusión de la fuente Montserrat desde Google Fonts
-      - id: montserrat-font
-        path: https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap
-        server: remote
-        media: all
-        priority: 10 # Cargar antes que nuestro theme.css
-      - id: opensans-font # Añadir Open Sans
-        path: https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap # Regular 400, Semibold 600, Bold 700
-        server: remote
-        media: all
-        priority: 11 # Después de Montserrat
+# Performance Settings
+performance:
+  enable_css_critical: true
+  enable_js_defer: true
+  enable_preload: true
+  enable_prefetch: true
+  cache_duration: 3600 # 1 hour
 
-parent: classic # Specifies that this is a child theme of 'classic'
+# SEO Settings
+seo:
+  meta_title_suffix: " - Mundo Limpio"
+  meta_description_length: 160
+  enable_breadcrumbs: true
+  enable_schema_markup: true
+  og_image_default: "assets/img/og-default.jpg"
+  
+# Social Media
+social:
+  facebook:
+    app_id: ""
+    page_url: "https://facebook.com/mundolimpio"
+  instagram:
+    username: "mundolimpio"
+  twitter:
+    handle: "@mundolimpio"
+  whatsapp:
+    number: "+5493764123456"
 
-layouts:
-  # By default, layouts are inherited from the 'classic' parent theme.
-  # You can override specific page layouts here if needed.
-  # For example, to make the homepage full width by default:
-  index: layout-full-width
-  # category: layout-left-column
-  # product: layout-full-width
-  # cms: layout-left-column
+# Contact Information
+contact:
+  company_name: "Mundo Limpio"
+  address:
+    street: "Dirección de la tienda"
+    city: "Posadas"
+    state: "Misiones"
+    country: "Argentina"
+    postal_code: "3300"
+  phone: "+54 9 3764 12-3456"
+  email: "info@mundolimpio.com"
+  hours:
+    monday: "08:00-18:00"
+    tuesday: "08:00-18:00"
+    wednesday: "08:00-18:00"
+    thursday: "08:00-18:00"
+    friday: "08:00-18:00"
+    saturday: "08:00-13:00"
+    sunday: "closed"
 
-# global_settings:
-  # This section can be used to define settings manageable via the Theme Customizer in BO.
-  # Example:
-  #   colors:
-  #     primary:
-  #       label: "Primary Color"
-  #       type: "color"
-  #       value: "#007bff" # Default value
-  #       description: "Main color for buttons and links."
-  #   font:
-  #     primary_font:
-  #       label: "Primary Font"
-  #       type: "text" # Could be select if limited options
-  #       value: "'Roboto', sans-serif"
-  # image_formats:
-  #   # Define custom image formats or override existing ones
-  #   product_miniature:
-  #     width: 300
-  #     height: 300
-  #     scope: [products]
+# Feature Flags
+features:
+  enable_wishlist: true
+  enable_compare: true
+  enable_reviews: true
+  enable_quick_view: true
+  enable_ajax_cart: true
+  enable_infinite_scroll: false
+  enable_filter_sidebar: true
+  enable_live_search: true
 
-# dependencies:
-  # List modules that this theme depends on.
-  # modules:
-  #   - ps_imageslider
-  #   - ps_customtext
-# hooks:
-  # Register custom hooks for your theme if needed
-  # displayCustomHomeBlock:
-  #   name: displayCustomHomeBlock
-  #   title: Custom Home Block
-  #   description: Hook for a custom block on the homepage.
-  #   page: index
-  #   position: 1
-# Demo pages (for theme preview in BO)
-# demo_pages:
-#   product_url: '#' # URL to a sample product page for preview
-#   category_url: '#' # URL to a sample category page
-#   cms_url: '#' # URL to a sample CMS page
-#   index_url: '#' # URL to the homepage
+# Homepage Sections
+homepage:
+  sections:
+    hero:
+      enabled: true
+      order: 1
+    categories:
+      enabled: true
+      order: 2
+      show_count: 6
+    featured_products:
+      enabled: true
+      order: 3
+      show_count: 8
+    about:
+      enabled: true
+      order: 4
+    values:
+      enabled: true
+      order: 5
+    testimonials:
+      enabled: true
+      order: 6
+      show_count: 6
+    stats:
+      enabled: true
+      order: 7
+    cta:
+      enabled: true
+      order: 8
+    newsletter:
+      enabled: true
+      order: 9
 
-# Options for the theme configurator (if you build one)
-# configurator:
-#   logo_url: assets/img/logo-configurator.png
-#   favicon_url: assets/img/favicon-configurator.png
+# Product Settings
+products:
+  show_reference: true
+  show_condition: true
+  show_availability: true
+  show_delivery_time: true
+  enable_zoom: true
+  enable_thumbnails: true
+  reviews_per_page: 10
+  related_products_count: 4
 
-# Defines if the theme uses the new product page experimental feature
-# use_ પણ_product_page_v2: true
+# Category Settings
+categories:
+  products_per_page: 12
+  enable_filters: true
+  enable_sorting: true
+  default_sort: "name_asc"
+  available_sorts:
+    - "name_asc"
+    - "name_desc"
+    - "price_asc"
+    - "price_desc"
+    - "date_add_desc"
+    - "date_add_asc"
 
-# Defines if the theme uses the new checkout page experimental feature
-# use_ પણ_checkout_v2: true
+# Cart Settings
+cart:
+  enable_cross_selling: true
+  cross_selling_count: 4
+  enable_abandoned_cart: true
+  enable_cart_rules_info: true
 
-# Specifies the default font for the theme
-# default_font: "Open Sans"
+# Checkout Settings
+checkout:
+  enable_guest_checkout: true
+  enable_terms_agreement: true
+  require_phone: false
+  enable_newsletter_optin: true
 
-# Specifies assets to exclude from the parent theme
-# parent_assets_to_exclude:
-#   css:
-#     - id: classic-style # Example: exclude classic's main CSS
-#   js:
-#     - id: classic-scripts # Example: exclude classic's main JS
+# Email Settings
+emails:
+  logo_width: 200
+  logo_height: 100
+  header_color: "#16a34a"
+  footer_color: "#1f2937"
+
+# Multi-language Settings
+languages:
+  default: "es"
+  available:
+    - "es"
+    - "en"
+  show_flags: true
+  show_language_selector: true
+
+# Currency Settings
+currencies:
+  default: "ARS"
+  available:
+    - "ARS"
+    - "USD"
+  show_currency_selector: false
+
+# Shipping Settings
+shipping:
+  show_delivery_time: true
+  show_shipping_cost: true
+  free_shipping_threshold: 5000 # ARS
+
+# Payment Settings
+payments:
+  show_accepted_payments: true
+  accepted_methods:
+    - "visa"
+    - "mastercard"
+    - "american_express"
+    - "mercadopago"
+
+# Analytics Settings
+analytics:
+  google_analytics_id: ""
+  facebook_pixel_id: ""
+  google_tag_manager_id: ""
+
+# Custom CSS Variables
+css_variables:
+  primary_color: "#16a34a"
+  primary_light: "#22c55e"
+  primary_dark: "#15803d"
+  secondary_color: "#dcfce7"
+  accent_color: "#f59e0b"
+  text_primary: "#1f2937"
+  text_secondary: "#6b7280"
+  border_color: "#e5e7eb"
+  success_color: "#10b981"
+  warning_color: "#f59e0b"
+  error_color: "#ef4444"
+  info_color: "#3b82f6"
+
+# Custom Fonts
+fonts:
+  primary_family: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+  heading_family: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+  mono_family: "'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace"
+
+# Responsive Breakpoints
+breakpoints:
+  xs: "0px"
+  sm: "640px"
+  md: "768px"
+  lg: "1024px"
+  xl: "1280px"
+  "2xl": "1536px"
+
+# Error Pages
+error_pages:
+  404:
+    title: "Página no encontrada"
+    message: "La página que buscas no existe o ha sido movida."
+    show_search: true
+    show_categories: true
+  500:
+    title: "Error interno del servidor"
+    message: "Estamos experimentando problemas técnicos. Por favor, inténtelo más tarde."
+    show_contact: true
+
+# Maintenance Mode
+maintenance:
+  enabled: false
+  title: "Sitio en mantenimiento"
+  message: "Estamos mejorando nuestro sitio. Volvemos pronto."
+  estimated_time: "2 horas"
+  show_countdown: false
+
+# Security Settings
+security:
+  enable_csrf_protection: true
+  enable_ssl_redirect: true
+  enable_security_headers: true
+  session_timeout: 1800 # 30 minutes
+
+# Backup Settings
+backup:
+  auto_backup: false
+  backup_frequency: "weekly"
+  backup_retention: 30 # days
+  include_database: true
+  include_files: true

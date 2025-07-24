@@ -1,130 +1,243 @@
-{*
-  Mundo Limpio Iguazú - Footer
-*}
-<footer class="footer-ml bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 text-white">
-  <div class="py-16">
-    <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
-        <div class="lg:col-span-2">
-          <div class="flex items-center space-x-4 mb-8">
-            <img
-              src="{$urls.theme_assets}img/lovable-uploads/85cbc0aa-d6b6-43f8-9c23-8f2d9e642a5a.png"
-              alt="{l s='Mundo Limpio Iguazú - Logo' d='Shop.Theme.Global'}"
-              class="h-16 w-auto footer-logo"
-            />
-          </div>
-          <p class="font-opensans text-gray-300 mb-8 max-w-lg text-lg leading-relaxed footer-description">
-            {l s='Desde 2008 distribuyendo productos de limpieza e higiene con responsabilidad ecológica en el corazón de la selva misionera. Comprometidos con las generaciones futuras y el cuidado del medio ambiente.' d='Shop.Theme.Global'}
-          </p>
+{**
+ * Footer Template - Mundo Limpio Theme
+ * Elegant and comprehensive footer
+ *}
 
-          <div class="grid grid-cols-2 gap-4 mb-8 footer-key-features">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 bg-corporate-blue rounded-lg flex items-center justify-center feature-icon-bg">
-                <span class="icon-placeholder">{l s='[Award]' d='Shop.Theme.Global'}</span>
-              </div>
-              <div>
-                <div class="font-montserrat font-semibold text-white feature-title">{l s='+15 Años' d='Shop.Theme.Global'}</div>
-                <div class="font-opensans text-sm text-gray-400 feature-subtitle">{l s='de Experiencia' d='Shop.Theme.Global'}</div>
-              </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 bg-corporate-green rounded-lg flex items-center justify-center feature-icon-bg">
-                <span class="icon-placeholder">{l s='[Users]' d='Shop.Theme.Global'}</span>
-              </div>
-              <div>
-                <div class="font-montserrat font-semibold text-white feature-title">{l s='500+' d='Shop.Theme.Global'}</div>
-                <div class="font-opensans text-sm text-gray-400 feature-subtitle">{l s='Clientes Satisfechos' d='Shop.Theme.Global'}</div>
-              </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 bg-corporate-green rounded-lg flex items-center justify-center feature-icon-bg">
-                <span class="icon-placeholder">{l s='[Leaf]' d='Shop.Theme.Global'}</span>
-              </div>
-              <div>
-                <div class="font-montserrat font-semibold text-white feature-title">{l s='100%' d='Shop.Theme.Global'}</div>
-                <div class="font-opensans text-sm text-gray-400 feature-subtitle">{l s='Eco-Responsable' d='Shop.Theme.Global'}</div>
-              </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 bg-corporate-blue rounded-lg flex items-center justify-center feature-icon-bg">
-                <span class="icon-placeholder">{l s='[Clock]' d='Shop.Theme.Global'}</span>
-              </div>
-              <div>
-                <div class="font-montserrat font-semibold text-white feature-title">{l s='24/7' d='Shop.Theme.Global'}</div>
-                <div class="font-opensans text-sm text-gray-400 feature-subtitle">{l s='Atención Rápida' d='Shop.Theme.Global'}</div>
-              </div>
+<footer class="footer-section bg-gray-900 text-white relative overflow-hidden">
+  
+  {* Background Decoration *}
+  <div class="footer-decoration absolute inset-0 opacity-5">
+    <div class="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-green-400 to-green-600 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-green-300 to-green-500 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+  </div>
+
+  {* Main Footer Content *}
+  <div class="footer-main relative z-10 py-16">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        
+        {* Company Info *}
+        <div class="footer-column">
+          <div class="footer-logo mb-6">
+            {if $shop.logo_details}
+              <img 
+                class="logo h-12 w-auto mb-4 filter brightness-0 invert" 
+                src="{$shop.logo_details.src}" 
+                alt="{$shop.name}" 
+                width="{$shop.logo_details.width}" 
+                height="{$shop.logo_details.height}"
+              >
+            {else}
+              <h3 class="text-2xl font-bold text-green-400 mb-4">{$shop.name}</h3>
+            {/if}
+          </div>
+          
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Desde 2008 brindamos soluciones sustentables de limpieza e higiene, 
+            protegiendo el medio ambiente con productos ecológicos de calidad superior.
+          </p>
+          
+          {* Social Media *}
+          <div class="social-media">
+            <h4 class="text-lg font-semibold mb-4 text-green-400">Síguenos</h4>
+            <div class="social-links flex space-x-4">
+              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group">
+                <i class="fab fa-facebook-f text-gray-300 group-hover:text-white transition-colors"></i>
+              </a>
+              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group">
+                <i class="fab fa-instagram text-gray-300 group-hover:text-white transition-colors"></i>
+              </a>
+              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group">
+                <i class="fab fa-whatsapp text-gray-300 group-hover:text-white transition-colors"></i>
+              </a>
+              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group">
+                <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white transition-colors"></i>
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="footer-services">
-          <h3 class="font-montserrat font-bold text-xl mb-6 text-white footer-heading">{l s='Nuestros Servicios' d='Shop.Theme.Global'}</h3>
-          <ul class="space-y-4 font-opensans text-gray-300">
-            <li class="flex items-start">
-              <div class="w-2 h-2 bg-corporate-green rounded-full mt-2 mr-3 flex-shrink-0 list-bullet"></div>
-              <span class="hover:text-white transition-colors duration-300 cursor-pointer">{l s='Asesoramiento experto' d='Shop.Theme.Global'}</span>
+        {* Quick Links *}
+        <div class="footer-column">
+          <h4 class="footer-title text-lg font-semibold mb-6 text-green-400">Enlaces Rápidos</h4>
+          <ul class="footer-links space-y-3">
+            <li>
+              <a href="{$urls.pages.index}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Inicio
+              </a>
             </li>
-            <li class="flex items-start">
-              <div class="w-2 h-2 bg-corporate-green rounded-full mt-2 mr-3 flex-shrink-0 list-bullet"></div>
-              <span class="hover:text-white transition-colors duration-300 cursor-pointer">{l s='Entregas inmediatas' d='Shop.Theme.Global'}</span>
+            <li>
+              <a href="{$urls.pages.category}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Nuestros Productos
+              </a>
             </li>
-            <li class="flex items-start">
-              <div class="w-2 h-2 bg-corporate-green rounded-full mt-2 mr-3 flex-shrink-0 list-bullet"></div>
-              <span class="hover:text-white transition-colors duration-300 cursor-pointer">{l s='Productos sustentables' d='Shop.Theme.Global'}</span>
+            <li>
+              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Sustentabilidad
+              </a>
             </li>
-            <li class="flex items-start">
-              <div class="w-2 h-2 bg-corporate-green rounded-full mt-2 mr-3 flex-shrink-0 list-bullet"></div>
-              <span class="hover:text-white transition-colors duration-300 cursor-pointer">{l s='Limpieza profesional' d='Shop.Theme.Global'}</span>
+            <li>
+              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Sobre Nosotros
+              </a>
             </li>
-            <li class="flex items-start">
-              <div class="w-2 h-2 bg-corporate-green rounded-full mt-2 mr-3 flex-shrink-0 list-bullet"></div>
-              <span class="hover:text-white transition-colors duration-300 cursor-pointer">{l s='Higiene institucional' d='Shop.Theme.Global'}</span>
+            <li>
+              <a href="{$urls.pages.contact}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Contacto
+              </a>
             </li>
-            <li class="flex items-start">
-              <div class="w-2 h-2 bg-corporate-green rounded-full mt-2 mr-3 flex-shrink-0 list-bullet"></div>
-              <span class="hover:text-white transition-colors duration-300 cursor-pointer">{l s='Soluciones hogareñas' d='Shop.Theme.Global'}</span>
+            <li>
+              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Blog
+              </a>
             </li>
           </ul>
         </div>
 
-        <div class="footer-contact-info">
-          <h3 class="font-montserrat font-bold text-xl mb-6 text-white footer-heading">{l s='Información de Contacto' d='Shop.Theme.Global'}</h3>
-          <div class="space-y-6 font-opensans text-gray-300">
-            <div class="flex items-start space-x-3 contact-item">
-              <div class="w-6 h-6 bg-corporate-green rounded flex items-center justify-center mt-1 contact-icon-bg">
-                <span class="icon-placeholder-small">{l s='[Ph]' d='Shop.Theme.Global'}</span>
-              </div>
-              <div>
-                <div class="font-semibold text-white contact-value">{l s='+54 3757 XXX-XXX' d='Shop.Theme.Global'}</div>
-                <div class="text-sm contact-label">{l s='Atención inmediata' d='Shop.Theme.Global'}</div>
+        {* Customer Service *}
+        <div class="footer-column">
+          <h4 class="footer-title text-lg font-semibold mb-6 text-green-400">Atención al Cliente</h4>
+          <ul class="footer-links space-y-3">
+            <li>
+              <a href="{$urls.pages.my_account}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Mi Cuenta
+              </a>
+            </li>
+            <li>
+              <a href="{$urls.pages.order}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Seguir Pedido
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Preguntas Frecuentes
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Términos y Condiciones
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Política de Privacidad
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+                <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
+                Devoluciones
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {* Contact Info *}
+        <div class="footer-column">
+          <h4 class="footer-title text-lg font-semibold mb-6 text-green-400">Contacto</h4>
+          
+          <div class="contact-info space-y-4">
+            <div class="contact-item flex items-start">
+              <i class="material-icons text-green-400 mr-3 mt-1">location_on</i>
+              <div class="contact-text">
+                <p class="text-gray-300 leading-relaxed">
+                  Posadas, Misiones<br>
+                  Argentina
+                </p>
               </div>
             </div>
-            <div class="flex items-start space-x-3 contact-item">
-              <div class="w-6 h-6 bg-corporate-green rounded flex items-center justify-center mt-1 contact-icon-bg">
-                <span class="icon-placeholder-small">{l s='[Mail]' d='Shop.Theme.Global'}</span>
-              </div>
-              <div>
-                <div class="font-semibold text-white contact-value">{l s='info@mundolimpioiguazu.com' d='Shop.Theme.Global'}</div>
-                <div class="text-sm contact-label">{l s='Consultas generales' d='Shop.Theme.Global'}</div>
-              </div>
-            </div>
-            <div class="flex items-start space-x-3 contact-item">
-              <div class="w-6 h-6 bg-corporate-green rounded flex items-center justify-center mt-1 contact-icon-bg">
-                <span class="icon-placeholder-small">{l s='[Pin]' d='Shop.Theme.Global'}</span>
-              </div>
-              <div>
-                <div class="font-semibold text-white contact-value">{l s='Puerto Iguazú, Misiones' d='Shop.Theme.Global'}</div>
-                <div class="text-sm contact-label">{l s='Argentina' d='Shop.Theme.Global'}</div>
+            
+            <div class="contact-item flex items-center">
+              <i class="material-icons text-green-400 mr-3">phone</i>
+              <div class="contact-text">
+                <a href="tel:+5493764123456" class="text-gray-300 hover:text-green-400 transition-colors">
+                  +54 9 3764 12-3456
+                </a>
               </div>
             </div>
-            <div class="flex items-start space-x-3 contact-item">
-              <div class="w-6 h-6 bg-corporate-green rounded flex items-center justify-center mt-1 contact-icon-bg">
-                <span class="icon-placeholder-small">{l s='[Clk]' d='Shop.Theme.Global'}</span>
+            
+            <div class="contact-item flex items-center">
+              <i class="material-icons text-green-400 mr-3">email</i>
+              <div class="contact-text">
+                <a href="mailto:info@mundolimpio.com" class="text-gray-300 hover:text-green-400 transition-colors">
+                  info@mundolimpio.com
+                </a>
               </div>
-              <div>
-                <div class="font-semibold text-white contact-value">{l s='Lun-Vie: 8:00-18:00' d='Shop.Theme.Global'}</div>
-                <div class="text-sm contact-label">{l s='Sáb: 8:00-12:00' d='Shop.Theme.Global'}</div>
+            </div>
+            
+            <div class="contact-item flex items-start">
+              <i class="material-icons text-green-400 mr-3 mt-1">schedule</i>
+              <div class="contact-text">
+                <p class="text-gray-300 leading-relaxed">
+                  Lun - Vie: 8:00 - 18:00<br>
+                  Sáb: 8:00 - 13:00
+                </p>
               </div>
+            </div>
+          </div>
+
+          {* Newsletter Signup *}
+          <div class="newsletter-signup mt-8">
+            <h5 class="text-md font-semibold mb-3 text-green-400">Newsletter</h5>
+            <form class="newsletter-form">
+              <div class="flex">
+                <input 
+                  type="email" 
+                  placeholder="Tu email..." 
+                  class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-white placeholder-gray-400"
+                >
+                <button 
+                  type="submit" 
+                  class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-r-lg transition-colors duration-200"
+                >
+                  <i class="material-icons text-sm">send</i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {* Footer Bottom *}
+  <div class="footer-bottom relative z-10 border-t border-gray-800 py-6">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        
+        {* Copyright *}
+        <div class="copyright text-center md:text-left mb-4 md:mb-0">
+          <p class="text-gray-400 text-sm">
+            © {$smarty.now|date_format:"%Y"} {$shop.name}. Todos los derechos reservados.
+          </p>
+        </div>
+
+        {* Payment Methods *}
+        <div class="payment-methods flex items-center space-x-4">
+          <span class="text-gray-400 text-sm mr-2">Aceptamos:</span>
+          <div class="payment-icons flex space-x-2">
+            <div class="payment-icon w-8 h-6 bg-gray-800 rounded flex items-center justify-center">
+              <i class="fab fa-cc-visa text-blue-400 text-sm"></i>
+            </div>
+            <div class="payment-icon w-8 h-6 bg-gray-800 rounded flex items-center justify-center">
+              <i class="fab fa-cc-mastercard text-red-400 text-sm"></i>
+            </div>
+            <div class="payment-icon w-8 h-6 bg-gray-800 rounded flex items-center justify-center">
+              <i class="fab fa-cc-amex text-green-400 text-sm"></i>
+            </div>
+            <div class="payment-icon w-8 h-6 bg-gray-800 rounded flex items-center justify-center">
+              <span class="text-xs text-gray-300 font-bold">MP</span>
             </div>
           </div>
         </div>
@@ -132,24 +245,13 @@
     </div>
   </div>
 
-  <div class="border-t border-gray-700 py-8 footer-bottom-bar">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-        <p class="font-opensans text-gray-400 text-center lg:text-left copyright">
-          {l s='© 2024 Mundo Limpio Iguazú. Todos los derechos reservados.' d='Shop.Theme.Global'}
-        </p>
-        <div class="flex items-center space-x-8 footer-bottom-right">
-          <p class="font-opensans text-gray-400 text-sm text-center lg:text-right tagline">
-            {l s='Cuidando la selva misionera desde 2008' d='Shop.Theme.Global'}
-          </p>
-          <div class="flex items-center space-x-2 commitment">
-            <span class="icon-placeholder-leaf text-corporate-green">{l s='[Leaf]' d='Shop.Theme.Global'}</span>
-            <span class="font-montserrat text-corporate-green font-medium text-sm">
-              {l s='Comprometidos con las generaciones futuras' d='Shop.Theme.Global'}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {* Back to Top Button *}
+  <button 
+    id="back-to-top" 
+    class="back-to-top fixed bottom-6 right-6 w-12 h-12 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform translate-y-16 opacity-0 z-50"
+  >
+    <i class="material-icons">keyboard_arrow_up</i>
+  </button>
 </footer>
+
+{hook h='displayFooterAfter'}

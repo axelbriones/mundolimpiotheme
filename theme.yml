@@ -1,0 +1,190 @@
+name: mundolimpiotheme
+display_name: Mundo Limpio Theme
+version: 1.0.0
+author:
+  name: "Mundo Limpio"
+  email: "info@mundolimpio.com"
+  url: "https://mundolimpio.com"
+
+meta:
+  compatibility:
+    from: 1.7.0.0
+    to: ~
+  available_layouts:
+    layout-both-columns: Ambas columnas
+    layout-left-column: Columna izquierda
+    layout-right-column: Columna derecha
+    layout-no-columns: Sin columnas
+
+parent: classic
+use_parent_assets: false
+
+assets:
+  css:
+    all:
+      - id: theme-main
+        path: assets/css/theme.css
+        media: all
+        priority: 1000
+      - id: google-fonts
+        path: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap
+        media: all
+        priority: 900
+        server: remote
+      - id: material-icons
+        path: https://fonts.googleapis.com/icon?family=Material+Icons
+        media: all
+        priority: 900
+        server: remote
+      - id: font-awesome
+        path: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css
+        media: all
+        priority: 900
+        server: remote
+
+  js:
+    all:
+      - id: theme-main
+        path: assets/js/theme.js
+        priority: 1000
+        position: bottom
+
+global_settings:
+  configuration:
+    PS_IMAGE_QUALITY: jpg
+    PS_JPEG_QUALITY: 90
+    PS_PNG_QUALITY: 7
+    PS_IMAGE_GENERATION_METHOD: 1
+    PS_PRODUCT_SHORT_DESC_LIMIT: 800
+  
+  hooks:
+    custom_hooks: []
+    modules_to_hook: {}
+
+theme_settings:
+  default_layout: layout-both-columns
+  
+  # Color scheme
+  colors:
+    primary: "#16a34a"
+    primary_light: "#22c55e"
+    primary_dark: "#15803d"
+    secondary: "#dcfce7"
+    accent: "#f59e0b"
+    text_primary: "#1f2937"
+    text_secondary: "#6b7280"
+    border: "#e5e7eb"
+    background: "#ffffff"
+    background_alt: "#f9fafb"
+
+  # Typography
+  typography:
+    font_family: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+    font_sizes:
+      xs: "0.75rem"
+      sm: "0.875rem"
+      base: "1rem"
+      lg: "1.125rem"
+      xl: "1.25rem"
+      "2xl": "1.5rem"
+      "3xl": "1.875rem"
+      "4xl": "2.25rem"
+      "5xl": "3rem"
+      "6xl": "3.75rem"
+      "7xl": "4.5rem"
+
+  # Layout settings
+  layout:
+    container_max_width: "1320px"
+    container_padding: "1rem"
+    grid_columns: 12
+    grid_gap: "2rem"
+
+  # Header settings  
+  header:
+    sticky: true
+    show_on_scroll_up: true
+    hide_on_scroll_down: true
+    search_placeholder: "Buscar productos..."
+    logo_max_height: "48px"
+
+  # Hero section settings
+  hero:
+    background_image: "assets/img/hero-bg.jpg"
+    overlay_opacity: 0.8
+    title: "Soluciones Sustentables para Limpieza"
+    description: "Desde 2008 brindamos productos de limpieza e higiene con responsabilidad ecológica. Protegemos la selva misionera con soluciones sustentables y asesoramiento experto."
+    cta_text: "Contáctanos Ahora"
+    cta_url: "contact"
+    show_features: true
+    show_scroll_indicator: true
+
+  # Footer settings
+  footer:
+    show_newsletter: true
+    newsletter_placeholder: "Tu email..."
+    show_social_media: true
+    social_links:
+      facebook: "#"
+      instagram: "#"
+      whatsapp: "#"
+      linkedin: "#"
+    show_payment_methods: true
+    payment_methods:
+      - visa
+      - mastercard
+      - amex
+      - mercadopago
+    copyright_text: "Todos los derechos reservados."
+
+  # Performance settings
+  performance:
+    enable_lazy_loading: true
+    enable_critical_css: true
+    minify_css: true
+    minify_js: true
+    enable_gzip: true
+    enable_browser_caching: true
+
+  # SEO settings
+  seo:
+    enable_structured_data: true
+    enable_open_graph: true
+    enable_twitter_cards: true
+    default_meta_description: "Productos de limpieza eco-friendly y sustentables. Protegemos el medio ambiente con soluciones de calidad superior desde 2008."
+    
+  # Responsive settings
+  responsive:
+    breakpoints:
+      sm: "640px"
+      md: "768px"
+      lg: "1024px"
+      xl: "1280px"
+      "2xl": "1536px"
+
+  # Animation settings
+  animations:
+    enable_scroll_animations: true
+    enable_hover_effects: true
+    enable_loading_animations: true
+    animation_duration: "0.3s"
+    animation_easing: "ease-in-out"
+
+  # Contact information
+  contact:
+    address: "Posadas, Misiones, Argentina"
+    phone: "+54 9 3764 12-3456"
+    email: "info@mundolimpio.com"
+    hours: "Lun - Vie: 8:00 - 18:00, Sáb: 8:00 - 13:00"
+
+  # Features
+  features:
+    - icon: "eco"
+      title: "Eco-Friendly"
+      description: "Productos biodegradables y sustentables"
+    - icon: "verified"
+      title: "15+ Años"
+      description: "Experiencia y confianza comprobada"
+    - icon: "support_agent"
+      title: "Asesoría"
+      description: "Soporte especializado personalizado"
