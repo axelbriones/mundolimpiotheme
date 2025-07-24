@@ -1,9 +1,9 @@
 {**
- * Footer Template - Mundo Limpio Theme
- * Elegant and comprehensive footer
+ * Footer - Mundo Limpio Theme
+ * Footer completo con información de la empresa, enlaces y contacto
  *}
 
-<footer class="footer-section bg-gray-900 text-white relative overflow-hidden">
+<footer class="mundo-footer bg-gray-900 text-white relative overflow-hidden">
   
   {* Background Decoration *}
   <div class="footer-decoration absolute inset-0 opacity-5">
@@ -16,19 +16,19 @@
     <div class="container mx-auto px-4 lg:px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
         
-        {* Company Info *}
+        {* === COMPANY INFO === *}
         <div class="footer-column">
           <div class="footer-logo mb-6">
-            {if $shop.logo_details}
+            {if isset($shop.logo_details) && $shop.logo_details}
               <img 
-                class="logo h-12 w-auto mb-4 filter brightness-0 invert" 
                 src="{$shop.logo_details.src}" 
-                alt="{$shop.name}" 
-                width="{$shop.logo_details.width}" 
-                height="{$shop.logo_details.height}"
+                alt="{if isset($shop.name)}{$shop.name|escape:'html':'UTF-8'}{else}Mundo Limpio{/if}"
+                class="h-12 w-auto mb-4 filter brightness-0 invert"
               >
             {else}
-              <h3 class="text-2xl font-bold text-green-400 mb-4">{$shop.name}</h3>
+              <h3 class="text-2xl font-bold text-green-400 mb-4">
+                {if isset($shop.name)}{$shop.name|escape:'html':'UTF-8'}{else}Mundo Limpio{/if}
+              </h3>
             {/if}
           </div>
           
@@ -41,58 +41,64 @@
           <div class="social-media">
             <h4 class="text-lg font-semibold mb-4 text-green-400">Síguenos</h4>
             <div class="social-links flex space-x-4">
-              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group">
+              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group" aria-label="Facebook">
                 <i class="fab fa-facebook-f text-gray-300 group-hover:text-white transition-colors"></i>
               </a>
-              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group">
+              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group" aria-label="Instagram">
                 <i class="fab fa-instagram text-gray-300 group-hover:text-white transition-colors"></i>
               </a>
-              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group">
+              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group" aria-label="WhatsApp">
                 <i class="fab fa-whatsapp text-gray-300 group-hover:text-white transition-colors"></i>
               </a>
-              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group">
+              <a href="#" class="social-link w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-all duration-300 group" aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white transition-colors"></i>
               </a>
             </div>
           </div>
         </div>
 
-        {* Quick Links *}
+        {* === QUICK LINKS === *}
         <div class="footer-column">
           <h4 class="footer-title text-lg font-semibold mb-6 text-green-400">Enlaces Rápidos</h4>
           <ul class="footer-links space-y-3">
             <li>
-              <a href="{$urls.pages.index}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="{if isset($urls.pages.index)}{$urls.pages.index}{else}/{/if}" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Inicio
               </a>
             </li>
             <li>
-              <a href="{$urls.pages.category}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="{if isset($urls.pages.category)}{$urls.pages.category}{else}/categoria{/if}" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Nuestros Productos
               </a>
             </li>
             <li>
-              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="#sustentabilidad" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Sustentabilidad
               </a>
             </li>
             <li>
-              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="#" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Sobre Nosotros
               </a>
             </li>
             <li>
-              <a href="{$urls.pages.contact}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="{if isset($urls.pages.contact)}{$urls.pages.contact}{else}/contacto{/if}" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Contacto
               </a>
             </li>
             <li>
-              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="#" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Blog
               </a>
@@ -100,42 +106,48 @@
           </ul>
         </div>
 
-        {* Customer Service *}
+        {* === CUSTOMER SERVICE === *}
         <div class="footer-column">
           <h4 class="footer-title text-lg font-semibold mb-6 text-green-400">Atención al Cliente</h4>
           <ul class="footer-links space-y-3">
             <li>
-              <a href="{$urls.pages.my_account}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="{if isset($urls.pages.my_account)}{$urls.pages.my_account}{else}/mi-cuenta{/if}" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Mi Cuenta
               </a>
             </li>
             <li>
-              <a href="{$urls.pages.order}" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="{if isset($urls.pages.order)}{$urls.pages.order}{else}/pedidos{/if}" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Seguir Pedido
               </a>
             </li>
             <li>
-              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="#" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Preguntas Frecuentes
               </a>
             </li>
             <li>
-              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="#" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Términos y Condiciones
               </a>
             </li>
             <li>
-              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="#" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Política de Privacidad
               </a>
             </li>
             <li>
-              <a href="#" class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
+              <a href="#" 
+                 class="footer-link text-gray-300 hover:text-green-400 transition-colors duration-200 flex items-center group">
                 <i class="material-icons text-sm mr-2 group-hover:translate-x-1 transition-transform">chevron_right</i>
                 Devoluciones
               </a>
@@ -143,7 +155,7 @@
           </ul>
         </div>
 
-        {* Contact Info *}
+        {* === CONTACT INFO === *}
         <div class="footer-column">
           <h4 class="footer-title text-lg font-semibold mb-6 text-green-400">Contacto</h4>
           
@@ -190,12 +202,13 @@
           {* Newsletter Signup *}
           <div class="newsletter-signup mt-8">
             <h5 class="text-md font-semibold mb-3 text-green-400">Newsletter</h5>
-            <form class="newsletter-form">
+            <form class="newsletter-form" id="newsletter-form">
               <div class="flex">
                 <input 
                   type="email" 
                   placeholder="Tu email..." 
                   class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-white placeholder-gray-400"
+                  required
                 >
                 <button 
                   type="submit" 
@@ -211,7 +224,7 @@
     </div>
   </div>
 
-  {* Footer Bottom *}
+  {* === FOOTER BOTTOM === *}
   <div class="footer-bottom relative z-10 border-t border-gray-800 py-6">
     <div class="container mx-auto px-4 lg:px-6">
       <div class="flex flex-col md:flex-row items-center justify-between">
@@ -219,7 +232,7 @@
         {* Copyright *}
         <div class="copyright text-center md:text-left mb-4 md:mb-0">
           <p class="text-gray-400 text-sm">
-            © {$smarty.now|date_format:"%Y"} {$shop.name}. Todos los derechos reservados.
+            © {$smarty.now|date_format:"%Y"} {if isset($shop.name)}{$shop.name|escape:'html':'UTF-8'}{else}Mundo Limpio{/if}. Todos los derechos reservados.
           </p>
         </div>
 
@@ -245,13 +258,12 @@
     </div>
   </div>
 
-  {* Back to Top Button *}
+  {* === BACK TO TOP BUTTON === *}
   <button 
     id="back-to-top" 
     class="back-to-top fixed bottom-6 right-6 w-12 h-12 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform translate-y-16 opacity-0 z-50"
+    aria-label="Volver arriba"
   >
     <i class="material-icons">keyboard_arrow_up</i>
   </button>
 </footer>
-
-{hook h='displayFooterAfter'}

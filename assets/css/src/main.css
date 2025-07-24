@@ -1,13 +1,13 @@
 /**
  * Mundo Limpio Theme - Main CSS
- * Custom styles to complement Tailwind CSS
+ * CSS completo con Tailwind CSS y estilos personalizados
  */
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* ===== BASE STYLES ===== */
+/* ===== VARIABLES CSS ===== */
 :root {
   --primary-green: #16a34a;
   --primary-green-light: #22c55e;
@@ -23,12 +23,11 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-/* Smooth scrolling for the entire page */
+/* ===== BASE STYLES ===== */
 html {
   scroll-behavior: smooth;
 }
 
-/* Base body styles */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
@@ -54,22 +53,52 @@ body {
   background: var(--primary-green-dark);
 }
 
+/* ===== CONTAINER ===== */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container { max-width: 640px; }
+}
+
+@media (min-width: 768px) {
+  .container { max-width: 768px; }
+}
+
+@media (min-width: 1024px) {
+  .container { 
+    max-width: 1024px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container { max-width: 1280px; }
+}
+
+@media (min-width: 1536px) {
+  .container { max-width: 1320px; }
+}
+
 /* ===== HEADER STYLES ===== */
-.header-container {
+.mundo-header {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-}
-
-.header-container.scrolled {
-  box-shadow: var(--shadow-lg);
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
-.logo {
   transition: all 0.3s ease;
 }
 
-.logo:hover {
+.mundo-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-lg);
+}
+
+.logo-link:hover .logo {
   transform: scale(1.05);
 }
 
@@ -96,7 +125,7 @@ body {
 }
 
 /* Search input focus states */
-.search-input:focus {
+.search-section input:focus {
   box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
 }
 
@@ -110,13 +139,13 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Mobile menu animations */
-.mobile-menu {
+/* Mobile menu */
+#mobile-menu {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
-.mobile-menu.open {
+#mobile-menu.open {
   transform: translateY(0);
   opacity: 1;
   visibility: visible;
@@ -124,7 +153,6 @@ body {
 
 .mobile-nav-link {
   transition: all 0.3s ease;
-  border-radius: 8px;
 }
 
 .mobile-nav-link:hover {
@@ -220,8 +248,71 @@ body {
   }
 }
 
+/* ===== HOMEPAGE SECTIONS ===== */
+
+/* Categories Section */
+.category-card {
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Products Section */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+}
+
+.product-actions {
+  transition: all 0.3s ease;
+}
+
+.action-btn {
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Values Section */
+.value-item {
+  transition: all 0.3s ease;
+}
+
+.value-item:hover {
+  transform: translateY(-4px);
+}
+
+.value-icon {
+  transition: all 0.3s ease;
+}
+
+/* Statistics Section */
+.stat-item {
+  transition: all 0.3s ease;
+}
+
+.stat-number {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Testimonials Section */
+.testimonial-card {
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-2px);
+}
+
 /* ===== FOOTER STYLES ===== */
-.footer-section {
+.mundo-footer {
   background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
 }
 
@@ -277,7 +368,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* ===== CUSTOM ANIMATIONS ===== */
+/* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -439,22 +530,32 @@ body {
 
 .animate-float-1 {
   animation: float1 8s ease-in-out infinite;
+  top: 20%;
+  left: 10%;
 }
 
 .animate-float-2 {
   animation: float2 6s ease-in-out infinite;
+  top: 60%;
+  left: 80%;
 }
 
 .animate-float-3 {
   animation: float3 10s ease-in-out infinite;
+  top: 30%;
+  right: 20%;  
 }
 
 .animate-float-4 {
   animation: float4 7s ease-in-out infinite;
+  bottom: 30%;
+  left: 15%;
 }
 
 .animate-float-5 {
   animation: float5 9s ease-in-out infinite;
+  top: 70%;
+  right: 30%;
 }
 
 /* Animation delays */
@@ -482,65 +583,32 @@ body {
   animation-delay: 1.2s;
 }
 
-/* ===== COMPONENT STYLES ===== */
-
-/* Button components */
-.btn {
-  @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+/* ===== UTILITY CLASSES ===== */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.btn-primary {
-  @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+.text-shadow-lg {
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.btn-secondary {
-  @apply bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+.backdrop-blur-custom {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.btn-outline {
-  @apply border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white focus:ring-green-500;
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Card components */
-.card {
-  @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
-}
-
-.card-header {
-  @apply px-6 py-4 border-b border-gray-200;
-}
-
-.card-body {
-  @apply px-6 py-4;
-}
-
-.card-footer {
-  @apply px-6 py-4 border-t border-gray-200 bg-gray-50;
-}
-
-/* Badge components */
-.badge {
-  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-}
-
-.badge-primary {
-  @apply bg-green-100 text-green-800;
-}
-
-.badge-secondary {
-  @apply bg-gray-100 text-gray-800;
-}
-
-.badge-success {
-  @apply bg-green-100 text-green-800;
-}
-
-.badge-warning {
-  @apply bg-yellow-100 text-yellow-800;
-}
-
-.badge-danger {
-  @apply bg-red-100 text-red-800;
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -568,6 +636,14 @@ body {
   .footer-column {
     margin-bottom: 2rem;
   }
+  
+  .mundo-header nav {
+    height: 70px;
+  }
+  
+  .header-spacer {
+    height: 70px !important;
+  }
 }
 
 /* Tablet optimizations */
@@ -578,11 +654,6 @@ body {
   
   .hero-description {
     font-size: 1.125rem;
-  }
-  
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 }
 
@@ -603,10 +674,6 @@ body {
 
 /* High resolution displays */
 @media (min-width: 1440px) {
-  .container {
-    max-width: 1320px;
-  }
-  
   .hero-title {
     font-size: 5rem;
   }
@@ -614,11 +681,11 @@ body {
 
 /* Print styles */
 @media print {
-  .header-container,
-  .mobile-menu,
+  .mundo-header,
+  #mobile-menu,
   .back-to-top,
   .hero-particles,
-  .footer-section {
+  .mundo-footer {
     display: none !important;
   }
   
@@ -652,59 +719,6 @@ body {
   .animate-float-5 {
     animation: none !important;
   }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  :root {
-    --primary-green: #000;
-    --primary-green-light: #333;
-    --primary-green-dark: #000;
-    --text-primary: #000;
-    --text-secondary: #333;
-    --border-color: #000;
-  }
-  
-  .hero-overlay {
-    background: rgba(0, 0, 0, 0.8) !important;
-  }
-  
-  .footer-section {
-    background: #000 !important;
-  }
-}
-
-/* Dark mode (if needed in future) */
-@media (prefers-color-scheme: dark) {
-  /* Dark mode styles would go here */
-}
-
-/* ===== UTILITY CLASSES ===== */
-.text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.text-shadow-lg {
-  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.backdrop-blur-custom {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.glass-effect {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Focus styles for accessibility */

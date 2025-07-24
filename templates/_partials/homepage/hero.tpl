@@ -1,21 +1,21 @@
 {**
  * Hero Section - Mundo Limpio Theme
- * Elegant hero with background image and content
+ * Sección hero principal con el texto solicitado
  *}
 
 <section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
   
-  {* Background Image with Overlay *}
+  {* === BACKGROUND IMAGE WITH OVERLAY === *}
   <div class="hero-background absolute inset-0 z-0">
     <div class="hero-image absolute inset-0 bg-cover bg-center bg-no-repeat" 
-         style="background-image: url('{$theme_assets}img/hero-bg.jpg');">
+         style="background-image: url('{if isset($theme_assets) && $theme_assets}{$theme_assets}{else}/themes/mundolimpiotheme/assets/{/if}img/hero-bg.jpg');">
     </div>
     
     {* Gradient Overlay *}
     <div class="hero-overlay absolute inset-0 bg-gradient-to-r from-green-900/80 via-green-800/70 to-green-700/60"></div>
     
     {* Animated Particles Background *}
-    <div class="hero-particles absolute inset-0 opacity-20">
+    <div class="hero-particles absolute inset-0 opacity-20 pointer-events-none">
       <div class="particle absolute w-2 h-2 bg-white rounded-full animate-float-1"></div>
       <div class="particle absolute w-1 h-1 bg-white rounded-full animate-float-2"></div>
       <div class="particle absolute w-3 h-3 bg-white rounded-full animate-float-3"></div>
@@ -24,11 +24,11 @@
     </div>
   </div>
 
-  {* Hero Content *}
+  {* === HERO CONTENT === *}
   <div class="hero-content relative z-10 container mx-auto px-4 lg:px-6 text-center">
     <div class="max-w-4xl mx-auto">
       
-      {* Main Title *}
+      {* Main Title - TEXTO SOLICITADO *}
       <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight">
         <span class="block opacity-0 transform translate-y-8 animate-fade-in-up">
           <span class="text-green-300">Soluciones</span>
@@ -41,22 +41,22 @@
         </span>
       </h1>
 
-      {* Description *}
+      {* Description - TEXTO SOLICITADO *}
       <p class="hero-description text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed opacity-0 transform translate-y-8 animate-fade-in-up animation-delay-600">
         Desde 2008 brindamos productos de limpieza e higiene con responsabilidad ecológica. 
         Protegemos la selva misionera con soluciones sustentables y asesoramiento experto.
       </p>
 
-      {* Call to Action Button *}
+      {* Call to Action Button - TEXTO SOLICITADO *}
       <div class="hero-cta opacity-0 transform translate-y-8 animate-fade-in-up animation-delay-800">
-        <a href="{$urls.pages.contact}" 
+        <a href="{if isset($urls.pages.contact)}{$urls.pages.contact}{else}/contacto{/if}" 
            class="cta-button inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-400 text-white font-semibold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group">
           <span class="mr-3">Contáctanos Ahora</span>
           <i class="material-icons text-xl group-hover:translate-x-1 transition-transform duration-300">arrow_forward</i>
         </a>
       </div>
 
-      {* Features Preview *}
+      {* === FEATURES PREVIEW === *}
       <div class="hero-features mt-16 opacity-0 animate-fade-in-up animation-delay-1000">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
           
@@ -87,7 +87,7 @@
       </div>
     </div>
 
-    {* Scroll Indicator *}
+    {* === SCROLL INDICATOR === *}
     <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in-up animation-delay-1200">
       <div class="scroll-mouse w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
         <div class="scroll-wheel w-1 h-3 bg-white/70 rounded-full mt-2 animate-bounce"></div>
@@ -96,7 +96,7 @@
     </div>
   </div>
 
-  {* Decorative Elements *}
+  {* === DECORATIVE ELEMENTS === *}
   <div class="hero-decorations absolute inset-0 pointer-events-none">
     {* Left Decoration *}
     <div class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 w-64 h-64 bg-gradient-to-r from-green-400/20 to-transparent rounded-full blur-3xl"></div>
@@ -105,108 +105,3 @@
     <div class="absolute right-0 top-1/3 transform -translate-y-1/2 translate-x-1/2 w-48 h-48 bg-gradient-to-l from-green-300/20 to-transparent rounded-full blur-3xl"></div>
   </div>
 </section>
-
-{* Custom Animations Styles *}
-<style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(2rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes float1 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    25% { transform: translateY(-20px) translateX(10px); }
-    50% { transform: translateY(-10px) translateX(-10px); }
-    75% { transform: translateY(-30px) translateX(5px); }
-  }
-
-  @keyframes float2 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    33% { transform: translateY(-15px) translateX(-15px); }
-    66% { transform: translateY(-25px) translateX(15px); }
-  }
-
-  @keyframes float3 {
-    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-    25% { transform: translateY(-25px) translateX(20px) rotate(90deg); }
-    50% { transform: translateY(-15px) translateX(-20px) rotate(180deg); }
-    75% { transform: translateY(-35px) translateX(10px) rotate(270deg); }
-  }
-
-  @keyframes float4 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    50% { transform: translateY(-40px) translateX(-25px); }
-  }
-
-  @keyframes float5 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    20% { transform: translateY(-30px) translateX(15px); }
-    40% { transform: translateY(-10px) translateX(-20px); }
-    60% { transform: translateY(-45px) translateX(25px); }
-    80% { transform: translateY(-20px) translateX(-10px); }
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .animate-float-1 {
-    animation: float1 8s ease-in-out infinite;
-    top: 20%;
-    left: 10%;
-  }
-
-  .animate-float-2 {
-    animation: float2 6s ease-in-out infinite;
-    top: 60%;
-    left: 80%;
-  }
-
-  .animate-float-3 {
-    animation: float3 10s ease-in-out infinite;
-    top: 30%;
-    right: 20%;  
-  }
-
-  .animate-float-4 {
-    animation: float4 7s ease-in-out infinite;
-    bottom: 30%;
-    left: 15%;
-  }
-
-  .animate-float-5 {
-    animation: float5 9s ease-in-out infinite;
-    top: 70%;
-    right: 30%;
-  }
-
-  .animation-delay-200 {
-    animation-delay: 0.2s;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 0.4s;
-  }
-
-  .animation-delay-600 {
-    animation-delay: 0.6s;
-  }
-
-  .animation-delay-800 {
-    animation-delay: 0.8s;
-  }
-
-  .animation-delay-1000 {
-    animation-delay: 1s;
-  }
-
-  .animation-delay-1200 {
-    animation-delay: 1.2s;
-  }
-</style>

@@ -1,18 +1,21 @@
 {**
  * Index Template - Mundo Limpio Theme
- * Homepage template with hero section and custom content
+ * Homepage completa con todas las secciones
  *}
 
-{extends file='layouts/layout-both-columns.tpl'}
+{extends file='parent:index.tpl'}
 
+{* Incluir Hero Section al inicio *}
 {block name='page_content_top'}
-  {* Hero section is included in the layout *}
+  {include file='_partials/hero.tpl'}
 {/block}
 
+{* Contenido principal de la homepage *}
 {block name='page_content'}
+  {$smarty.block.parent}
   
-  {* Categories Section *}
-  <section class="categories-section py-16 bg-white" data-scroll-animation>
+  {* === CATEGORIES SECTION === *}
+  <section class="categories-section py-16 bg-white" id="categorias">
     <div class="container mx-auto px-4 lg:px-6">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -24,7 +27,8 @@
       </div>
       
       <div class="categories-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {* Category cards - replace with dynamic categories *}
+        
+        {* Limpieza del Hogar *}
         <div class="category-card group cursor-pointer">
           <div class="card bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-105">
             <div class="card-image relative h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
@@ -46,6 +50,7 @@
           </div>
         </div>
 
+        {* Limpieza Industrial *}
         <div class="category-card group cursor-pointer">
           <div class="card bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-105">
             <div class="card-image relative h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
@@ -67,6 +72,7 @@
           </div>
         </div>
 
+        {* Productos Eco-Friendly *}
         <div class="category-card group cursor-pointer">
           <div class="card bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-105">
             <div class="card-image relative h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
@@ -91,8 +97,8 @@
     </div>
   </section>
 
-  {* Featured Products Section *}
-  <section class="featured-products py-16 bg-gray-50" data-scroll-animation>
+  {* === FEATURED PRODUCTS SECTION === *}
+  <section class="featured-products py-16 bg-gray-50" id="productos-destacados">
     <div class="container mx-auto px-4 lg:px-6">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -104,9 +110,10 @@
       </div>
       
       <div class="products-grid">
+        {* Hook para productos destacados de PrestaShop *}
         {hook h='displayHome'}
         
-        {* If no products from hook, show placeholder *}
+        {* Productos de ejemplo si no hay productos del hook *}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {for $i=1 to 4}
             <div class="product-card group">
@@ -129,10 +136,10 @@
                 </div>
                 <div class="product-info p-4">
                   <h3 class="product-name text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
-                    Producto de Ejemplo {$i}
+                    Producto Eco-Friendly {$i}
                   </h3>
                   <p class="product-description text-gray-600 text-sm mb-3">
-                    Descripción del producto eco-friendly para limpieza del hogar.
+                    Descripción del producto sustentable para limpieza del hogar.
                   </p>
                   <div class="product-rating flex items-center mb-3">
                     {for $star=1 to 5}
@@ -147,7 +154,7 @@
                         <span class="old-price text-sm text-gray-400 line-through ml-2">$24.99</span>
                       {/if}
                     </div>
-                    <button class="add-to-cart btn btn-primary text-sm px-4 py-2">
+                    <button class="add-to-cart bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-lg transition-colors">
                       <i class="material-icons text-sm mr-1">add_shopping_cart</i>
                       Agregar
                     </button>
@@ -160,7 +167,8 @@
       </div>
       
       <div class="text-center mt-12">
-        <a href="{$urls.pages.category}" class="btn btn-outline btn-lg">
+        <a href="{if isset($urls.pages.category)}{$urls.pages.category}{else}/categoria{/if}" 
+           class="inline-flex items-center px-8 py-3 border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold rounded-full transition-all duration-200">
           Ver Todos los Productos
           <i class="material-icons ml-2">arrow_forward</i>
         </a>
@@ -168,8 +176,8 @@
     </div>
   </section>
 
-  {* Values Section *}
-  <section class="values-section py-16 bg-white" data-scroll-animation>
+  {* === VALUES SECTION === *}
+  <section class="values-section py-16 bg-white" id="valores">
     <div class="container mx-auto px-4 lg:px-6">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -232,8 +240,8 @@
     </div>
   </section>
 
-  {* Statistics Section *}
-  <section class="stats-section py-16 bg-gradient-to-r from-green-600 to-green-700 text-white" data-scroll-animation>
+  {* === STATISTICS SECTION === *}
+  <section class="stats-section py-16 bg-gradient-to-r from-green-600 to-green-700 text-white" id="estadisticas">
     <div class="container mx-auto px-4 lg:px-6">
       <div class="stats-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
         <div class="stat-item">
@@ -259,8 +267,69 @@
     </div>
   </section>
 
-  {* Call to Action Section *}
-  <section class="cta-section py-16 bg-gray-50" data-scroll-animation>
+  {* === TESTIMONIALS SECTION === *}
+  <section class="testimonials-section py-16 bg-green-50" id="testimonios">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Lo que Dicen Nuestros Clientes
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          La confianza de nuestros clientes es nuestro mayor logro
+        </p>
+      </div>
+      
+      <div class="testimonials-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="testimonial-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="stars flex mb-4">
+            {for $i=1 to 5}
+              <i class="material-icons text-yellow-400">star</i>
+            {/for}
+          </div>
+          <p class="text-gray-600 mb-4 italic">
+            "Excelente calidad y realmente notamos la diferencia en el cuidado del medio ambiente."
+          </p>
+          <div class="testimonial-author">
+            <h4 class="font-semibold text-gray-900">María González</h4>
+            <p class="text-sm text-gray-500">Cliente desde 2019</p>
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="stars flex mb-4">
+            {for $i=1 to 5}
+              <i class="material-icons text-yellow-400">star</i>
+            {/for}
+          </div>
+          <p class="text-gray-600 mb-4 italic">
+            "Los productos son increíbles y el servicio al cliente es excepcional. Muy recomendado."
+          </p>
+          <div class="testimonial-author">
+            <h4 class="font-semibold text-gray-900">Carlos Rodríguez</h4>
+            <p class="text-sm text-gray-500">Cliente desde 2020</p>
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="stars flex mb-4">
+            {for $i=1 to 5}
+              <i class="material-icons text-yellow-400">star</i>
+            {/for}
+          </div>
+          <p class="text-gray-600 mb-4 italic">
+            "Perfecta combinación entre eficacia y respeto por el medio ambiente."
+          </p>
+          <div class="testimonial-author">
+            <h4 class="font-semibold text-gray-900">Ana López</h4>
+            <p class="text-sm text-gray-500">Cliente desde 2018</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {* === CTA SECTION === *}
+  <section class="cta-section py-16 bg-gray-50" id="cta">
     <div class="container mx-auto px-4 lg:px-6">
       <div class="cta-content bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-8 md:p-12 text-center text-white relative overflow-hidden">
         {* Background decoration *}
@@ -277,11 +346,13 @@
             Únete a miles de familias que ya eligieron cuidar su hogar y el planeta al mismo tiempo
           </p>
           <div class="cta-buttons flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{$urls.pages.category}" class="btn bg-white text-green-600 hover:bg-gray-100 btn-lg">
+            <a href="{if isset($urls.pages.category)}{$urls.pages.category}{else}/categoria{/if}" 
+               class="inline-flex items-center px-8 py-3 bg-white text-green-600 hover:bg-gray-100 font-semibold rounded-full transition-all duration-200">
               <i class="material-icons mr-2">shopping_cart</i>
               Explorar Productos
             </a>
-            <a href="{$urls.pages.contact}" class="btn border-2 border-white text-white hover:bg-white hover:text-green-600 btn-lg">
+            <a href="{if isset($urls.pages.contact)}{$urls.pages.contact}{else}/contacto{/if}" 
+               class="inline-flex items-center px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-green-600 font-semibold rounded-full transition-all duration-200">
               <i class="material-icons mr-2">contact_support</i>
               Solicitar Asesoría
             </a>
@@ -290,66 +361,9 @@
       </div>
     </div>
   </section>
-
 {/block}
 
-{block name='page_content_bottom'}
-  {* Newsletter Section *}
-  <section class="newsletter-section py-12 bg-gray-900 text-white">
-    <div class="container mx-auto px-4 lg:px-6">
-      <div class="text-center">
-        <h3 class="text-2xl font-bold mb-4">
-          Mantente Informado
-        </h3>
-        <p class="text-gray-300 mb-6 max-w-xl mx-auto">
-          Recibe consejos de limpieza sustentable y ofertas exclusivas
-        </p>
-        <form class="newsletter-form max-w-md mx-auto flex gap-2">
-          <input 
-            type="email" 
-            placeholder="Tu email..." 
-            class="flex-1 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-            required
-          >
-          <button 
-            type="submit" 
-            class="btn btn-primary px-6 py-3 whitespace-nowrap"
-          >
-            Suscribirse
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-{/block}
-
-{* Custom JavaScript for counters *}
-{block name='javascript_bottom'}
-  {$smarty.block.parent}
-  
-  <script>
-    // Animate counters when they come into view
-    document.addEventListener('DOMContentLoaded', function() {
-      const counters = document.querySelectorAll('[data-counter]');
-      
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            const counter = entry.target;
-            const target = parseInt(counter.getAttribute('data-counter'));
-            
-            if (window.MundoLimpioUtils) {
-              window.MundoLimpioUtils.animateCounter(counter, target, 2000);
-            }
-            
-            observer.unobserve(counter);
-          }
-        });
-      });
-      
-      counters.forEach(function(counter) {
-        observer.observe(counter);
-      });
-    });
-  </script>
+{* Incluir Footer al final *}
+{block name='page_footer'}
+  {include file='_partials/footer.tpl'}
 {/block}

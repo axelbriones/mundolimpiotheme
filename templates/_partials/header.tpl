@@ -1,122 +1,129 @@
 {**
- * Header Template - Mundo Limpio Theme
- * Elegant sticky header with scroll behavior
+ * Header - Mundo Limpio Theme
+ * Header sticky profesional con navegación responsive
  *}
 
-<header id="header" class="header-container fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out bg-white shadow-lg">
-  <div class="header-nav bg-white border-b border-gray-100">
-    <div class="container mx-auto px-4 lg:px-6">
-      <nav class="flex items-center justify-between h-20">
+<header id="mundo-header" class="mundo-header fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all duration-300">
+  <div class="container mx-auto px-4 lg:px-6">
+    <nav class="flex items-center justify-between h-20">
+      
+      {* === LOGO SECTION === *}
+      <div class="logo-section flex-shrink-0">
+        <a href="{if isset($urls.base_url)}{$urls.base_url}{else}/{/if}" class="flex items-center logo-link">
+          {if isset($shop.logo_details) && $shop.logo_details}
+            <img 
+              src="{$shop.logo_details.src}" 
+              alt="{if isset($shop.name)}{$shop.name|escape:'html':'UTF-8'}{else}Mundo Limpio{/if}"
+              class="h-12 w-auto hover:scale-105 transition-transform duration-300"
+              {if isset($shop.logo_details.width)}width="{$shop.logo_details.width}"{/if}
+              {if isset($shop.logo_details.height)}height="{$shop.logo_details.height}"{/if}
+            >
+          {else}
+            <span class="text-2xl font-bold text-green-600 hover:text-green-700 transition-colors">
+              {if isset($shop.name)}{$shop.name|escape:'html':'UTF-8'}{else}Mundo Limpio{/if}
+            </span>
+          {/if}
+        </a>
+      </div>
+
+      {* === DESKTOP NAVIGATION === *}
+      <div class="desktop-nav hidden lg:flex items-center space-x-8">
+        <div class="nav-links flex items-center space-x-6">
+          <a href="{if isset($urls.pages.index)}{$urls.pages.index}{else}/{/if}" 
+             class="nav-link text-gray-700 hover:text-green-600 font-medium transition-colors duration-200 relative">
+            Inicio
+          </a>
+          <a href="{if isset($urls.pages.category)}{$urls.pages.category}{else}/categoria{/if}" 
+             class="nav-link text-gray-700 hover:text-green-600 font-medium transition-colors duration-200 relative">
+            Productos
+          </a>
+          <a href="#sustentabilidad" 
+             class="nav-link text-gray-700 hover:text-green-600 font-medium transition-colors duration-200 relative">
+            Sustentabilidad
+          </a>
+          <a href="{if isset($urls.pages.contact)}{$urls.pages.contact}{else}/contacto{/if}" 
+             class="nav-link text-gray-700 hover:text-green-600 font-medium transition-colors duration-200 relative">
+            Contacto
+          </a>
+        </div>
+      </div>
+
+      {* === SEARCH BAR DESKTOP === *}
+      <div class="search-section hidden md:flex items-center flex-1 max-w-md mx-6">
+        <form action="{if isset($urls.pages.search)}{$urls.pages.search}{else}/buscar{/if}" 
+              method="get" class="w-full relative">
+          <input 
+            type="text" 
+            name="{if isset($search_param_name)}{$search_param_name}{else}s{/if}"
+            placeholder="Buscar productos..." 
+            class="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+            value="{if isset($search_string)}{$search_string|escape:'html':'UTF-8'}{/if}"
+          >
+          <button type="submit" 
+                  class="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-green-600 transition-colors">
+            <i class="material-icons text-xl">search</i>
+          </button>
+        </form>
+      </div>
+
+      {* === USER ACTIONS === *}
+      <div class="user-actions flex items-center space-x-4">
         
-        {* Logo Section *}
-        <div class="logo-section flex-shrink-0">
-          <a href="{$urls.base_url}" class="logo-link flex items-center">
-            {if $shop.logo_details}
-              <img 
-                class="logo h-12 w-auto transition-all duration-300 hover:scale-105" 
-                src="{$shop.logo_details.src}" 
-                alt="{$shop.name}" 
-                width="{$shop.logo_details.width}" 
-                height="{$shop.logo_details.height}"
-              >
-            {else}
-              <span class="text-2xl font-bold text-green-600 hover:text-green-700 transition-colors">
-                {$shop.name}
-              </span>
-            {/if}
+        {* Account - Desktop *}
+        <div class="account-section hidden md:block">
+          {if isset($customer.is_logged) && $customer.is_logged}
+            <a href="{if isset($urls.pages.my_account)}{$urls.pages.my_account}{else}/mi-cuenta{/if}" 
+               class="account-link flex items-center text-gray-700 hover:text-green-600 transition-colors">
+              <i class="material-icons mr-1">account_circle</i>
+              <span class="hidden lg:inline">Mi Cuenta</span>
+            </a>
+          {else}
+            <a href="{if isset($urls.pages.authentication)}{$urls.pages.authentication}{else}/login{/if}" 
+               class="account-link flex items-center text-gray-700 hover:text-green-600 transition-colors">
+              <i class="material-icons mr-1">login</i>
+              <span class="hidden lg:inline">Ingresar</span>
+            </a>
+          {/if}
+        </div>
+
+        {* Cart *}
+        <div class="cart-section">
+          <a href="{if isset($urls.pages.cart)}{$urls.pages.cart}{else}/carrito{/if}" 
+             class="cart-link flex items-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition-all duration-200 group">
+            <i class="material-icons mr-2">shopping_cart</i>
+            <span class="cart-count bg-white text-green-600 text-xs font-bold px-2 py-1 rounded-full ml-2 group-hover:bg-gray-100">
+              {if isset($cart.products_count)}{$cart.products_count}{else}0{/if}
+            </span>
           </a>
         </div>
 
-        {* Desktop Navigation *}
-        <div class="desktop-nav hidden lg:flex items-center space-x-8">
-          {hook h='displayTop'}
-          
-          <div class="nav-links flex items-center space-x-6">
-            <a href="{$urls.pages.index}" class="nav-link text-gray-700 hover:text-green-600 font-medium transition-colors duration-200">
-              Inicio
-            </a>
-            <a href="{$urls.pages.category}" class="nav-link text-gray-700 hover:text-green-600 font-medium transition-colors duration-200">
-              Productos
-            </a>
-            <a href="#" class="nav-link text-gray-700 hover:text-green-600 font-medium transition-colors duration-200">
-              Sustentabilidad
-            </a>
-            <a href="{$urls.pages.contact}" class="nav-link text-gray-700 hover:text-green-600 font-medium transition-colors duration-200">
-              Contacto
-            </a>
-          </div>
-        </div>
-
-        {* Search Bar - Desktop *}
-        <div class="search-section hidden md:flex items-center flex-1 max-w-md mx-6">
-          {hook h='displaySearch2'}
-          <form action="{$urls.pages.search}" method="get" class="search-form relative w-full">
-            <input 
-              type="text" 
-              name="s" 
-              placeholder="Buscar productos..." 
-              class="search-input w-full pl-4 pr-12 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
-              value="{$search_string|escape:'html':'UTF-8'}"
-            >
-            <button type="submit" class="search-btn absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-green-600 transition-colors">
-              <i class="material-icons text-xl">search</i>
-            </button>
-          </form>
-        </div>
-
-        {* User Actions *}
-        <div class="user-actions flex items-center space-x-4">
-          
-          {* Account *}
-          <div class="account-section hidden md:block">
-            {if $customer.is_logged}
-              <a href="{$urls.pages.my_account}" class="account-link flex items-center text-gray-700 hover:text-green-600 transition-colors">
-                <i class="material-icons mr-1">account_circle</i>
-                <span class="hidden lg:inline">Mi Cuenta</span>
-              </a>
-            {else}
-              <a href="{$urls.pages.authentication}" class="account-link flex items-center text-gray-700 hover:text-green-600 transition-colors">
-                <i class="material-icons mr-1">login</i>
-                <span class="hidden lg:inline">Ingresar</span>
-              </a>
-            {/if}
-          </div>
-
-          {* Cart *}
-          <div class="cart-section">
-            {hook h='displayTop'}
-            <a href="{$urls.pages.cart}" class="cart-link flex items-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition-all duration-200 group">
-              <i class="material-icons mr-2">shopping_cart</i>
-              <span class="cart-count bg-white text-green-600 text-xs font-bold px-2 py-1 rounded-full ml-2 group-hover:bg-gray-100">
-                {$cart.products_count}
-              </span>
-            </a>
-          </div>
-
-          {* Mobile Menu Toggle *}
-          <button id="mobile-menu-toggle" class="mobile-menu-btn lg:hidden p-2 text-gray-700 hover:text-green-600 transition-colors">
-            <i class="material-icons text-2xl">menu</i>
-          </button>
-        </div>
-      </nav>
-    </div>
+        {* Mobile Menu Toggle *}
+        <button id="mobile-menu-toggle" 
+                class="mobile-menu-btn lg:hidden p-2 text-gray-700 hover:text-green-600 transition-colors">
+          <i class="material-icons text-2xl">menu</i>
+        </button>
+      </div>
+    </nav>
   </div>
 
-  {* Mobile Navigation *}
-  <div id="mobile-menu" class="mobile-menu lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg transform -translate-y-full opacity-0 invisible transition-all duration-300 ease-in-out">
+  {* === MOBILE MENU === *}
+  <div id="mobile-menu" 
+       class="mobile-menu lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg transform -translate-y-full opacity-0 invisible transition-all duration-300 ease-in-out">
     <div class="container mx-auto px-4 py-6">
       
       {* Mobile Search *}
       <div class="mobile-search mb-6">
-        <form action="{$urls.pages.search}" method="get" class="search-form relative">
+        <form action="{if isset($urls.pages.search)}{$urls.pages.search}{else}/buscar{/if}" 
+              method="get" class="relative">
           <input 
             type="text" 
-            name="s" 
+            name="{if isset($search_param_name)}{$search_param_name}{else}s{/if}"
             placeholder="Buscar productos..." 
-            class="search-input w-full pl-4 pr-12 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            value="{$search_string|escape:'html':'UTF-8'}"
+            class="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            value="{if isset($search_string)}{$search_string|escape:'html':'UTF-8'}{/if}"
           >
-          <button type="submit" class="search-btn absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-green-600">
+          <button type="submit" 
+                  class="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-green-600">
             <i class="material-icons text-xl">search</i>
           </button>
         </form>
@@ -124,36 +131,43 @@
 
       {* Mobile Navigation Links *}
       <nav class="mobile-nav space-y-4">
-        <a href="{$urls.pages.index}" class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
+        <a href="{if isset($urls.pages.index)}{$urls.pages.index}{else}/{/if}" 
+           class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
           <i class="material-icons mr-3">home</i>
           Inicio
         </a>
-        <a href="{$urls.pages.category}" class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
+        <a href="{if isset($urls.pages.category)}{$urls.pages.category}{else}/categoria{/if}" 
+           class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
           <i class="material-icons mr-3">inventory_2</i>
           Productos
         </a>
-        <a href="#" class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
+        <a href="#sustentabilidad" 
+           class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
           <i class="material-icons mr-3">eco</i>
           Sustentabilidad
         </a>
-        <a href="{$urls.pages.contact}" class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
+        <a href="{if isset($urls.pages.contact)}{$urls.pages.contact}{else}/contacto{/if}" 
+           class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
           <i class="material-icons mr-3">contact_mail</i>
           Contacto
         </a>
         
-        {* Mobile Account *}
+        {* Mobile Account Section *}
         <div class="border-t border-gray-200 pt-4 mt-4">
-          {if $customer.is_logged}
-            <a href="{$urls.pages.my_account}" class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
+          {if isset($customer.is_logged) && $customer.is_logged}
+            <a href="{if isset($urls.pages.my_account)}{$urls.pages.my_account}{else}/mi-cuenta{/if}" 
+               class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
               <i class="material-icons mr-3">account_circle</i>
               Mi Cuenta
             </a>
-            <a href="{$urls.actions.logout}" class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200">
+            <a href="{if isset($urls.actions.logout)}{$urls.actions.logout}{else}/?logout=1{/if}" 
+               class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200">
               <i class="material-icons mr-3">logout</i>
               Cerrar Sesión
             </a>
           {else}
-            <a href="{$urls.pages.authentication}" class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
+            <a href="{if isset($urls.pages.authentication)}{$urls.pages.authentication}{else}/login{/if}" 
+               class="mobile-nav-link block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200">
               <i class="material-icons mr-3">login</i>
               Ingresar / Registrarse
             </a>
@@ -164,5 +178,5 @@
   </div>
 </header>
 
-{* Header Spacer to prevent content overlap *}
-<div class="header-spacer h-20"></div>
+{* Header Spacer para compensar el header fijo *}
+<div class="header-spacer" style="height: 80px;"></div>
