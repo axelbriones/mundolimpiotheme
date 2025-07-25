@@ -362,8 +362,3 @@
     </div>
   </section>
 {/block}
-
-{* Incluir Footer al final *}
-{block name='page_footer'}
-  {include file='_partials/footer.tpl'}
-{/block}
