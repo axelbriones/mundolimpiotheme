@@ -49,3 +49,25 @@ global_settings:
     PS_IMAGE_QUALITY: jpg
     PS_JPEG_QUALITY: 90
     PS_PNG_QUALITY: 7
+
+  image_types:
+    category_default:
+      width: 800
+      height: 800
+      resize: cover
+    product_default:
+      width: 800
+      height: 800
+      resize: cover
+    small_default:
+      width: 250
+      height: 250
+      resize: cover
+    medium_default:
+      width: 500
+      height: 500
+      resize: cover
+    large_default:
+      width: 1000
+      height: 1000
+      resize: cover
