@@ -71,3 +71,7 @@ global_settings:
       width: 1000
       height: 1000
       resize: cover
+    home_default:
+      width: 1200
+      height: 600
+      resize: cover
