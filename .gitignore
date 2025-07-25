@@ -5,14 +5,9 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 yarn.lock
-
-# ===== CSS COMPILADO =====
-assets/css/theme.css
-assets/css/theme.min.css
-
-# ===== JS COMPILADO =====
-assets/js/theme.min.js
-assets/js/*.min.js
+package.json
+postcss.config.js
+tailwind.config.js
 
 # ===== LOGS =====
 logs/
@@ -27,6 +22,7 @@ logs/
 *.temp
 .tmp/
 .temp/
+.git/
 
 # ===== EDITOR =====
 .vscode/
@@ -44,8 +40,8 @@ logs/
 ehthumbs.db
 Thumbs.db
 
+
 # ===== PRESTASHOP ESPECÍFICO =====
-config/
 var/cache/
 var/logs/
 download/
@@ -63,6 +59,7 @@ backups/
 .env.development
 .env.test
 .env.production
+.env.example
 
 # ===== COMPRESIÓN =====
 *.zip

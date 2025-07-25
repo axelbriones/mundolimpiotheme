@@ -1,0 +1,51 @@
+name: mundolimpiotheme
+display_name: Mundo Limpio Theme
+version: 1.0.0
+author:
+  name: "Mundo Limpio"
+  email: "info@mundolimpio.com"
+  url: "https://mundolimpio.com"
+
+meta:
+  compatibility:
+    from: 1.7.0.0
+    to: ~
+  available_layouts:
+    layout-both-columns: Ambas columnas
+    layout-left-column: Columna izquierda
+    layout-right-column: Columna derecha
+    layout-no-columns: Sin columnas
+
+parent: classic
+use_parent_assets: false
+
+assets:
+  css:
+    all:
+      - id: theme-main
+        path: assets/css/theme.css
+        media: all
+        priority: 1000
+      - id: google-fonts
+        path: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap
+        media: all
+        priority: 900
+        server: remote
+      - id: material-icons
+        path: https://fonts.googleapis.com/icon?family=Material+Icons
+        media: all
+        priority: 900
+        server: remote
+
+  js:
+    all:
+      - id: theme-main
+        path: assets/js/theme.js
+        priority: 1000
+        position: bottom
+
+global_settings:
+  configuration:
+    PS_IMAGE_QUALITY: jpg
+    PS_JPEG_QUALITY: 90
+    PS_PNG_QUALITY: 7
