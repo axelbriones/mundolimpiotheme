@@ -1,110 +1,110 @@
 {
-  "name": "mundolimpiotheme",
-  "version": "1.0.0",
-  "description": "Tema child elegante y optimizado para PrestaShop especializado en productos de limpieza sustentables",
-  "main": "assets/js/theme.js",
-  "scripts": {
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/theme.css --minify",
-    "build:js": "terser assets/js/theme.js -o assets/js/theme.min.js --compress --mangle",
-    "watch": "npm run watch:css",
-    "watch:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/theme.css --watch",
-    "dev": "npm run watch",
-    "production": "NODE_ENV=production npm run build",
-    "clean": "rm -f assets/css/theme.css assets/js/theme.min.js",
-    "lint": "eslint assets/js/**/*.js",
-    "lint:fix": "eslint assets/js/**/*.js --fix",
-    "format": "prettier --write assets/js/**/*.js assets/css/src/**/*.css",
-    "test": "echo \"Tema instalado correctamente\" && exit 0",
-    "install-theme": "npm install && npm run build",
-    "deploy": "npm run clean && npm run production"
-  },
-  "keywords": [
-    "prestashop",
-    "theme",
-    "ecommerce",
-    "tailwindcss",
-    "responsive",
-    "eco-friendly",
-    "cleaning",
-    "sustainable",
-    "mundo-limpio"
-  ],
-  "author": {
-    "name": "Mundo Limpio",
-    "email": "info@mundolimpio.com",
-    "url": "https://mundolimpio.com"
-  },
-  "license": "UNLICENSED",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/axelbriones/mundolimpiotheme.git"
-  },
-  "bugs": {
-    "url": "https://github.com/axelbriones/mundolimpiotheme/issues"
-  },
-  "homepage": "https://github.com/axelbriones/mundolimpiotheme#readme",
-  "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ],
-  "devDependencies": {
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.10",
-    "autoprefixer": "^10.4.16",
-    "eslint": "^8.54.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "postcss": "^8.4.32",
-    "prettier": "^3.1.0",
-    "tailwindcss": "^3.3.6",
-    "terser": "^5.24.0"
-  },
-  "dependencies": {},
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es2021": true
+    "name": "mundolimpiotheme",
+    "version": "1.0.0",
+    "description": "Tema child elegante y optimizado para PrestaShop especializado en productos de limpieza sustentables",
+    "main": "assets/js/theme.js",
+    "scripts": {
+        "build": "npm run build:css && npm run build:js",
+        "build:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/theme.css --minify",
+        "build:js": "terser assets/js/theme.js -o assets/js/theme.min.js --compress --mangle",
+        "watch": "npm run watch:css",
+        "watch:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/theme.css --watch",
+        "dev": "npm run watch",
+        "production": "NODE_ENV=production npm run build",
+        "clean": "rm -f assets/css/theme.css assets/js/theme.min.js",
+        "lint": "eslint assets/js/**/*.js",
+        "lint:fix": "eslint assets/js/**/*.js --fix",
+        "format": "prettier --write assets/js/**/*.js assets/css/src/**/*.css",
+        "test": "echo \"Tema instalado correctamente\" && exit 0",
+        "install-theme": "npm install && npm run build",
+        "deploy": "npm run clean && npm run production"
     },
-    "extends": [
-      "eslint:recommended",
-      "prettier"
+    "keywords": [
+        "prestashop",
+        "theme",
+        "ecommerce",
+        "tailwindcss",
+        "responsive",
+        "eco-friendly",
+        "cleaning",
+        "sustainable",
+        "mundo-limpio"
     ],
-    "parserOptions": {
-      "ecmaVersion": 12,
-      "sourceType": "module"
+    "author": {
+        "name": "Mundo Limpio",
+        "email": "info@mundolimpio.com",
+        "url": "https://mundolimpio.com"
     },
-    "rules": {
-      "no-unused-vars": "warn",
-      "no-console": "warn",
-      "prefer-const": "error",
-      "no-var": "error"
+    "license": "UNLICENSED",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/axelbriones/mundolimpiotheme.git"
     },
-    "globals": {
-      "prestashop": "readonly",
-      "jQuery": "readonly",
-      "$": "readonly"
+    "bugs": {
+        "url": "https://github.com/axelbriones/mundolimpiotheme/issues"
+    },
+    "homepage": "https://github.com/axelbriones/mundolimpiotheme#readme",
+    "engines": {
+        "node": ">=14.0.0",
+        "npm": ">=6.0.0"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead",
+        "not ie 11"
+    ],
+    "devDependencies": {
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/typography": "^0.5.10",
+        "autoprefixer": "^10.4.16",
+        "eslint": "^8.54.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.1",
+        "postcss": "^8.4.32",
+        "prettier": "^3.1.0",
+        "tailwindcss": "^3.3.6",
+        "terser": "^5.24.0"
+    },
+    "dependencies": {},
+    "eslintConfig": {
+        "env": {
+        "browser": true,
+        "es2021": true
+        },
+        "extends": [
+        "eslint:recommended",
+        "prettier"
+        ],
+        "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+        },
+        "rules": {
+        "no-unused-vars": "warn",
+        "no-console": "warn",
+        "prefer-const": "error",
+        "no-var": "error"
+        },
+        "globals": {
+        "prestashop": "readonly",
+        "jQuery": "readonly",
+        "$": "readonly"
+        }
+    },
+    "prettier": {
+        "semi": true,
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100,
+        "tabWidth": 2,
+        "useTabs": false
+    },
+    "postcss": {
+        "plugins": {
+        "tailwindcss": {},
+        "autoprefixer": {}
+        }
     }
-  },
-  "prettier": {
-    "semi": true,
-    "trailingComma": "es5",
-    "singleQuote": true,
-    "printWidth": 100,
-    "tabWidth": 2,
-    "useTabs": false
-  },
-  "postcss": {
-    "plugins": {
-      "tailwindcss": {},
-      "autoprefixer": {}
-    }
-  }
 }
