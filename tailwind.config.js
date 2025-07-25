@@ -3,13 +3,12 @@ module.exports = {
   content: [
     "./templates/**/*.tpl",
     "./assets/js/**/*.js",
-    "./config/**/*.yml",
     "./assets/css/src/**/*.css"
   ],
   
   theme: {
     extend: {
-      // Custom colors for Mundo Limpio theme
+      // Colores personalizados para Mundo Limpio
       colors: {
         primary: {
           50: '#f0fdf4',
@@ -18,7 +17,7 @@ module.exports = {
           300: '#86efac',
           400: '#4ade80',
           500: '#22c55e',
-          600: '#16a34a', // Main primary color
+          600: '#16a34a', // Color principal
           700: '#15803d',
           800: '#166534',
           900: '#14532d',
@@ -43,7 +42,7 @@ module.exports = {
           200: '#fde68a',
           300: '#fcd34d',
           400: '#fbbf24',
-          500: '#f59e0b', // Main accent color
+          500: '#f59e0b', // Color de acento
           600: '#d97706',
           700: '#b45309',
           800: '#92400e',
@@ -64,12 +63,11 @@ module.exports = {
         }
       },
 
-      // Typography
+      // Tipografía
       fontFamily: {
         'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
         'display': ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
         'body': ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-        'mono': ['"SF Mono"', 'Monaco', '"Cascadia Code"', '"Roboto Mono"', 'Consolas', '"Courier New"', 'monospace'],
       },
 
       fontSize: {
@@ -84,11 +82,9 @@ module.exports = {
         '5xl': ['3rem', { lineHeight: '1' }],
         '6xl': ['3.75rem', { lineHeight: '1' }],
         '7xl': ['4.5rem', { lineHeight: '1' }],
-        '8xl': ['6rem', { lineHeight: '1' }],
-        '9xl': ['8rem', { lineHeight: '1' }],
       },
 
-      // Spacing
+      // Espaciado personalizado
       spacing: {
         '18': '4.5rem',
         '88': '22rem',
@@ -96,7 +92,7 @@ module.exports = {
         '144': '36rem',
       },
 
-      // Container
+      // Container personalizado
       container: {
         center: true,
         padding: {
@@ -115,7 +111,7 @@ module.exports = {
         },
       },
 
-      // Breakpoints
+      // Breakpoints personalizados
       screens: {
         'xs': '475px',
         'sm': '640px',
@@ -126,7 +122,7 @@ module.exports = {
         '3xl': '1920px',
       },
 
-      // Animations
+      // Animaciones personalizadas
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'fade-in-up': 'fadeInUp 0.6s ease-out',
@@ -209,7 +205,7 @@ module.exports = {
         },
       },
 
-      // Box Shadow
+      // Sombras personalizadas
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
@@ -218,132 +214,36 @@ module.exports = {
         'green-lg': '0 10px 40px -10px rgba(34, 197, 94, 0.3)',
       },
 
-      // Border radius
+      // Border radius personalizado
       borderRadius: {
-        'none': '0',
-        'sm': '0.125rem',
-        DEFAULT: '0.25rem',
-        'md': '0.375rem',
-        'lg': '0.5rem',
-        'xl': '0.75rem',
-        '2xl': '1rem',
-        '3xl': '1.5rem',
         '4xl': '2rem',
-        'full': '9999px',
+        '5xl': '2.5rem',
       },
 
-      // Gradient stops
-      gradientColorStops: {
-        'primary-gradient': {
-          '0%': '#16a34a',
-          '100%': '#22c55e',
-        },
-        'eco-gradient': {
-          '0%': '#14532d',
-          '50%': '#16a34a',
-          '100%': '#22c55e',
-        },
-      },
-
-      // Z-index
+      // Z-index personalizado
       zIndex: {
-        '0': '0',
-        '10': '10',
-        '20': '20',
-        '30': '30',
-        '40': '40',
-        '50': '50',
         '60': '60',
         '70': '70',
         '80': '80',
         '90': '90',
         '100': '100',
-        'auto': 'auto',
       },
 
-      // Backdrop blur
+      // Backdrop blur personalizado
       backdropBlur: {
         'xs': '2px',
-        'sm': '4px',
-        DEFAULT: '8px',
-        'md': '12px',
-        'lg': '16px',
-        'xl': '24px',
-        '2xl': '40px',
-        '3xl': '64px',
       },
 
-      // Aspect ratio
+      // Aspect ratio personalizado
       aspectRatio: {
-        '1/1': '1 / 1',
         '4/3': '4 / 3',
-        '16/9': '16 / 9',
         '21/9': '21 / 9',
-        '3/2': '3 / 2',
-        '2/3': '2 / 3',
-        '9/16': '9 / 16',
       },
 
-      // Line height
-      lineHeight: {
-        '3': '.75rem',
-        '4': '1rem',
-        '5': '1.25rem',
-        '6': '1.5rem',
-        '7': '1.75rem',
-        '8': '2rem',
-        '9': '2.25rem',
-        '10': '2.5rem',
-      },
-
-      // Letter spacing
-      letterSpacing: {
-        'tighter': '-0.05em',
-        'tight': '-0.025em',
-        'normal': '0em',
-        'wide': '0.025em',
-        'wider': '0.05em',
-        'widest': '0.1em',
-      },
-
-      // Max width
-      maxWidth: {
-        '0': '0rem',
-        'xs': '20rem',
-        'sm': '24rem',
-        'md': '28rem',
-        'lg': '32rem',
-        'xl': '36rem',
-        '2xl': '42rem',
-        '3xl': '48rem',
-        '4xl': '56rem',
-        '5xl': '64rem',
-        '6xl': '72rem',
-        '7xl': '80rem',
-        '8xl': '88rem',
-        'full': '100%',
-        'min': 'min-content',
-        'max': 'max-content',
-        'fit': 'fit-content',
-        'prose': '65ch',
-        'screen-sm': '640px',
-        'screen-md': '768px',
-        'screen-lg': '1024px',
-        'screen-xl': '1280px',
-        'screen-2xl': '1536px',
-      },
-
-      // Transition
+      // Transiciones personalizadas
       transitionDuration: {
         '0': '0ms',
-        '75': '75ms',
-        '100': '100ms',
-        '150': '150ms',
-        '200': '200ms',
-        '300': '300ms',
-        '500': '500ms',
-        '700': '700ms',
-        '1000': '1000ms',
+        '2000': '2000ms',
       },
 
       transitionTimingFunction: {
@@ -355,14 +255,14 @@ module.exports = {
 
   plugins: [
     require('@tailwindcss/forms')({
-      strategy: 'class', // only generate classes
+      strategy: 'class',
     }),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     
-    // Custom plugin for utility classes
+    // Plugin personalizado para utilidades adicionales
     function({ addUtilities, addComponents, theme }) {
-      // Custom utilities
+      // Utilidades personalizadas
       const newUtilities = {
         '.text-shadow': {
           textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)',
@@ -397,7 +297,7 @@ module.exports = {
         },
       }
 
-      // Custom components
+      // Componentes personalizados
       const newComponents = {
         '.btn': {
           '@apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2': {},
@@ -433,7 +333,7 @@ module.exports = {
     },
   ],
 
-  // Safelist classes that might be generated dynamically
+  // Safelist para clases generadas dinámicamente
   safelist: [
     'animate-fade-in-up',
     'animate-fade-in-down',
@@ -461,12 +361,7 @@ module.exports = {
     'bg-primary-500',
     'bg-primary-600',
     'bg-primary-700',
-    // Responsive classes
-    'sm:text-2xl',
-    'md:text-3xl',
-    'lg:text-4xl',
-    'xl:text-5xl',
-    // Grid columns
+    // Grid responsive
     'lg:col-span-3',
     'lg:col-span-6',
     'lg:col-span-9',

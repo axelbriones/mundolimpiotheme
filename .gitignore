@@ -1,33 +1,91 @@
-# Dependencies
-/node_modules
-/package-lock.json
-/package.json
-/postcss.config.js
-/tailwind.config.js
-
-# Build artifacts
-/dist
-/build
-/.vscode
-
-package*.json
-*.config.js
-
-# Logs
+# ===== NODE.JS =====
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+package-lock.json
+yarn.lock
 
-# OS-specific files
+# ===== CSS COMPILADO =====
+assets/css/theme.css
+assets/css/theme.min.css
+
+# ===== JS COMPILADO =====
+assets/js/theme.min.js
+assets/js/*.min.js
+
+# ===== LOGS =====
+logs/
+*.log
+
+# ===== CACHE =====
+.cache/
+*.cache
+
+# ===== TEMPORALES =====
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# ===== EDITOR =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== OS =====
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# ===== PRESTASHOP ESPECÍFICO =====
+config/
+var/cache/
+var/logs/
+download/
+upload/
+
+# ===== BACKUPS =====
+*.bak
+*.backup
+backup/
+backups/
+
+# ===== DESARROLLO =====
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# ===== COMPRESIÓN =====
+*.zip
+*.tar.gz
+*.rar
+
+# ===== DOCUMENTACIÓN GENERADA =====
+docs/generated/
+coverage/
+
+# ===== TESTING =====
+.nyc_output/
+coverage/
+test-results/
+
+# ===== IMÁGENES TEMPORALES =====
+assets/img/temp/
+assets/img/cache/
+
+# ===== NO IGNORAR =====
+!assets/img/hero-bg.jpg
+!assets/img/about-image.jpg
+!assets/img/og-default.jpg
+!assets/img/favicon.ico
+!assets/css/src/
+!assets/js/theme.js
